@@ -1,0 +1,51 @@
+@page
+@model SweetShellCup.Pages.Admin.Users.IndexModel
+@{
+    ViewData["Title"] = "Quản lý Tài khoản";
+}
+
+<div style="max-width: 1200px; margin: 40px auto; padding: 20px;">
+    <h1 style="font-size: 28px; font-weight: 700; color: #533931; margin-bottom: 24px;">Quản lý Tài khoản</h1>
+
+    @if (TempData["Message"] != null)
+    {
+        <div style="background-color: #e6f6ee; color: #10b981; padding: 12px; border-radius: 8px; margin-bottom: 20px; font-weight: 600;">
+            @TempData["Message"]
+        </div>
+    }
+
+    <div style="overflow-x: auto;">
+        <table style="width: 100%; border-collapse: collapse; text-align: left; background: #fff; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.05); overflow: hidden;">
+            <thead style="background: #fff0f7; color: #533931;">
+                <tr>
+                    <th style="padding: 16px; border-bottom: 2px solid #fdd6ea;">ID</th>
+                    <th style="padding: 16px; border-bottom: 2px solid #fdd6ea;">Họ và Tên</th>
+                    <th style="padding: 16px; border-bottom: 2px solid #fdd6ea;">Email</th>
+                    <th style="padding: 16px; border-bottom: 2px solid #fdd6ea;">Vai trò</th>
+                    <th style="padding: 16px; border-bottom: 2px solid #fdd6ea;">Ngày tạo</th>
+                    <th style="padding: 16px; border-bottom: 2px solid #fdd6ea; text-align: center;">Hành động</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var user in Model.UsersList)
+                {
+                    <tr style="border-bottom: 1px solid #f5e6ed;">
+                        <td style="padding: 12px 16px;">@user.UserId</td>
+                        <td style="padding: 12px 16px; font-weight: 500; color: #533931;">@user.FullName</td>
+                        <td style="padding: 12px 16px;">@user.Email</td>
+                        <td style="padding: 12px 16px;">
+                            <span style="background: @(user.Role?.RoleName == "Admin" ? "#fbbf24" : "#e5e7eb"); padding: 4px 10px; border-radius: 20px; font-size: 12px; font-weight: 600; color: #533931;">
+                                @(user.Role?.RoleName ?? "N/A")
+                            </span>
+                        </td>
+                        <td style="padding: 12px 16px;">@(user.CreatedAt?.ToString("dd/MM/yyyy") ?? "-")</td>
+                        <td style="padding: 12px 16px; text-align: center;">
+                            <a asp-page="./Edit" asp-route-id="@user.UserId" class="btn-outline-pink" style="padding: 6px 12px; font-size: 12px; margin-right: 8px;">Sửa</a>
+                            <a asp-page="./Delete" asp-route-id="@user.UserId" style="color: #ef4444; font-size: 14px; font-weight: 600; text-decoration: none;" onclick="return confirm('Bạn có chắc chắn muốn xóa?');">Xóa</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

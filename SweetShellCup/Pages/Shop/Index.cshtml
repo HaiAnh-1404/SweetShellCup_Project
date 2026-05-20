@@ -1,0 +1,236 @@
+@page
+@model SweetShellCup.Pages.Shop.IndexModel
+@{
+    ViewData["Title"] = "Cửa hàng";
+}
+
+<style>
+    .shop-header {
+        background: linear-gradient(135deg, #fff0f7 0%, #fff5fb 100%);
+        padding: 60px; text-align: center;
+    }
+    .shop-header h1 { font-size: 48px; font-weight: 800; color: #533931; margin-bottom: 12px; }
+    .shop-header p { color: #888; font-size: 16px; }
+
+    .shop-main { display: flex; gap: 0; max-width: 1400px; margin: 0 auto; padding: 40px 60px; }
+
+    /* Sidebar */
+    .shop-sidebar {
+        width: 260px; flex-shrink: 0; margin-right: 40px;
+    }
+    .filter-card {
+        background: #fff; border-radius: 16px; padding: 24px;
+        box-shadow: 0 4px 20px rgba(0,0,0,0.06); border: 1px solid #f5e6ed;
+        margin-bottom: 20px;
+    }
+    .filter-card h3 { font-size: 14px; font-weight: 700; color: #533931; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 16px; }
+    .search-box {
+        width: 100%; padding: 10px 14px; border: 2px solid #f5e6ed;
+        border-radius: 10px; font-family: 'Work Sans', sans-serif;
+        font-size: 14px; outline: none; transition: border 0.2s;
+    }
+    .search-box:focus { border-color: #fd84b2; }
+    .search-btn {
+        width: 100%; margin-top: 10px;
+        padding: 10px; background: linear-gradient(135deg, #e60380, #fd84b2);
+        color: #fff; border: none; border-radius: 10px;
+        font-family: 'Work Sans', sans-serif; font-size: 14px; font-weight: 600;
+        cursor: pointer;
+    }
+    .cat-list { list-style: none; }
+    .cat-list li { margin-bottom: 8px; }
+    .cat-list li a {
+        display: flex; justify-content: space-between; align-items: center;
+        padding: 10px 14px; border-radius: 10px;
+        text-decoration: none; color: #533931; font-size: 14px; font-weight: 500;
+        transition: all 0.2s;
+        border: 2px solid transparent;
+    }
+    .cat-list li a:hover, .cat-list li a.active {
+        background: #fff0f7; border-color: #fd84b2; color: #e60380;
+    }
+    .cat-count {
+        font-size: 12px; background: #f0f0f0; color: #888;
+        padding: 2px 8px; border-radius: 50px;
+    }
+
+    /* Product Grid */
+    .shop-content { flex: 1; }
+    .shop-toolbar {
+        display: flex; justify-content: space-between; align-items: center;
+        margin-bottom: 24px;
+    }
+    .result-count { color: #888; font-size: 14px; }
+    .result-count span { color: #e60380; font-weight: 700; }
+
+    .products-grid {
+        display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px;
+    }
+    .product-card {
+        background: #fff; border-radius: 20px; overflow: hidden;
+        box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+        transition: transform 0.3s, box-shadow 0.3s;
+        border: 1px solid #f5e6ed;
+    }
+    .product-card:hover { transform: translateY(-6px); box-shadow: 0 12px 40px rgba(253,132,178,0.2); }
+    .product-img {
+        height: 200px; background: linear-gradient(135deg, #fff0f7, #ffd6ea);
+        display: flex; align-items: center; justify-content: center; font-size: 80px;
+        position: relative; overflow: hidden;
+    }
+    .product-img img { width: 100%; height: 100%; object-fit: cover; }
+    .product-info { padding: 20px; }
+    .product-category { font-size: 11px; color: #e60380; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 6px; }
+    .product-name { font-size: 16px; font-weight: 700; color: #533931; margin-bottom: 6px; }
+    .product-meta { font-size: 13px; color: #999; margin-bottom: 14px; }
+    .product-row { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+    .product-price { font-size: 20px; font-weight: 800; color: #e60380; }
+    .btn-detail {
+        padding: 8px 14px; background: transparent;
+        border: 2px solid #fd84b2; color: #e60380;
+        border-radius: 8px; font-size: 12px; font-weight: 600;
+        text-decoration: none; transition: all 0.2s;
+    }
+    .btn-detail:hover { background: #fff0f7; }
+    .btn-add-cart {
+        padding: 8px 14px; background: linear-gradient(135deg, #e60380, #fd84b2);
+        color: #fff; border: none; border-radius: 8px;
+        font-size: 12px; font-weight: 600; cursor: pointer;
+        transition: all 0.2s;
+    }
+    .btn-add-cart:hover { transform: scale(1.05); }
+    .stock-low { color: #f59e0b; font-size: 12px; font-weight: 600; }
+    .stock-ok { color: #10b981; font-size: 12px; font-weight: 600; }
+
+    .toast-msg {
+        position: fixed; top: 88px; right: 24px;
+        background: #10b981; color: #fff;
+        padding: 12px 24px; border-radius: 12px;
+        font-weight: 600; font-size: 14px;
+        box-shadow: 0 4px 20px rgba(16,185,129,0.3);
+        z-index: 9999; animation: slideIn 0.3s ease;
+    }
+    @@keyframes slideIn { from { transform: translateX(100px); opacity:0; } to { transform: translateX(0); opacity:1; } }
+
+    @@media (max-width: 900px) {
+        .shop-main { flex-direction: column; padding: 20px; }
+        .shop-sidebar { width: 100%; margin-right: 0; margin-bottom: 24px; }
+        .products-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+</style>
+
+@if (TempData["Message"] != null)
+{
+    <div class="toast-msg">✓ @TempData["Message"]</div>
+}
+
+<!-- HEADER -->
+<div class="shop-header">
+    <h1>🏪 Cửa hàng</h1>
+    <p>Khám phá các loại Sweet Shell Cup độc đáo và ngon miệng</p>
+</div>
+
+<!-- MAIN -->
+<div class="shop-main">
+    <!-- Sidebar -->
+    <aside class="shop-sidebar">
+        <div class="filter-card">
+            <h3>🔍 Tìm kiếm</h3>
+            <form method="get">
+                <input class="search-box" name="Search" value="@Model.Search" placeholder="Tìm sản phẩm..." />
+                <button class="search-btn" type="submit">Tìm kiếm</button>
+            </form>
+        </div>
+
+        <div class="filter-card">
+            <h3>📦 Danh mục</h3>
+            <ul class="cat-list">
+                <li>
+                    <a asp-page="/Shop/Index" class="@(Model.CategoryFilter == null && string.IsNullOrEmpty(Model.Search) ? "active" : "")">
+                        Tất cả <span class="cat-count">@Model.Products.Count</span>
+                    </a>
+                </li>
+                @foreach (var cat in Model.Categories)
+                {
+                    <li>
+                        <a asp-page="/Shop/Index" asp-route-categoryFilter="@cat.CategoryId"
+                           class="@(Model.CategoryFilter == cat.CategoryId ? "active" : "")">
+                            @cat.CategoryName
+                        </a>
+                    </li>
+                }
+            </ul>
+        </div>
+    </aside>
+
+    <!-- Products -->
+    <div class="shop-content">
+        <div class="shop-toolbar">
+            <div class="result-count">
+                Hiển thị <span>@Model.Products.Count</span> sản phẩm
+                @if (!string.IsNullOrEmpty(Model.Search))
+                {
+                    <span> · Kết quả cho "@Model.Search"</span>
+                }
+            </div>
+        </div>
+
+        @if (!Model.Products.Any())
+        {
+            <div style="text-align:center; padding:60px; color:#888;">
+                <div style="font-size:60px; margin-bottom:16px;">🍦</div>
+                <p>Không tìm thấy sản phẩm nào.</p>
+                <a asp-page="/Shop/Index" class="btn-outline-pink" style="margin-top:16px; display:inline-flex;">Xem tất cả</a>
+            </div>
+        }
+        else
+        {
+            <div class="products-grid">
+                @foreach (var product in Model.Products)
+                {
+                    <div class="product-card">
+                        <div class="product-img">
+                            @if (!string.IsNullOrEmpty(product.ImageUrl))
+                            {
+                                <img src="/images/products/@product.ImageUrl" alt="@product.ProductName"
+                                     onerror="this.style.display='none';this.parentElement.innerHTML+='🍦';" />
+                            }
+                            else
+                            {
+                                <span>🍦</span>
+                            }
+                        </div>
+                        <div class="product-info">
+                            <div class="product-category">@product.Category?.CategoryName</div>
+                            <div class="product-name">@product.ProductName</div>
+                            <div class="product-meta">
+                                @if (!string.IsNullOrEmpty(product.Flavor)) { @($"Vị {product.Flavor}") } &nbsp;
+                                @if (!string.IsNullOrEmpty(product.Size)) { @($"| {product.Size}") }
+                            </div>
+                            <div style="margin-bottom:10px;">
+                                @if (product.Stock < 10)
+                                {
+                                    <span class="stock-low">⚠ Còn @product.Stock sản phẩm</span>
+                                }
+                                else
+                                {
+                                    <span class="stock-ok">✓ Còn hàng (@product.Stock)</span>
+                                }
+                            </div>
+                            <div class="product-row">
+                                <span class="product-price">@product.Price.ToString("N0") đ</span>
+                                <div style="display:flex;gap:6px;">
+                                    <a href="/Shop/Detail?id=@product.ProductId" class="btn-detail">Chi tiết</a>
+                                    <form method="post" asp-page-handler="AddToCart" style="margin:0;">
+                                        <input type="hidden" name="productId" value="@product.ProductId" />
+                                        <button class="btn-add-cart" type="submit">+ Giỏ</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        }
+    </div>
+</div>

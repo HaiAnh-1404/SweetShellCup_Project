@@ -1,0 +1,67 @@
+@page
+@model SweetShellCup.Pages.Admin.Products.EditModel
+@{
+    ViewData["Title"] = "Sửa Sản phẩm";
+}
+
+<div style="max-width: 600px; margin: 40px auto; padding: 30px; background: #fff; border-radius: 16px; box-shadow: 0 4px 12px rgba(0,0,0,0.05); border: 1px solid #fdd6ea;">
+    <h1 style="font-size: 24px; font-weight: 700; color: #533931; margin-bottom: 24px;">Chỉnh sửa Sản phẩm</h1>
+
+    <form method="post" enctype="multipart/form-data">
+        <input type="hidden" asp-for="EditProduct.ProductId" />
+        <input type="hidden" asp-for="EditProduct.ImageUrl" />
+        <input type="hidden" asp-for="EditProduct.CreatedAt" />
+
+        <div style="margin-bottom: 16px;">
+            <label style="display: block; font-weight: 600; margin-bottom: 8px;">Tên Sản phẩm</label>
+            <input asp-for="EditProduct.ProductName" class="form-control" style="width: 100%; padding: 10px; border: 2px solid #f5e6ed; border-radius: 8px;" required />
+        </div>
+
+        <div style="margin-bottom: 16px;">
+            <label style="display: block; font-weight: 600; margin-bottom: 8px;">Danh mục</label>
+            <select asp-for="EditProduct.CategoryId" asp-items="Model.CategoryOptions" class="form-control" style="width: 100%; padding: 10px; border: 2px solid #f5e6ed; border-radius: 8px;"></select>
+        </div>
+
+        <div style="margin-bottom: 16px;">
+            <label style="display: block; font-weight: 600; margin-bottom: 8px;">Giá (VNĐ)</label>
+            <input asp-for="EditProduct.Price" type="number" class="form-control" style="width: 100%; padding: 10px; border: 2px solid #f5e6ed; border-radius: 8px;" required />
+        </div>
+
+        <div style="margin-bottom: 16px;">
+            <label style="display: block; font-weight: 600; margin-bottom: 8px;">Tồn kho</label>
+            <input asp-for="EditProduct.Stock" type="number" class="form-control" style="width: 100%; padding: 10px; border: 2px solid #f5e6ed; border-radius: 8px;" required />
+        </div>
+        
+        <div style="margin-bottom: 16px;">
+            <label style="display: block; font-weight: 600; margin-bottom: 8px;">Hương vị</label>
+            <input asp-for="EditProduct.Flavor" class="form-control" style="width: 100%; padding: 10px; border: 2px solid #f5e6ed; border-radius: 8px;" />
+        </div>
+        
+        <div style="margin-bottom: 16px;">
+            <label style="display: block; font-weight: 600; margin-bottom: 8px;">Kích thước</label>
+            <input asp-for="EditProduct.Size" class="form-control" style="width: 100%; padding: 10px; border: 2px solid #f5e6ed; border-radius: 8px;" />
+        </div>
+        
+        <div style="margin-bottom: 16px;">
+            <label style="display: block; font-weight: 600; margin-bottom: 8px;">Mô tả</label>
+            <textarea asp-for="EditProduct.Description" class="form-control" rows="4" style="width: 100%; padding: 10px; border: 2px solid #f5e6ed; border-radius: 8px;"></textarea>
+        </div>
+
+        <div style="margin-bottom: 24px;">
+            <label style="display: block; font-weight: 600; margin-bottom: 8px;">Ảnh (Tĩnh)</label>
+            @if (!string.IsNullOrEmpty(Model.EditProduct?.ImageUrl))
+            {
+                <div style="margin-bottom: 10px;">
+                    <img src="~/images/products/@Model.EditProduct.ImageUrl" width="100" style="border-radius:8px;" />
+                </div>
+            }
+            <input type="file" name="ImageFile" accept="image/*" class="form-control" style="width: 100%; padding: 10px; border: 2px solid #f5e6ed; border-radius: 8px;" />
+            <small style="color: #888;">Để trống nếu không muốn đổi ảnh.</small>
+        </div>
+
+        <div style="display: flex; gap: 12px;">
+            <button type="submit" class="btn-pink">Cập nhật</button>
+            <a asp-page="./Index" class="btn-outline-pink">Hủy</a>
+        </div>
+    </form>
+</div>

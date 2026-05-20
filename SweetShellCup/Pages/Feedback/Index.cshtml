@@ -1,0 +1,166 @@
+@page
+@model SweetShellCup.Pages.Feedback.IndexModel
+@{
+    ViewData["Title"] = "Đánh giá khách hàng";
+}
+
+<style>
+    .feedback-hero {
+        background: linear-gradient(135deg, #fff0f7, #fff5fb);
+        padding: 70px 60px; text-align: center;
+    }
+    .feedback-hero h1 { font-size: 48px; font-weight: 800; color: #533931; margin-bottom: 12px; }
+    .feedback-hero p { color: #888; font-size: 16px; }
+
+    .overall-rating {
+        display: flex; flex-direction: column; align-items: center;
+        margin-top: 24px; gap: 6px;
+    }
+    .big-star { font-size: 56px; font-weight: 800; color: #e60380; line-height: 1; }
+    .star-row { font-size: 28px; }
+    .total-reviews { font-size: 14px; color: #888; }
+
+    .feedback-page { max-width: 1200px; margin: 0 auto; padding: 60px; }
+    .feedback-grid { display: grid; grid-template-columns: 1fr 360px; gap: 48px; }
+
+    /* Reviews List */
+    .reviews-list { display: flex; flex-direction: column; gap: 20px; }
+    .review-card {
+        background: #fff; border-radius: 20px; padding: 24px;
+        box-shadow: 0 4px 20px rgba(0,0,0,0.06); border: 1px solid #f5e6ed;
+        transition: transform 0.2s;
+    }
+    .review-card:hover { transform: translateY(-3px); }
+    .review-top { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 12px; }
+    .reviewer-info {}
+    .reviewer-name { font-size: 16px; font-weight: 700; color: #533931; }
+    .reviewer-product { font-size: 13px; color: #e60380; font-weight: 600; margin-top: 2px; }
+    .review-stars { font-size: 18px; margin-bottom: 10px; }
+    .review-comment { font-size: 15px; color: #666; line-height: 1.7; }
+    .review-date { font-size: 12px; color: #bbb; }
+
+    /* Write Review Sidebar */
+    .write-review-card {
+        background: #fff; border-radius: 20px; padding: 28px;
+        box-shadow: 0 4px 20px rgba(0,0,0,0.08); border: 2px solid #fdd6ea;
+        position: sticky; top: 88px; align-self: flex-start;
+    }
+    .write-review-card h3 { font-size: 20px; font-weight: 700; color: #533931; margin-bottom: 20px; }
+    .form-group { margin-bottom: 16px; }
+    .form-label { display: block; font-size: 13px; font-weight: 600; color: #533931; margin-bottom: 6px; }
+    .form-select, .form-textarea, .form-input {
+        width: 100%; padding: 10px 14px; border: 2px solid #f5e6ed;
+        border-radius: 10px; font-family: 'Work Sans', sans-serif; font-size: 14px;
+        outline: none; transition: border 0.2s; background: #fff;
+    }
+    .form-select:focus, .form-textarea:focus, .form-input:focus { border-color: #fd84b2; }
+    .form-textarea { resize: vertical; min-height: 100px; }
+    .star-picker { display: flex; gap: 6px; }
+    .star-picker label { font-size: 28px; cursor: pointer; opacity: 0.4; transition: opacity 0.15s, transform 0.15s; }
+    .star-picker input[type="radio"] { display: none; }
+    .star-picker input[type="radio"]:checked ~ label { opacity: 0.3; }
+    .star-picker label:hover { opacity: 1; transform: scale(1.2); }
+
+    .toast-msg {
+        position: fixed; top: 88px; right: 24px;
+        background: #10b981; color: #fff; padding: 12px 24px; border-radius: 12px;
+        font-weight: 600; box-shadow: 0 4px 20px rgba(16,185,129,0.3);
+        z-index: 9999; animation: slideIn 0.3s ease;
+    }
+    @@keyframes slideIn { from { transform: translateX(100px); opacity:0; } to { transform: translateX(0); opacity:1; } }
+
+    @@media (max-width: 900px) {
+        .feedback-page { padding: 20px; }
+        .feedback-grid { grid-template-columns: 1fr; }
+        .feedback-hero { padding: 40px 20px; }
+        .feedback-hero h1 { font-size: 32px; }
+    }
+</style>
+
+@if (TempData["Message"] != null) { <div class="toast-msg">⭐ @TempData["Message"]</div> }
+
+<!-- HERO -->
+<div class="feedback-hero">
+    <h1>⭐ Đánh giá khách hàng</h1>
+    <p>Những gì khách hàng nói về Sweet Shell Cup</p>
+    <div class="overall-rating">
+        <div class="big-star">@Model.OverallRating.ToString("F1")</div>
+        <div class="star-row">
+            @for (int i = 1; i <= 5; i++)
+            {
+                <span>@(i <= (int)Model.OverallRating ? "⭐" : "☆")</span>
+            }
+        </div>
+        <div class="total-reviews">Dựa trên @Model.Reviews.Count đánh giá</div>
+    </div>
+</div>
+
+<div class="feedback-page">
+    <div class="feedback-grid">
+        <!-- Reviews List -->
+        <div>
+            <h2 class="section-title" style="margin-bottom:24px;">Tất cả đánh giá</h2>
+            @if (!Model.Reviews.Any())
+            {
+                <p style="color:#888; padding:40px 0;">Chưa có đánh giá nào.</p>
+            }
+            else
+            {
+                <div class="reviews-list">
+                    @foreach (var review in Model.Reviews)
+                    {
+                        <div class="review-card">
+                            <div class="review-top">
+                                <div class="reviewer-info">
+                                    <div class="reviewer-name">@review.User?.FullName</div>
+                                    <div class="reviewer-product">@review.Product?.ProductName</div>
+                                </div>
+                                <div class="review-date">@review.CreatedAt?.ToString("dd/MM/yyyy")</div>
+                            </div>
+                            <div class="review-stars">
+                                @for (int i = 1; i <= 5; i++) { <span>@(i <= review.Rating ? "⭐" : "☆")</span> }
+                            </div>
+                            <div class="review-comment">@review.Comment</div>
+                        </div>
+                    }
+                </div>
+            }
+        </div>
+
+        <!-- Write Review -->
+        <div class="write-review-card">
+            <h3>✍️ Gửi đánh giá</h3>
+            <form method="post">
+                <div class="form-group">
+                    <label class="form-label">Chọn sản phẩm:</label>
+                    <select class="form-select" name="ProductId" required>
+                        <option value="">-- Chọn sản phẩm --</option>
+                        @foreach (var p in Model.Products)
+                        {
+                            <option value="@p.ProductId">@p.ProductName</option>
+                        }
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Đánh giá:</label>
+                    <div class="star-picker">
+                        @for (int i = 5; i >= 1; i--)
+                        {
+                            <input type="radio" name="Rating" id="star@i" value="@i" @(i == 5 ? "checked" : "") />
+                        }
+                        @for (int i = 5; i >= 1; i--)
+                        {
+                            <label for="star@i" title="@i sao">⭐</label>
+                        }
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-label" for="comment">Nhận xét:</label>
+                    <textarea class="form-textarea" id="comment" name="Comment"
+                              placeholder="Chia sẻ trải nghiệm của bạn..." required></textarea>
+                </div>
+                <button class="btn-pink" type="submit" style="width:100%;">Gửi đánh giá →</button>
+            </form>
+        </div>
+    </div>
+</div>

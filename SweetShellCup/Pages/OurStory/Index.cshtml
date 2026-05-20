@@ -1,0 +1,157 @@
+@page
+@model SweetShellCup.Pages.OurStory.IndexModel
+@{
+    ViewData["Title"] = "Câu chuyện của chúng tôi";
+}
+
+<style>
+    .story-hero {
+        background: linear-gradient(135deg, #533931 0%, #7a564c 100%);
+        padding: 100px 60px; text-align: center; color: #fff; position: relative; overflow: hidden;
+    }
+    .story-hero::before {
+        content: '🍦'; font-size: 300px; position: absolute;
+        opacity: 0.05; right: -60px; top: -60px; line-height: 1;
+    }
+    .story-hero h1 { font-size: 56px; font-weight: 800; margin-bottom: 16px; }
+    .story-hero p { font-size: 18px; color: #e0b8b0; max-width: 600px; margin: 0 auto; line-height: 1.7; }
+
+    .story-content { max-width: 1100px; margin: 0 auto; padding: 80px 60px; }
+
+    .story-block {
+        display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; margin-bottom: 80px;
+    }
+    .story-block.reverse { direction: rtl; }
+    .story-block.reverse > * { direction: ltr; }
+    .story-img {
+        border-radius: 24px; overflow: hidden;
+        background: linear-gradient(135deg, #fff0f7, #ffd6ea);
+        height: 360px; display: flex; align-items: center; justify-content: center; font-size: 120px;
+        box-shadow: 0 20px 60px rgba(253,132,178,0.2);
+    }
+    .story-text {}
+    .story-text .section-label { margin-bottom: 10px; }
+    .story-text h2 { font-size: 36px; font-weight: 800; color: #533931; margin-bottom: 16px; line-height: 1.2; }
+    .story-text p { font-size: 16px; color: #666; line-height: 1.8; margin-bottom: 16px; }
+
+    .values-section {
+        background: #fff0f4; padding: 80px 60px; text-align: center;
+    }
+    .values-grid {
+        display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px;
+        max-width: 1100px; margin: 40px auto 0;
+    }
+    .value-card {
+        background: #fff; border-radius: 20px; padding: 32px 20px;
+        box-shadow: 0 4px 20px rgba(253,132,178,0.08);
+    }
+    .value-icon { font-size: 40px; margin-bottom: 16px; }
+    .value-card h3 { font-size: 18px; font-weight: 700; color: #533931; margin-bottom: 10px; }
+    .value-card p { font-size: 14px; color: #888; line-height: 1.6; }
+
+    .team-section { max-width: 1100px; margin: 0 auto; padding: 80px 60px; }
+    .team-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; margin-top: 40px; }
+    .team-card { text-align: center; }
+    .team-avatar {
+        width: 120px; height: 120px; border-radius: 50%;
+        background: linear-gradient(135deg, #e60380, #fd84b2);
+        margin: 0 auto 16px; display: flex; align-items: center; justify-content: center;
+        font-size: 48px; box-shadow: 0 8px 30px rgba(230,3,128,0.25);
+    }
+    .team-name { font-size: 18px; font-weight: 700; color: #533931; margin-bottom: 4px; }
+    .team-title { font-size: 13px; color: #e60380; font-weight: 600; }
+
+    @@media (max-width: 900px) {
+        .story-hero { padding: 60px 20px; }
+        .story-hero h1 { font-size: 36px; }
+        .story-content { padding: 40px 20px; }
+        .story-block { grid-template-columns: 1fr; gap: 30px; }
+        .story-block.reverse { direction: ltr; }
+        .values-grid { grid-template-columns: 1fr 1fr; }
+        .team-grid { grid-template-columns: 1fr 1fr; }
+        .values-section { padding: 60px 20px; }
+    }
+</style>
+
+<!-- HERO -->
+<div class="story-hero">
+    <h1>Câu Chuyện Của Chúng Tôi</h1>
+    <p>Sweet Shell Cup ra đời từ một giấc mơ đơn giản: tạo ra thứ gì đó vừa ngon, vừa có ý nghĩa với môi trường.</p>
+</div>
+
+<!-- STORY BLOCKS -->
+<div class="story-content">
+    <div class="story-block">
+        <div class="story-img">🍦</div>
+        <div class="story-text">
+            <div class="section-label">Nguồn gốc</div>
+            <h2>Sweet Shell Cup — Không chỉ là một chiếc cốc</h2>
+            <p>Sweet Shell Cup không chỉ là một chiếc cốc đựng đồ uống, mà là một sản phẩm đổi mới kết hợp đồ uống, bao bì và món tráng miệng trong cùng một trải nghiệm.</p>
+            <p>Sau khi uống xong, chiếc cốc có thể ăn được, mang đến trải nghiệm "vừa uống vừa ăn" độc đáo. Sản phẩm hướng đến thay đổi thói quen tiêu dùng từ "sử dụng – vứt bỏ" sang "sử dụng – tận hưởng".</p>
+        </div>
+    </div>
+
+    <div class="story-block reverse">
+        <div class="story-img">🌿</div>
+        <div class="story-text">
+            <div class="section-label">Sứ mệnh</div>
+            <h2>Góp phần tạo ra một Việt Nam xanh hơn</h2>
+            <p>Chúng tôi đặt mục tiêu giảm thiểu rác thải nhựa trong ngành F&B bằng cách thay thế cốc nhựa dùng một lần bằng những chiếc cốc waffle thơm ngon.</p>
+            <p>Mỗi chiếc cốc Sweet Shell Cup bán ra là một bước nhỏ hướng đến tương lai bền vững hơn cho thế hệ mai sau.</p>
+            <a asp-page="/Shop/Index" class="btn-pink" style="margin-top:8px;">Mua sản phẩm →</a>
+        </div>
+    </div>
+</div>
+
+<!-- VALUES -->
+<div class="values-section">
+    <div class="section-label" style="text-align:center;">Giá trị cốt lõi</div>
+    <h2 class="section-title">Những gì chúng tôi tin tưởng</h2>
+    <div class="values-grid">
+        <div class="value-card">
+            <div class="value-icon">🌿</div>
+            <h3>Bền vững</h3>
+            <p>Sản phẩm 100% có thể ăn được, không để lại rác thải nhựa.</p>
+        </div>
+        <div class="value-card">
+            <div class="value-icon">😋</div>
+            <h3>Ngon miệng</h3>
+            <p>Chiếc cốc giòn thơm, hương vị đa dạng từ vanilla đến matcha.</p>
+        </div>
+        <div class="value-card">
+            <div class="value-icon">💡</div>
+            <h3>Sáng tạo</h3>
+            <p>Luôn nghiên cứu và phát triển những hương vị, thiết kế mới.</p>
+        </div>
+        <div class="value-card">
+            <div class="value-icon">❤️</div>
+            <h3>Tận tâm</h3>
+            <p>Chăm sóc khách hàng là ưu tiên hàng đầu trong mọi quyết định.</p>
+        </div>
+    </div>
+</div>
+
+<!-- TEAM -->
+<div class="team-section">
+    <div style="text-align:center; margin-bottom:0;">
+        <div class="section-label">Đội ngũ</div>
+        <h2 class="section-title">Những người tạo nên Sweet Shell Cup</h2>
+    </div>
+    <div class="team-grid">
+        <div class="team-card">
+            <div class="team-avatar">👩</div>
+            <div class="team-name">Nguyễn Thị Hương</div>
+            <div class="team-title">CEO & Co-Founder</div>
+        </div>
+        <div class="team-card">
+            <div class="team-avatar">👨</div>
+            <div class="team-name">Trần Minh Khoa</div>
+            <div class="team-title">Head of Product</div>
+        </div>
+        <div class="team-card">
+            <div class="team-avatar">👩</div>
+            <div class="team-name">Lê Phương Anh</div>
+            <div class="team-title">Head of Design</div>
+        </div>
+    </div>
+</div>

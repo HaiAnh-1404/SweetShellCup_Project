@@ -1,0 +1,45 @@
+@page
+@model SweetShellCup.Pages.Admin.Users.EditModel
+@{
+    ViewData["Title"] = "Chỉnh sửa Tài khoản";
+}
+
+<div style="max-width: 600px; margin: 40px auto; padding: 20px; background: #fff; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.05);">
+    <h1 style="font-size: 24px; font-weight: 700; color: #533931; margin-bottom: 24px;">Chỉnh sửa Tài khoản</h1>
+
+    <form method="post">
+        <input type="hidden" asp-for="EditUser.UserId" />
+        <input type="hidden" asp-for="EditUser.PasswordHash" />
+        <input type="hidden" asp-for="EditUser.CreatedAt" />
+
+        <div style="margin-bottom: 16px;">
+            <label style="display: block; font-weight: 600; margin-bottom: 8px;">Họ và Tên</label>
+            <input asp-for="EditUser.FullName" class="form-control" style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 8px;" />
+        </div>
+
+        <div style="margin-bottom: 16px;">
+            <label style="display: block; font-weight: 600; margin-bottom: 8px;">Email</label>
+            <input asp-for="EditUser.Email" class="form-control" style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 8px;" />
+        </div>
+
+        <div style="margin-bottom: 16px;">
+            <label style="display: block; font-weight: 600; margin-bottom: 8px;">Điện thoại</label>
+            <input asp-for="EditUser.Phone" class="form-control" style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 8px;" />
+        </div>
+
+        <div style="margin-bottom: 16px;">
+            <label style="display: block; font-weight: 600; margin-bottom: 8px;">Địa chỉ</label>
+            <input asp-for="EditUser.Address" class="form-control" style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 8px;" />
+        </div>
+
+        <div style="margin-bottom: 24px;">
+            <label style="display: block; font-weight: 600; margin-bottom: 8px;">Vai trò</label>
+            <select asp-for="EditUser.RoleId" asp-items="Model.RoleOptions" class="form-control" style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 8px;"></select>
+        </div>
+
+        <div style="display: flex; gap: 12px;">
+            <button type="submit" class="btn-pink">Lưu thay đổi</button>
+            <a asp-page="./Index" class="btn-outline-pink">Hủy</a>
+        </div>
+    </form>
+</div>

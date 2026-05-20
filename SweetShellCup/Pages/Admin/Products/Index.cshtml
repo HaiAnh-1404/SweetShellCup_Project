@@ -1,0 +1,55 @@
+@page
+@model SweetShellCup.Pages.Admin.Products.IndexModel
+@{
+    ViewData["Title"] = "Quản lý Sản phẩm";
+}
+
+<div style="max-width: 1200px; margin: 40px auto; padding: 20px;">
+    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px;">
+        <h1 style="font-size: 28px; font-weight: 700; color: #533931;">Quản lý Sản phẩm</h1>
+        <a asp-page="./Create" class="btn-pink">Thêm Sản phẩm +</a>
+    </div>
+
+    @if (TempData["Message"] != null)
+    {
+        <div style="background-color: #e6f6ee; color: #10b981; padding: 12px; border-radius: 8px; margin-bottom: 20px; font-weight: 600;">
+            @TempData["Message"]
+        </div>
+    }
+
+    <div style="overflow-x: auto;">
+        <table style="width: 100%; border-collapse: collapse; text-align: left; background: #fff; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.05); overflow: hidden;">
+            <thead style="background: #fff0f7; color: #533931;">
+                <tr>
+                    <th style="padding: 16px; border-bottom: 2px solid #fdd6ea;">Ảnh</th>
+                    <th style="padding: 16px; border-bottom: 2px solid #fdd6ea;">Tên Sản phẩm</th>
+                    <th style="padding: 16px; border-bottom: 2px solid #fdd6ea;">Danh mục</th>
+                    <th style="padding: 16px; border-bottom: 2px solid #fdd6ea;">Giá</th>
+                    <th style="padding: 16px; border-bottom: 2px solid #fdd6ea;">Tồn kho</th>
+                    <th style="padding: 16px; border-bottom: 2px solid #fdd6ea; text-align: center;">Hành động</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var p in Model.ProductsList)
+                {
+                    <tr style="border-bottom: 1px solid #f5e6ed;">
+                        <td style="padding: 12px 16px;">
+                            @if (!string.IsNullOrEmpty(p.ImageUrl))
+                            {
+                                <img src="~/images/products/@p.ImageUrl" width="50" height="50" style="object-fit: cover; border-radius: 8px;" />
+                            }
+                        </td>
+                        <td style="padding: 12px 16px; font-weight: 600; color: #533931;">@p.ProductName</td>
+                        <td style="padding: 12px 16px;">@p.Category?.CategoryName</td>
+                        <td style="padding: 12px 16px; color: #e60380; font-weight: 600;">@p.Price.ToString("N0") đ</td>
+                        <td style="padding: 12px 16px;">@p.Stock</td>
+                        <td style="padding: 12px 16px; text-align: center;">
+                            <a asp-page="./Edit" asp-route-id="@p.ProductId" class="btn-outline-pink" style="padding: 6px 12px; font-size: 12px; margin-right: 8px;">Sửa</a>
+                            <a asp-page="./Delete" asp-route-id="@p.ProductId" style="color: #ef4444; font-size: 14px; font-weight: 600; text-decoration: none;" onclick="return confirm('Bạn có chắc chắn muốn xóa?');">Xóa</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

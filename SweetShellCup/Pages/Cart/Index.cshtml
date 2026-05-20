@@ -1,0 +1,188 @@
+@page
+@model SweetShellCup.Pages.Cart.IndexModel
+@{
+    ViewData["Title"] = "Giỏ hàng";
+}
+
+<style>
+    .cart-page { max-width: 1100px; margin: 0 auto; padding: 40px 60px; }
+    .cart-page h1 { font-size: 36px; font-weight: 800; color: #533931; margin-bottom: 32px; }
+
+    .cart-grid { display: grid; grid-template-columns: 1fr 360px; gap: 32px; }
+
+    /* Cart Items */
+    .cart-items { display: flex; flex-direction: column; gap: 16px; }
+    .cart-item {
+        background: #fff; border-radius: 16px; padding: 20px;
+        box-shadow: 0 4px 20px rgba(0,0,0,0.06); border: 1px solid #f5e6ed;
+        display: flex; align-items: center; gap: 20px;
+    }
+    .item-img {
+        width: 90px; height: 90px; border-radius: 14px;
+        background: linear-gradient(135deg, #fff0f7, #ffd6ea);
+        display: flex; align-items: center; justify-content: center;
+        font-size: 40px; flex-shrink: 0; overflow: hidden;
+    }
+    .item-img img { width: 100%; height: 100%; object-fit: cover; }
+    .item-info { flex: 1; }
+    .item-name { font-size: 16px; font-weight: 700; color: #533931; margin-bottom: 4px; }
+    .item-meta { font-size: 13px; color: #999; margin-bottom: 10px; }
+    .item-price { font-size: 18px; font-weight: 800; color: #e60380; }
+
+    .item-qty-form { display: flex; align-items: center; gap: 8px; }
+    .qty-input {
+        width: 60px; padding: 6px; text-align: center;
+        border: 2px solid #f5e6ed; border-radius: 8px;
+        font-family: 'Work Sans', sans-serif; font-size: 15px; font-weight: 700;
+    }
+    .btn-update {
+        padding: 6px 12px; background: #f5e6ed; color: #533931;
+        border: none; border-radius: 8px; font-size: 13px; font-weight: 600; cursor: pointer;
+        transition: background 0.2s;
+    }
+    .btn-update:hover { background: #ffd6ea; }
+    .btn-remove {
+        padding: 6px 12px; background: transparent; color: #ff4d6d;
+        border: 2px solid #ff4d6d; border-radius: 8px; font-size: 13px; font-weight: 600;
+        cursor: pointer; flex-shrink: 0; transition: all 0.2s;
+    }
+    .btn-remove:hover { background: #ff4d6d; color: #fff; }
+
+    /* Summary Card */
+    .summary-card {
+        background: #fff; border-radius: 20px; padding: 28px;
+        box-shadow: 0 4px 20px rgba(0,0,0,0.08); border: 2px solid #f5e6ed;
+        position: sticky; top: 88px; align-self: flex-start;
+    }
+    .summary-card h2 { font-size: 20px; font-weight: 700; color: #533931; margin-bottom: 20px; }
+    .summary-row {
+        display: flex; justify-content: space-between;
+        padding: 10px 0; border-bottom: 1px solid #f5e6ed; font-size: 15px;
+    }
+    .summary-row:last-of-type { border-bottom: none; }
+    .summary-total {
+        display: flex; justify-content: space-between; align-items: center;
+        padding: 16px 0; margin-top: 8px; border-top: 2px solid #f5e6ed;
+    }
+    .total-label { font-size: 16px; font-weight: 700; color: #533931; }
+    .total-price { font-size: 28px; font-weight: 800; color: #e60380; }
+
+    .address-input {
+        width: 100%; padding: 12px 14px; border: 2px solid #f5e6ed;
+        border-radius: 10px; font-family: 'Work Sans', sans-serif;
+        font-size: 14px; margin: 16px 0; outline: none; transition: border 0.2s;
+    }
+    .address-input:focus { border-color: #fd84b2; }
+
+    .empty-cart { text-align: center; padding: 80px 20px; }
+    .empty-cart .icon { font-size: 80px; margin-bottom: 20px; }
+    .empty-cart h2 { font-size: 24px; font-weight: 700; color: #533931; margin-bottom: 12px; }
+    .empty-cart p { color: #888; margin-bottom: 24px; }
+
+    .toast-msg {
+        position: fixed; top: 88px; right: 24px;
+        background: #10b981; color: #fff; padding: 12px 24px; border-radius: 12px;
+        font-weight: 600; box-shadow: 0 4px 20px rgba(16,185,129,0.3);
+        z-index: 9999; animation: slideIn 0.3s ease;
+    }
+    .toast-order {
+        position: fixed; top: 88px; right: 24px;
+        background: #e60380; color: #fff; padding: 16px 28px; border-radius: 12px;
+        font-weight: 600; font-size: 15px; box-shadow: 0 4px 20px rgba(230,3,128,0.3);
+        z-index: 9999; animation: slideIn 0.3s ease;
+    }
+    @@keyframes slideIn { from { transform: translateX(100px); opacity:0; } to { transform: translateX(0); opacity:1; } }
+
+    @@media (max-width: 900px) {
+        .cart-page { padding: 20px; }
+        .cart-grid { grid-template-columns: 1fr; }
+    }
+</style>
+
+@if (TempData["Message"] != null) { <div class="toast-msg">@TempData["Message"]</div> }
+@if (TempData["OrderSuccess"] != null) { <div class="toast-order">🎉 @TempData["OrderSuccess"]</div> }
+
+<div class="cart-page">
+    <h1>🛒 Giỏ hàng của bạn</h1>
+
+    @if (!Model.CartItems.Any())
+    {
+        <div class="empty-cart">
+            <div class="icon">🛒</div>
+            <h2>Giỏ hàng trống</h2>
+            <p>Bạn chưa có sản phẩm nào trong giỏ hàng.</p>
+            <a asp-page="/Shop/Index" class="btn-pink">Tiếp tục mua sắm →</a>
+        </div>
+    }
+    else
+    {
+        <div class="cart-grid">
+            <!-- Cart Items -->
+            <div class="cart-items">
+                @foreach (var item in Model.CartItems)
+                {
+                    <div class="cart-item">
+                        <div class="item-img">
+                            @if (!string.IsNullOrEmpty(item.Product?.ImageUrl))
+                            {
+                                <img src="/images/products/@item.Product.ImageUrl" alt="@item.Product.ProductName"
+                                     onerror="this.style.display='none';this.parentElement.innerHTML='🍦';" />
+                            }
+                            else
+                            {
+                                <span>🍦</span>
+                            }
+                        </div>
+                        <div class="item-info">
+                            <div class="item-name">@item.Product?.ProductName</div>
+                            <div class="item-meta">@item.Product?.Flavor @item.Product?.Size</div>
+                            <div class="item-price">@item.Product?.Price.ToString("N0") đ / cái</div>
+                        </div>
+                        <div style="display:flex; flex-direction:column; align-items:flex-end; gap:8px;">
+                            <form method="post" asp-page-handler="Update" class="item-qty-form">
+                                <input type="hidden" name="cartItemId" value="@item.CartItemId" />
+                                <input class="qty-input" type="number" name="quantity" value="@item.Quantity" min="1" />
+                                <button class="btn-update" type="submit">Cập nhật</button>
+                            </form>
+                            <div style="font-weight:700; color:#533931; font-size:15px;">
+                                = @((item.Quantity * (item.Product?.Price ?? 0)).ToString("N0")) đ
+                            </div>
+                            <form method="post" asp-page-handler="Remove">
+                                <input type="hidden" name="cartItemId" value="@item.CartItemId" />
+                                <button class="btn-remove" type="submit">✕ Xoá</button>
+                            </form>
+                        </div>
+                    </div>
+                }
+                <a asp-page="/Shop/Index" style="color:#e60380; font-size:14px; font-weight:600;">← Tiếp tục mua sắm</a>
+            </div>
+
+            <!-- Summary -->
+            <div class="summary-card">
+                <h2>📦 Tóm tắt đơn hàng</h2>
+                @foreach (var item in Model.CartItems)
+                {
+                    <div class="summary-row">
+                        <span>@item.Product?.ProductName (×@item.Quantity)</span>
+                        <span>@((item.Quantity * (item.Product?.Price ?? 0)).ToString("N0")) đ</span>
+                    </div>
+                }
+                <div class="summary-total">
+                    <span class="total-label">Tổng cộng</span>
+                    <span class="total-price">@Model.TotalAmount.ToString("N0") đ</span>
+                </div>
+
+                <form method="post" asp-page-handler="Checkout">
+                    <input class="address-input" type="text" name="ShippingAddress"
+                           placeholder="Địa chỉ giao hàng của bạn..." required />
+                    <button class="btn-pink" type="submit" style="width:100%;">
+                        🎯 Đặt hàng ngay
+                    </button>
+                </form>
+                <p style="text-align:center; font-size:12px; color:#bbb; margin-top:12px;">
+                    🔒 Thanh toán an toàn & bảo mật
+                </p>
+            </div>
+        </div>
+    }
+</div>

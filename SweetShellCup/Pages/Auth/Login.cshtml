@@ -1,0 +1,56 @@
+@page
+@model SweetShellCup.Pages.Auth.LoginModel
+@{
+    ViewData["Title"] = "Đăng nhập";
+}
+
+<style>
+    .auth-container { max-width: 480px; margin: 60px auto; padding: 40px; background: #fff0f7; border-radius: 24px; border: 2px solid #fdd6ea; box-shadow: 0 4px 20px rgba(0,0,0,0.05); }
+    .auth-container h1 { font-size: 28px; font-weight: 800; color: #533931; text-align: center; margin-bottom: 24px; }
+    .form-group { margin-bottom: 20px; }
+    .form-group label { display: block; font-size: 14px; font-weight: 600; color: #533931; margin-bottom: 8px; }
+    .form-control { width: 100%; padding: 12px 16px; border: 2px solid #f5e6ed; border-radius: 12px; font-family: 'Work Sans', sans-serif; font-size: 15px; outline: none; transition: border-color 0.2s; }
+    .form-control:focus { border-color: #fd84b2; }
+    .text-danger { color: #e60380; font-size: 13px; font-weight: 600; display: block; margin-top: 5px; }
+    .auth-links { text-align: center; margin-top: 24px; font-size: 14px; }
+    .auth-links a { color: #e60380; font-weight: 600; text-decoration: none; }
+    .auth-links a:hover { text-decoration: underline; }
+</style>
+
+<div class="auth-container">
+    <h1>Đăng nhập</h1>
+    <form method="post">
+        @if (!ViewData.ModelState.IsValid)
+        {
+            <div style="background-color: #ffe6eb; color: #e60380; padding: 12px; border-radius: 8px; margin-bottom: 20px; font-weight: 600; font-size: 14px; text-align: center;">
+                <div asp-validation-summary="All" class="text-danger" style="margin: 0;"></div>
+            </div>
+        }
+        
+        <div class="form-group">
+            <label asp-for="Email">Email</label>
+            <input asp-for="Email" class="form-control" type="email" placeholder="Nhập email của bạn" required />
+            <span asp-validation-for="Email" class="text-danger"></span>
+        </div>
+        
+        <div class="form-group">
+            <label asp-for="Password">Mật khẩu</label>
+            <input asp-for="Password" class="form-control" type="password" placeholder="Nhập mật khẩu" required />
+            <span asp-validation-for="Password" class="text-danger"></span>
+        </div>
+        
+        <button type="submit" class="btn-pink" style="width: 100%; justify-content: center;">Đăng nhập</button>
+    </form>
+    
+    <div class="auth-links">
+        Chưa có tài khoản? <a asp-page="/Auth/Register">Đăng ký ngay</a>
+    </div>
+
+    <hr style="border: 0; border-top: 1px solid #fdd6ea; margin: 24px 0;" />
+
+    <div style="text-align: center;">
+        <form method="post" asp-page-handler="GoogleLogin">
+            <button type="submit" class="btn-outline-pink" style="display:inline-block; width:100%; justify-content:center; padding:12px;">Đăng nhập bằng Google</button>
+        </form>
+    </div>
+</div>

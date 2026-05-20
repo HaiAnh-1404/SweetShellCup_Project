@@ -1,0 +1,246 @@
+﻿@page
+@model SweetShellCup.Pages.IndexModel
+@{
+    ViewData["Title"] = "Trang chủ";
+}
+
+<style>
+    /* HERO */
+    .hero {
+        position: relative;
+        background: linear-gradient(135deg, #fff0f7 0%, #fff5fb 50%, #fff0f4 100%);
+        padding: 100px 60px 80px;
+        overflow: hidden;
+        display: flex; align-items: center; justify-content: space-between;
+        min-height: 600px;
+    }
+    .hero::before {
+        content: '';
+        position: absolute; top: -100px; right: -100px;
+        width: 500px; height: 500px;
+        background: radial-gradient(circle, rgba(253,132,178,0.15) 0%, transparent 70%);
+        border-radius: 50%;
+    }
+    .hero-content { max-width: 600px; z-index: 1; }
+    .hero-badge {
+        display: inline-flex; align-items: center; gap: 6px;
+        background: rgba(230,3,128,0.1); color: #e60380;
+        padding: 6px 16px; border-radius: 50px;
+        font-size: 13px; font-weight: 600; letter-spacing: 1px;
+        text-transform: uppercase; margin-bottom: 20px;
+    }
+    .hero-title {
+        font-size: 64px; font-weight: 800; color: #533931;
+        line-height: 1.1; margin-bottom: 20px;
+    }
+    .hero-title span { color: #e60380; }
+    .hero-desc {
+        font-size: 18px; color: #888; line-height: 1.7; margin-bottom: 36px;
+    }
+    .hero-actions { display: flex; gap: 16px; flex-wrap: wrap; }
+    .hero-image {
+        flex-shrink: 0; z-index: 1;
+        width: 420px; height: 420px;
+        background: linear-gradient(135deg, #fd84b2, #e60380);
+        border-radius: 60px;
+        display: flex; align-items: center; justify-content: center;
+        font-size: 160px;
+        box-shadow: 0 20px 60px rgba(230,3,128,0.25);
+        animation: float 3s ease-in-out infinite;
+    }
+    @@keyframes float {
+        0%, 100% { transform: translateY(0); }
+        50% { transform: translateY(-18px); }
+    }
+    /* WHY US */
+    .why-section {
+        background: #fff0f4; padding: 80px 60px;
+    }
+    .why-grid {
+        display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px;
+        max-width: 1100px; margin: 40px auto 0;
+    }
+    .why-card {
+        background: #fff; border-radius: 20px; padding: 36px 28px; text-align: center;
+        box-shadow: 0 4px 20px rgba(253,132,178,0.08);
+        transition: transform 0.3s, box-shadow 0.3s;
+    }
+    .why-card:hover { transform: translateY(-8px); box-shadow: 0 12px 40px rgba(253,132,178,0.2); }
+    .why-icon {
+        width: 80px; height: 80px; border-radius: 50%;
+        background: linear-gradient(135deg, #fff0f7, #ffd6ea);
+        margin: 0 auto 20px;
+        display: flex; align-items: center; justify-content: center;
+        font-size: 36px;
+    }
+    .why-card h3 { font-size: 22px; font-weight: 700; color: #533931; margin-bottom: 12px; }
+    .why-card p { color: #888; font-size: 15px; line-height: 1.7; }
+
+    /* FEATURED PRODUCTS */
+    .featured-section {
+        padding: 80px 60px;
+    }
+    .section-header {
+        display: flex; justify-content: space-between; align-items: flex-end;
+        margin-bottom: 40px;
+    }
+    .products-grid {
+        display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px;
+    }
+    .product-card {
+        background: #fff; border-radius: 20px; overflow: hidden;
+        box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+        transition: transform 0.3s, box-shadow 0.3s;
+        border: 1px solid #f5e6ed;
+    }
+    .product-card:hover { transform: translateY(-6px); box-shadow: 0 12px 40px rgba(253,132,178,0.2); }
+    .product-img {
+        height: 200px; background: linear-gradient(135deg, #fff0f7, #ffd6ea);
+        display: flex; align-items: center; justify-content: center; font-size: 80px;
+        position: relative; overflow: hidden;
+    }
+    .product-img img { width: 100%; height: 100%; object-fit: cover; }
+    .product-badge {
+        position: absolute; top: 12px; left: 12px;
+        background: #e60380; color: #fff;
+        font-size: 11px; font-weight: 700; padding: 4px 10px; border-radius: 6px;
+    }
+    .product-info { padding: 20px; }
+    .product-category { font-size: 12px; color: #e60380; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 6px; }
+    .product-name { font-size: 16px; font-weight: 700; color: #533931; margin-bottom: 8px; }
+    .product-row { display: flex; justify-content: space-between; align-items: center; margin-top: 14px; }
+    .product-price { font-size: 20px; font-weight: 800; color: #e60380; }
+    .add-btn {
+        width: 36px; height: 36px; border-radius: 10px;
+        background: linear-gradient(135deg, #e60380, #fd84b2);
+        color: #fff; border: none; font-size: 20px;
+        cursor: pointer; display: flex; align-items: center; justify-content: center;
+        transition: transform 0.2s;
+    }
+    .add-btn:hover { transform: scale(1.1); }
+
+    /* NEWSLETTER */
+    .newsletter {
+        background: linear-gradient(135deg, #533931, #7a564c);
+        padding: 80px 60px; text-align: center; color: #fff;
+    }
+    .newsletter h2 { font-size: 40px; font-weight: 700; margin-bottom: 12px; }
+    .newsletter p { font-size: 16px; color: #e0b8b0; margin-bottom: 36px; }
+    .newsletter-form {
+        display: flex; gap: 12px; max-width: 500px; margin: 0 auto;
+    }
+    .newsletter-input {
+        flex: 1; padding: 14px 20px; border-radius: 10px; border: none;
+        font-family: 'Work Sans', sans-serif; font-size: 15px; outline: none;
+    }
+
+    @@media (max-width: 768px) {
+        .hero { flex-direction: column; padding: 60px 20px; gap: 40px; }
+        .hero-title { font-size: 40px; }
+        .hero-image { width: 260px; height: 260px; font-size: 100px; }
+        .why-grid, .products-grid { grid-template-columns: 1fr; }
+        .featured-section, .why-section, .newsletter { padding: 60px 20px; }
+        .section-header { flex-direction: column; gap: 16px; align-items: flex-start; }
+    }
+</style>
+
+<!-- HERO -->
+<section class="hero">
+    <div class="hero-content">
+        <div class="hero-badge">🌟 Cốc Ăn Được Đầu Tiên Tại Việt Nam</div>
+        <h1 class="hero-title">
+            Uống Xong<br>
+            <span>Ăn Luôn</span> Cái Cốc!
+        </h1>
+        <p class="hero-desc">
+            Sweet Shell Cup là cốc waffle ăn được – vừa đựng đồ uống, vừa là món tráng miệng.
+            Thân thiện môi trường, độc đáo và ngon miệng.
+        </p>
+        <div class="hero-actions">
+            <a asp-page="/Shop/Index" class="btn-pink">Khám phá ngay →</a>
+            <a asp-page="/OurStory/Index" class="btn-outline-pink">Câu chuyện của chúng tôi</a>
+        </div>
+    </div>
+    <div class="hero-image">🍦</div>
+</section>
+
+<!-- WHY CHOOSE US -->
+<section class="why-section">
+    <div style="text-align:center">
+        <div class="section-label">Tại sao chọn chúng tôi?</div>
+        <h2 class="section-title">Bạn cần cốc Ăn Được ngay bây giờ?</h2>
+    </div>
+    <div class="why-grid">
+        <div class="why-card">
+            <div class="why-icon">🚚</div>
+            <h3>Giao hàng tận nơi</h3>
+            <p>Giao hàng nhanh toàn quốc, đóng gói cẩn thận đảm bảo cốc luôn giòn ngon.</p>
+        </div>
+        <div class="why-card">
+            <div class="why-icon">🏪</div>
+            <h3>Cửa hàng trực tiếp</h3>
+            <p>Trải nghiệm trực tiếp tại các cửa hàng Sweet Shell Cup trên toàn thành phố.</p>
+        </div>
+        <div class="why-card">
+            <div class="why-icon">🌿</div>
+            <h3>Thân thiện môi trường</h3>
+            <p>Giảm rác thải nhựa, sản phẩm hoàn toàn có thể ăn được sau khi sử dụng.</p>
+        </div>
+    </div>
+</section>
+
+<!-- FEATURED PRODUCTS -->
+<section class="featured-section">
+    <div class="section-header">
+        <div>
+            <div class="section-label">Sản phẩm nổi bật</div>
+            <h2 class="section-title">Được yêu thích nhất</h2>
+        </div>
+        <a asp-page="/Shop/Index" class="btn-outline-pink">Xem tất cả →</a>
+    </div>
+
+    <div class="products-grid">
+        @foreach (var product in Model.FeaturedProducts)
+        {
+            <div class="product-card">
+                <div class="product-img">
+                    @if (!string.IsNullOrEmpty(product.ImageUrl))
+                    {
+                        <img src="/images/products/@product.ImageUrl" alt="@product.ProductName"
+                             onerror="this.style.display='none';this.parentElement.innerHTML+='🍦';" />
+                    }
+                    else
+                    {
+                        <span>🍦</span>
+                    }
+                    @if (product.Stock < 20)
+                    {
+                        <span class="product-badge">Sắp hết</span>
+                    }
+                </div>
+                <div class="product-info">
+                    <div class="product-category">@product.Category?.CategoryName</div>
+                    <div class="product-name">@product.ProductName</div>
+                    @if (!string.IsNullOrEmpty(product.Flavor))
+                    {
+                        <div style="font-size:13px;color:#999;">Hương vị: @product.Flavor | @product.Size</div>
+                    }
+                    <div class="product-row">
+                        <span class="product-price">@product.Price.ToString("N0") đ</span>
+                        <a href="/Shop/Detail?id=@product.ProductId" class="add-btn" title="Xem chi tiết">+</a>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</section>
+
+<!-- NEWSLETTER -->
+<section class="newsletter">
+    <h2>Đăng ký nhận ưu đãi</h2>
+    <p>Nhận 10% giảm giá cho đơn hàng đầu tiên và cập nhật sản phẩm mới nhất!</p>
+    <div class="newsletter-form">
+        <input class="newsletter-input" type="email" placeholder="Nhập email của bạn..." />
+        <button class="btn-pink" type="button">Đăng ký →</button>
+    </div>
+</section>
