@@ -1,0 +1,135 @@
+@page
+@model SweetShellCup.Pages.Customer.Orders.IndexModel
+@{
+    ViewData["Title"] = "Đơn hàng của tôi";
+}
+
+<div class="orders-container" style="max-width: 1200px; margin: 40px auto; padding: 0 20px;">
+    <div style="margin-bottom: 30px;">
+        <span class="section-label">Sweet Shell Cup</span>
+        <h1 class="section-title">📦 Lịch sử đơn hàng</h1>
+        <p style="color: #666; margin-top: 8px;">Xem lại các đơn hàng bạn đã mua và tiến trình vận chuyển của từng đơn.</p>
+    </div>
+
+    @if (!Model.OrdersList.Any())
+    {
+        <div style="text-align: center; padding: 60px 20px; background: #fff0f7; border-radius: 16px; border: 2px dashed #fd84b2; margin-top: 20px;">
+            <div style="font-size: 48px; margin-bottom: 16px;">🛒</div>
+            <h3 style="color: #533931; margin-bottom: 8px; font-weight: 700;">Bạn chưa có đơn hàng nào</h3>
+            <p style="color: #666; margin-bottom: 24px;">Hãy khám phá các cốc bánh giòn tan ngọt ngào của chúng tôi ngay nhé!</p>
+            <a asp-page="/Shop/Index" class="btn-pink">Đến cửa hàng ngay</a>
+        </div>
+    }
+    else
+    {
+        <div style="background: #fff; border-radius: 16px; box-shadow: 0 10px 30px rgba(253,132,178,0.08); overflow: hidden; border: 1px solid #ffd6ea;">
+            <div style="overflow-x: auto;">
+                <table style="width: 100%; border-collapse: collapse; text-align: left;">
+                    <thead>
+                        <tr style="background: #fff0f7; border-bottom: 2px solid #ffd6ea;">
+                            <th style="padding: 18px 24px; color: #533931; font-weight: 700; font-size: 14px; text-transform: uppercase; letter-spacing: 1px;">Mã đơn</th>
+                            <th style="padding: 18px 24px; color: #533931; font-weight: 700; font-size: 14px; text-transform: uppercase; letter-spacing: 1px;">Ngày đặt</th>
+                            <th style="padding: 18px 24px; color: #533931; font-weight: 700; font-size: 14px; text-transform: uppercase; letter-spacing: 1px;">Địa chỉ giao</th>
+                            <th style="padding: 18px 24px; color: #533931; font-weight: 700; font-size: 14px; text-transform: uppercase; letter-spacing: 1px;">Tổng tiền</th>
+                            <th style="padding: 18px 24px; color: #533931; font-weight: 700; font-size: 14px; text-transform: uppercase; letter-spacing: 1px;">Trạng thái</th>
+                            <th style="padding: 18px 24px; color: #533931; font-weight: 700; font-size: 14px; text-transform: uppercase; letter-spacing: 1px;">Thanh toán</th>
+                            <th style="padding: 18px 24px; text-align: center;"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var order in Model.OrdersList)
+                        {
+                            var statusColor = "#f59e0b"; // Pending
+                            var statusBg = "#fef3c7";
+                            var statusText = "Chờ xác nhận";
+
+                            if (order.Status == "Confirmed")
+                            {
+                                statusColor = "#0369a1";
+                                statusBg = "#e0f2fe";
+                                statusText = "Đã xác nhận";
+                            }
+                            else if (order.Status == "Packing")
+                            {
+                                statusColor = "#4338ca";
+                                statusBg = "#e0e7ff";
+                                statusText = "Đang đóng gói";
+                            }
+                            else if (order.Status == "Shipping")
+                            {
+                                statusColor = "#8b5cf6";
+                                statusBg = "#ede9fe";
+                                statusText = "Đang giao hàng";
+                            }
+                            else if (order.Status == "Completed")
+                            {
+                                statusColor = "#10b981";
+                                statusBg = "#d1fae5";
+                                statusText = "Đã giao hàng";
+                            }
+                            else if (order.Status == "Cancelled")
+                            {
+                                statusColor = "#ef4444";
+                                statusBg = "#fee2e2";
+                                statusText = "Đã hủy";
+                            }
+
+                            // Payment info
+                            var payment = order.Payments.FirstOrDefault();
+                            var paymentText = "Chưa thanh toán";
+                            var paymentColor = "#ef4444";
+                            var paymentBg = "#fee2e2";
+
+                            if (payment != null)
+                            {
+                                if (payment.PaymentStatus == "Paid")
+                                {
+                                    paymentText = "Đã thanh toán";
+                                    paymentColor = "#10b981";
+                                    paymentBg = "#d1fae5";
+                                }
+                                else if (payment.PaymentStatus == "Pending")
+                                {
+                                    paymentText = "Chờ xử lý";
+                                    paymentColor = "#f59e0b";
+                                    paymentBg = "#fef3c7";
+                                }
+                                else if (payment.PaymentStatus == "Unpaid")
+                                {
+                                    paymentText = "Chưa thanh toán";
+                                    paymentColor = "#ef4444";
+                                    paymentBg = "#fee2e2";
+                                }
+                            }
+
+                            var fullAddr = order.ShippingAddress ?? "-";
+                            var cleanAddr = fullAddr.Split("||")[0].Trim();
+
+                            <tr style="border-bottom: 1px solid #ffd6ea; transition: background 0.2s;" onmouseover="this.style.background='#fff8fb'" onmouseout="this.style.background='none'">
+                                <td style="padding: 18px 24px; font-weight: 600; color: #533931;">#@order.OrderId</td>
+                                <td style="padding: 18px 24px; color: #666; font-size: 14px;">@(order.OrderDate?.ToString("dd/MM/yyyy HH:mm") ?? "N/A")</td>
+                                <td style="padding: 18px 24px; color: #533931; font-size: 14px; max-width: 250px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">@cleanAddr</td>
+                                <td style="padding: 18px 24px; font-weight: 700; color: #e60380;">@order.TotalAmount.ToString("N0") đ</td>
+                                <td style="padding: 18px 24px;">
+                                    <span style="display: inline-block; padding: 4px 12px; border-radius: 20px; font-size: 12px; font-weight: 600; color: @statusColor; background: @statusBg;">
+                                        @statusText
+                                    </span>
+                                </td>
+                                <td style="padding: 18px 24px;">
+                                    <span style="display: inline-block; padding: 4px 12px; border-radius: 20px; font-size: 12px; font-weight: 600; color: @paymentColor; background: @paymentBg;">
+                                        @paymentText
+                                    </span>
+                                </td>
+                                <td style="padding: 18px 24px; text-align: center;">
+                                    <a asp-page="./Details" asp-route-id="@order.OrderId" class="btn-outline-pink" style="padding: 6px 16px; font-size: 13px;">
+                                        🎯 Theo dõi đơn
+                                    </a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    }
+</div>

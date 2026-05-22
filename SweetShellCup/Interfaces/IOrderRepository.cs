@@ -6,6 +6,8 @@ namespace SweetShellCup.Interfaces
     {
         Task<IEnumerable<Order>> GetByUserIdAsync(int userId);
         Task<Order?> GetByIdAsync(int orderId);
-        Task<Order> CreateOrderAsync(int userId, string shippingAddress, List<CartItem> cartItems);
+        Task<Order> CreateOrderAsync(int userId, string shippingAddress, List<CartItem> cartItems, int paymentMethodId);
+        Task<IEnumerable<Order>> GetAllOrdersAsync();
+        Task UpdateOrderStatusAsync(int orderId, string status, string? shippingAddress = null);
     }
 }

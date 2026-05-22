@@ -20,6 +20,9 @@ namespace SweetShellCup.Pages.Cart
         [BindProperty]
         public string ShippingAddress { get; set; } = string.Empty;
 
+        [BindProperty]
+        public int PaymentMethodId { get; set; } = 1;
+
         public IndexModel(ICartRepository cart, IOrderRepository orders)
         {
             _cart = cart;
@@ -73,9 +76,9 @@ namespace SweetShellCup.Pages.Cart
             if (!items.Any()) return RedirectToPage();
 
             var address = string.IsNullOrWhiteSpace(ShippingAddress) ? "Hà Nội" : ShippingAddress;
-            var order = await _orders.CreateOrderAsync(GetUserId(), address, items);
+            var order = await _orders.CreateOrderAsync(GetUserId(), address, items, PaymentMethodId);
             TempData["OrderSuccess"] = $"Đặt hàng thành công! Mã đơn hàng: #{order.OrderId}";
-            return RedirectToPage();
+            return RedirectToPage("/Customer/Orders/Details", new { id = order.OrderId });
         }
     }
 }

@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="vi">
 <head>
     <meta charset="utf-8" />
@@ -154,10 +154,64 @@
         .star-filled { color: #f59e0b; }
         .star-empty { color: #d1d5db; }
 
+        /* ===== ADMIN LAYOUT ===== */
+        .admin-layout-container {
+            display: flex;
+            min-height: calc(100vh - 72px - 280px);
+        }
+        .admin-sidebar {
+            width: 260px;
+            background: #fff0f7;
+            border-right: 2px solid #fdd6ea;
+            padding: 30px 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            flex-shrink: 0;
+        }
+        .admin-sidebar h3 {
+            font-size: 13px;
+            font-weight: 700;
+            color: #533931;
+            margin-bottom: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            padding-left: 10px;
+        }
+        .admin-sidebar-link {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 16px;
+            border-radius: 10px;
+            color: #533931;
+            font-weight: 600;
+            text-decoration: none;
+            font-size: 15px;
+            transition: all 0.2s;
+        }
+        .admin-sidebar-link:hover {
+            background: #ffd6ea;
+            color: #e60380;
+        }
+        .admin-sidebar-link.active-admin {
+            color: #e60380;
+            background: #ffd6ea;
+            box-shadow: inset 4px 0 0 #e60380;
+        }
+        .admin-main-content {
+            flex: 1;
+            padding: 40px;
+            background: #fff;
+            overflow-x: auto;
+        }
+
         @@media (max-width: 768px) {
             .ssc-navbar { padding: 0 20px; }
             .footer-grid { grid-template-columns: 1fr 1fr; }
             .footer-bottom { flex-direction: column; gap: 8px; }
+            .admin-layout-container { flex-direction: column; }
+            .admin-sidebar { width: 100%; border-right: none; border-bottom: 2px solid #fdd6ea; }
         }
     </style>
 </head>
@@ -181,8 +235,11 @@
             {
                 if (User.IsInRole("Admin"))
                 {
-                    <a asp-page="/Admin/Users/Index" style="margin-right:10px; font-weight:600; color:#e60380; text-decoration:none;">QL Tài khoản</a>
-                    <a asp-page="/Admin/Products/Index" style="margin-right:10px; font-weight:600; color:#e60380; text-decoration:none;">QL Sản phẩm</a>
+                    <a asp-page="/Admin/Orders/Index" style="margin-right:15px; font-weight:600; color:#e60380; text-decoration:none;">Trang quản trị</a>
+                }
+                else
+                {
+                    <a asp-page="/Customer/Orders/Index" style="margin-right:15px; font-weight:600; color:#e60380; text-decoration:none;">Đơn hàng của tôi</a>
                 }
                 <span style="font-weight:600; color:#533931; margin-right:15px;">Chào, @User.Identity.Name</span>
                 <a asp-page="/Auth/Logout" class="btn-outline-pink" style="padding: 6px 12px; margin-right: 15px;">Đăng xuất</a>
@@ -207,7 +264,115 @@
 
     <!-- MAIN -->
     <div class="ssc-main">
-        @RenderBody()
+        @{
+            var isAdminPage = Context.Request.Path.Value?.StartsWith("/Admin", StringComparison.OrdinalIgnoreCase) == true;
+        }
+        @if (isAdminPage)
+        {
+            <div class="admin-layout-container">
+                <!-- SIDEBAR -->
+                <aside class="admin-sidebar">
+                    <h3>Menu Admin</h3>
+                    <a asp-page="/Admin/Users/Index" class="admin-sidebar-link @(Context.Request.Path.Value?.Contains("/Admin/Users") == true ? "active-admin" : "")">
+                        👤 QL Tài khoản
+                    </a>
+                    <a asp-page="/Admin/Products/Index" class="admin-sidebar-link @(Context.Request.Path.Value?.Contains("/Admin/Products") == true ? "active-admin" : "")">
+                        📦 QL Sản phẩm
+                    </a>
+                    <a asp-page="/Admin/Orders/Index" class="admin-sidebar-link @(Context.Request.Path.Value?.Contains("/Admin/Orders") == true ? "active-admin" : "")">
+                        📋 QL Đơn hàng
+                        <span id="admin-sidebar-badge" style="display: none; background: #ef4444; color: #fff; font-size: 11px; font-weight: 700; padding: 2px 8px; border-radius: 10px; margin-left: auto;">0</span>
+                    </a>
+                </aside>
+                
+                <!-- CONTENT -->
+                <main class="admin-main-content">
+                    @RenderBody()
+                </main>
+            </div>
+            
+            <script>
+                document.addEventListener("DOMContentLoaded", function() {
+                    let lastCount = -1;
+                    
+                    function checkNewOrders() {
+                        fetch('/Admin/Orders/Index?handler=NewOrdersCount')
+                            .then(response => response.json())
+                            .then(data => {
+                                if (data && typeof data.count === 'number') {
+                                    const count = data.count;
+                                    
+                                    // Update badge count
+                                    const badge = document.getElementById('admin-sidebar-badge');
+                                    if (badge) {
+                                        if (count > 0) {
+                                            badge.textContent = count;
+                                            badge.style.display = 'inline-block';
+                                        } else {
+                                            badge.style.display = 'none';
+                                        }
+                                    }
+
+                                    // Check for new order notification
+                                    if (lastCount !== -1 && count > lastCount) {
+                                        showAdminNotification("Có đơn hàng mới vừa được đặt!");
+                                    }
+                                    lastCount = count;
+                                }
+                            })
+                            .catch(err => console.error("Error polling new orders:", err));
+                    }
+
+                    function showAdminNotification(message) {
+                        const toast = document.createElement('div');
+                        toast.style.position = 'fixed';
+                        toast.style.bottom = '24px';
+                        toast.style.right = '24px';
+                        toast.style.background = '#e60380';
+                        toast.style.color = '#fff';
+                        toast.style.padding = '16px 24px';
+                        toast.style.borderRadius = '12px';
+                        toast.style.boxShadow = '0 10px 25px rgba(230,3,128,0.3)';
+                        toast.style.fontWeight = '600';
+                        toast.style.zIndex = '9999';
+                        toast.style.display = 'flex';
+                        toast.style.alignItems = 'center';
+                        toast.style.gap = '10px';
+                        toast.style.transition = 'all 0.3s ease';
+                        
+                        toast.innerHTML = `<span>🔔</span> <span>${message}</span>`;
+                        document.body.appendChild(toast);
+
+                        // Play bip sound
+                        try {
+                            const context = new (window.AudioContext || window.webkitAudioContext)();
+                            const osc = context.createOscillator();
+                            const gain = context.createGain();
+                            osc.connect(gain);
+                            gain.connect(context.destination);
+                            osc.frequency.value = 523.25;
+                            gain.gain.setValueAtTime(0.1, context.currentTime);
+                            osc.start();
+                            osc.stop(context.currentTime + 0.15);
+                        } catch(e) {}
+
+                        setTimeout(() => {
+                            toast.style.opacity = '0';
+                            toast.style.transform = 'translateY(20px)';
+                            setTimeout(() => toast.remove(), 300);
+                        }, 5000);
+                    }
+
+                    // Check immediately on load and then every 10 seconds
+                    checkNewOrders();
+                    setInterval(checkNewOrders, 10000);
+                });
+            </script>
+        }
+        else
+        {
+            @RenderBody()
+        }
     </div>
 
     <!-- FOOTER -->

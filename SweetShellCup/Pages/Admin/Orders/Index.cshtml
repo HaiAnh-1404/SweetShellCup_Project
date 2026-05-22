@@ -1,0 +1,89 @@
+@page
+@model SweetShellCup.Pages.Admin.Orders.IndexModel
+@{
+    ViewData["Title"] = "Quản lý Đơn hàng";
+}
+
+<div style="max-width: 1200px; margin: 40px auto; padding: 20px;">
+    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px;">
+        <h1 style="font-size: 28px; font-weight: 700; color: #533931; margin: 0;">Quản lý Đơn hàng</h1>
+    </div>
+
+    @if (TempData["Message"] != null)
+    {
+        <div style="background-color: #e6f6ee; color: #10b981; padding: 12px; border-radius: 8px; margin-bottom: 20px; font-weight: 600;">
+            @TempData["Message"]
+        </div>
+    }
+
+    <div style="overflow-x: auto;">
+        <table style="width: 100%; border-collapse: collapse; text-align: left; background: #fff; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.05); overflow: hidden;">
+            <thead style="background: #fff0f7; color: #533931;">
+                <tr>
+                    <th style="padding: 16px; border-bottom: 2px solid #fdd6ea; width: 80px;">Mã ĐH</th>
+                    <th style="padding: 16px; border-bottom: 2px solid #fdd6ea;">Khách hàng</th>
+                    <th style="padding: 16px; border-bottom: 2px solid #fdd6ea;">Ngày đặt</th>
+                    <th style="padding: 16px; border-bottom: 2px solid #fdd6ea;">Địa chỉ giao hàng</th>
+                    <th style="padding: 16px; border-bottom: 2px solid #fdd6ea;">Tổng tiền</th>
+                    <th style="padding: 16px; border-bottom: 2px solid #fdd6ea; text-align: center;">Trạng thái</th>
+                    <th style="padding: 16px; border-bottom: 2px solid #fdd6ea; text-align: center; width: 120px;">Hành động</th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (!Model.OrdersList.Any())
+                {
+                    <tr>
+                        <td colspan="7" style="padding: 32px; text-align: center; color: #888; font-style: italic;">
+                            Không có đơn hàng nào trong hệ thống.
+                        </td>
+                    </tr>
+                }
+                else
+                {
+                    @foreach (var order in Model.OrdersList)
+                    {
+                        <tr style="border-bottom: 1px solid #f5e6ed; transition: background 0.2s;">
+                            <td style="padding: 16px; font-weight: 600; color: #e60380;">#@order.OrderId</td>
+                            <td style="padding: 16px;">
+                                <div style="font-weight: 500; color: #533931;">@order.User.FullName</div>
+                                <div style="font-size: 12px; color: #888;">@order.User.Email</div>
+                            </td>
+                            <td style="padding: 16px; color: #555;">
+                                @(order.OrderDate?.ToString("dd/MM/yyyy HH:mm") ?? "-")
+                            </td>
+                            <td style="padding: 16px; color: #555; max-width: 250px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">
+                                @{
+                                    var fullAddr = order.ShippingAddress ?? "-";
+                                    var cleanAddr = fullAddr.Split("||")[0].Trim();
+                                }
+                                @cleanAddr
+                            </td>
+                            <td style="padding: 16px; font-weight: 600; color: #533931;">
+                                @order.TotalAmount.ToString("N0") đ
+                            </td>
+                            <td style="padding: 16px; text-align: center;">
+                                @{
+                                    string statusBg = "#e5e7eb";
+                                    string statusColor = "#4b5563";
+                                    string statusText = order.Status ?? "N/A";
+                                    if (order.Status == "Pending") { statusBg = "#fffbeb"; statusColor = "#d97706"; statusText = "Chờ xác nhận"; }
+                                    else if (order.Status == "Confirmed") { statusBg = "#e0f2fe"; statusColor = "#0369a1"; statusText = "Đã xác nhận"; }
+                                    else if (order.Status == "Packing") { statusBg = "#e0e7ff"; statusColor = "#4338ca"; statusText = "Đang đóng gói"; }
+                                    else if (order.Status == "Shipping") { statusBg = "#faf5ff"; statusColor = "#7c3aed"; statusText = "Đang vận chuyển"; }
+                                    else if (order.Status == "Completed") { statusBg = "#ecfdf5"; statusColor = "#059669"; statusText = "Đã giao hàng"; }
+                                    else if (order.Status == "Cancelled") { statusBg = "#fef2f2"; statusColor = "#dc2626"; statusText = "Đã hủy"; }
+                                }
+                                <span style="background: @statusBg; color: @statusColor; padding: 6px 12px; border-radius: 20px; font-size: 13px; font-weight: 600; display: inline-block;">
+                                    @statusText
+                                </span>
+                            </td>
+                            <td style="padding: 16px; text-align: center;">
+                                <a asp-page="./Details" asp-route-id="@order.OrderId" class="btn-outline-pink" style="padding: 6px 14px; font-size: 13px; font-weight: 600; display: inline-block;">Chi tiết</a>
+                            </td>
+                        </tr>
+                    }
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
