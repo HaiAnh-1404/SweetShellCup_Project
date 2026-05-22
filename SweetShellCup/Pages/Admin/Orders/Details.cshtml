@@ -1,0 +1,244 @@
+@page "{id:int}"
+@model SweetShellCup.Pages.Admin.Orders.DetailsModel
+@{
+    ViewData["Title"] = $"Chi tiết Đơn hàng #{Model.Order.OrderId}";
+
+    var fullAddress = Model.Order.ShippingAddress ?? "";
+    var cleanAddress = fullAddress.Split("||")[0].Trim();
+    var carrier = "";
+    var tracking = "";
+    if (fullAddress.Contains("||"))
+    {
+        var parts = fullAddress.Split("||");
+        foreach (var part in parts)
+        {
+            if (part.StartsWith("Carrier:"))
+            {
+                carrier = part.Replace("Carrier:", "").Trim();
+            }
+            else if (part.StartsWith("Tracking:"))
+            {
+                tracking = part.Replace("Tracking:", "").Trim();
+            }
+        }
+    }
+
+    var receiptPath = $"uploads/receipts/receipt_{Model.Order.OrderId}.png";
+    var physicalPath = System.IO.Path.Combine(System.IO.Directory.GetCurrentDirectory(), "wwwroot", "uploads", "receipts", $"receipt_{Model.Order.OrderId}.png");
+    var hasReceipt = System.IO.File.Exists(physicalPath);
+
+    var payment = Model.Order.Payments.FirstOrDefault();
+    var isUnpaid = payment?.PaymentStatus != "Paid";
+}
+
+<div style="max-width: 1200px; margin: 40px auto; padding: 20px;">
+    <div style="margin-bottom: 24px; display: flex; align-items: center; justify-content: space-between;">
+        <div>
+            <a asp-page="./Index" style="color: #e60380; text-decoration: none; font-weight: 600; display: inline-flex; align-items: center; gap: 6px; margin-bottom: 12px;">
+                ← Trở lại danh sách đơn hàng
+            </a>
+            <h1 style="font-size: 28px; font-weight: 700; color: #533931; margin: 0;">Chi tiết Đơn hàng #@Model.Order.OrderId</h1>
+        </div>
+        <div>
+            <span style="font-size: 14px; color: #666;">Ngày đặt: <strong>@(Model.Order.OrderDate?.ToString("dd/MM/yyyy HH:mm") ?? "-")</strong></span>
+        </div>
+    </div>
+
+    @if (TempData["Message"] != null)
+    {
+        <div style="background-color: #e6f6ee; color: #10b981; padding: 12px; border-radius: 8px; margin-bottom: 20px; font-weight: 600;">
+            @TempData["Message"]
+        </div>
+    }
+    @if (TempData["ErrorMessage"] != null)
+    {
+        <div style="background-color: #fef2f2; color: #ef4444; padding: 12px; border-radius: 8px; margin-bottom: 20px; font-weight: 600;">
+            @TempData["ErrorMessage"]
+        </div>
+    }
+
+    <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 30px; align-items: start;">
+        <!-- LEFT: Items list -->
+        <div style="background: #fff; border-radius: 16px; border: 1px solid #f5e6ed; padding: 24px; box-shadow: 0 4px 12px rgba(0,0,0,0.02);">
+            <h3 style="font-size: 18px; font-weight: 700; color: #533931; margin-bottom: 20px; border-bottom: 2px solid #fff0f7; padding-bottom: 10px;">Sản phẩm đã đặt</h3>
+            <table style="width: 100%; border-collapse: collapse; text-align: left;">
+                <thead>
+                    <tr style="border-bottom: 2px solid #fff0f7; color: #888; font-size: 14px;">
+                        <th style="padding: 12px 8px;">Hình ảnh</th>
+                        <th style="padding: 12px 8px;">Tên sản phẩm</th>
+                        <th style="padding: 12px 8px; text-align: center;">Số lượng</th>
+                        <th style="padding: 12px 8px; text-align: right;">Đơn giá</th>
+                        <th style="padding: 12px 8px; text-align: right;">Thành tiền</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var detail in Model.Order.OrderDetails)
+                    {
+                        <tr style="border-bottom: 1px solid #f9f0f4;">
+                            <td style="padding: 12px 8px; width: 80px;">
+                                <img src="@(string.IsNullOrEmpty(detail.Product.ImageUrl) ? "/images/cup-placeholder.png" : detail.Product.ImageUrl)" 
+                                     alt="@detail.Product.ProductName" 
+                                     style="width: 60px; height: 60px; object-fit: cover; border-radius: 8px; border: 1px solid #f5e6ed;" />
+                            </td>
+                            <td style="padding: 12px 8px; font-weight: 600; color: #533931;">
+                                @detail.Product.ProductName
+                                @if (!string.IsNullOrEmpty(detail.Product.Flavor))
+                                {
+                                    <div style="font-size: 12px; color: #888; font-weight: normal;">Hương vị: @detail.Product.Flavor</div>
+                                }
+                            </td>
+                            <td style="padding: 12px 8px; text-align: center; color: #533931; font-weight: 500;">
+                                @detail.Quantity
+                            </td>
+                            <td style="padding: 12px 8px; text-align: right; color: #555;">
+                                @detail.UnitPrice.ToString("N0") đ
+                            </td>
+                            <td style="padding: 12px 8px; text-align: right; font-weight: 600; color: #e60380;">
+                                @((detail.Quantity * detail.UnitPrice).ToString("N0")) đ
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+
+            <div style="display: flex; justify-content: flex-end; margin-top: 24px; padding-top: 20px; border-top: 2px solid #fff0f7;">
+                <div style="text-align: right;">
+                    <span style="font-size: 16px; color: #533931; margin-right: 15px;">Tổng cộng:</span>
+                    <span style="font-size: 24px; font-weight: 700; color: #e60380;">@Model.Order.TotalAmount.ToString("N0") đ</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- RIGHT: Customer info & Status updates -->
+        <div style="display: flex; flex-direction: column; gap: 30px;">
+            <!-- Customer Card -->
+            <div style="background: #fff; border-radius: 16px; border: 1px solid #f5e6ed; padding: 24px; box-shadow: 0 4px 12px rgba(0,0,0,0.02);">
+                <h3 style="font-size: 18px; font-weight: 700; color: #533931; margin-bottom: 20px; border-bottom: 2px solid #fff0f7; padding-bottom: 10px;">Thông tin khách hàng</h3>
+                <div style="display: flex; flex-direction: column; gap: 12px; font-size: 14px;">
+                    <div>
+                        <span style="color: #888; display: block;">Họ và Tên</span>
+                        <strong style="color: #533931; font-size: 16px;">@Model.Order.User.FullName</strong>
+                    </div>
+                    <div>
+                        <span style="color: #888; display: block;">Email</span>
+                        <strong style="color: #533931;">@Model.Order.User.Email</strong>
+                    </div>
+                    <div>
+                        <span style="color: #888; display: block;">Số điện thoại</span>
+                        <strong style="color: #533931;">@(string.IsNullOrEmpty(Model.Order.User.Phone) ? "-" : Model.Order.User.Phone)</strong>
+                    </div>
+                    <div>
+                        <span style="color: #888; display: block;">Địa chỉ nhận hàng</span>
+                        <strong style="color: #533931; line-height: 1.4; display: block;">@cleanAddress</strong>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Receipt Image Card -->
+            @if (payment != null && payment.PaymentMethodId == 2)
+            {
+                <div style="background: #fff; border-radius: 16px; border: 1px solid #f5e6ed; padding: 24px; box-shadow: 0 4px 12px rgba(0,0,0,0.02);">
+                    <h3 style="font-size: 18px; font-weight: 700; color: #533931; margin-bottom: 20px; border-bottom: 2px solid #fff0f7; padding-bottom: 10px;">Biên lai chuyển khoản</h3>
+                    @if (hasReceipt)
+                    {
+                        <div style="text-align: center; margin-bottom: 15px;">
+                            <a href="/@receiptPath" target="_blank" title="Bấm để xem ảnh lớn">
+                                <img src="/@receiptPath" alt="Biên lai thanh toán" style="max-width: 100%; max-height: 250px; border-radius: 8px; border: 1px solid #ffd6ea; object-fit: contain; display: block; margin: 0 auto;" />
+                            </a>
+                        </div>
+                        @if (isUnpaid)
+                        {
+                            <form method="post" asp-page-handler="ConfirmPayment" asp-route-id="@Model.Order.OrderId">
+                                <button type="submit" class="btn-pink" style="width: 100%; justify-content: center; font-size: 14px; padding: 10px; background: #10b981; border-color: #10b981;">
+                                    ✅ Phê duyệt thanh toán
+                                </button>
+                            </form>
+                        }
+                        else
+                        {
+                            <div style="padding: 10px; border-radius: 8px; text-align: center; font-weight: 700; background: #ecfdf5; color: #059669; font-size: 14px;">
+                                Đã duyệt thanh toán thành công
+                            </div>
+                        }
+                    }
+                    else
+                    {
+                        <div style="padding: 16px; background: #fffbeb; border: 1px dashed #f59e0b; border-radius: 8px; color: #d97706; text-align: center; font-size: 14px;">
+                            Khách hàng chưa tải lên ảnh biên lai chuyển khoản.
+                        </div>
+                    }
+                </div>
+            }
+
+            <!-- Status Card -->
+            <div style="background: #fff0f7; border-radius: 16px; border: 2px solid #fdd6ea; padding: 24px; box-shadow: 0 4px 12px rgba(0,0,0,0.02);">
+                <h3 style="font-size: 18px; font-weight: 700; color: #533931; margin-bottom: 16px;">Trạng thái đơn hàng</h3>
+                
+                <div style="margin-bottom: 20px;">
+                    <span style="font-size: 14px; color: #533931;">Trạng thái hiện tại:</span>
+                    <div style="margin-top: 8px;">
+                        @{
+                            string statusBg = "#e5e7eb";
+                            string statusColor = "#4b5563";
+                            string statusText = Model.Order.Status ?? "N/A";
+                            if (Model.Order.Status == "Pending") { statusBg = "#fffbeb"; statusColor = "#d97706"; statusText = "Chờ xác nhận"; }
+                            else if (Model.Order.Status == "Confirmed") { statusBg = "#e0f2fe"; statusColor = "#0369a1"; statusText = "Đã xác nhận"; }
+                            else if (Model.Order.Status == "Packing") { statusBg = "#e0e7ff"; statusColor = "#4338ca"; statusText = "Đang đóng gói"; }
+                            else if (Model.Order.Status == "Shipping") { statusBg = "#faf5ff"; statusColor = "#7c3aed"; statusText = "Đang vận chuyển"; }
+                            else if (Model.Order.Status == "Completed") { statusBg = "#ecfdf5"; statusColor = "#059669"; statusText = "Đã giao hàng"; }
+                            else if (Model.Order.Status == "Cancelled") { statusBg = "#fef2f2"; statusColor = "#dc2626"; statusText = "Đã hủy"; }
+                        }
+                        <span style="background: @statusBg; color: @statusColor; padding: 8px 16px; border-radius: 20px; font-size: 15px; font-weight: 700; display: inline-block;">
+                            @statusText
+                        </span>
+                    </div>
+                </div>
+
+                <form method="post" asp-page-handler="UpdateStatus" asp-route-id="@Model.Order.OrderId">
+                    <div style="margin-bottom: 16px;">
+                        <label for="statusSelect" style="display: block; font-size: 14px; font-weight: 600; color: #533931; margin-bottom: 8px;">Cập nhật trạng thái</label>
+                        <select id="statusSelect" name="status" style="width: 100%; padding: 10px 12px; border: 2px solid #f5e6ed; border-radius: 10px; font-family: 'Work Sans', sans-serif; font-size: 14px; outline: none; background: #fff;">
+                            @foreach (var status in Model.StatusList)
+                            {
+                                string text = status;
+                                if (status == "Pending") text = "Chờ xác nhận";
+                                else if (status == "Confirmed") text = "Đã xác nhận";
+                                else if (status == "Packing") text = "Đang đóng gói";
+                                else if (status == "Shipping") text = "Đang giao hàng";
+                                else if (status == "Completed") text = "Đã giao hàng (Hoàn thành)";
+                                else if (status == "Cancelled") text = "Đã hủy";
+
+                                if (status == Model.Order.Status)
+                                {
+                                    <option value="@status" selected>@text</option>
+                                }
+                                else
+                                {
+                                    <option value="@status">@text</option>
+                                }
+                            }
+                        </select>
+                    </div>
+
+                    <div style="margin-bottom: 16px;">
+                        <label for="carrierInput" style="display: block; font-size: 14px; font-weight: 600; color: #533931; margin-bottom: 8px;">Đơn vị vận chuyển</label>
+                        <select id="carrierInput" name="carrier" style="width: 100%; padding: 10px 12px; border: 2px solid #f5e6ed; border-radius: 10px; font-family: 'Work Sans', sans-serif; font-size: 14px; outline: none; background: #fff;">
+                            <option value="">-- Chọn đơn vị --</option>
+                            <option value="GHTK" selected="@(carrier == "GHTK")">Giao Hàng Tiết Kiệm (GHTK)</option>
+                            <option value="GHN" selected="@(carrier == "GHN")">Giao Hàng Nhanh (GHN)</option>
+                            <option value="VNPost" selected="@(carrier == "VNPost")">VNPost (Bưu Điện Việt Nam)</option>
+                            <option value="ViettelPost" selected="@(carrier == "ViettelPost")">Viettel Post</option>
+                        </select>
+                    </div>
+
+                    <div style="margin-bottom: 20px;">
+                        <label for="trackingInput" style="display: block; font-size: 14px; font-weight: 600; color: #533931; margin-bottom: 8px;">Mã vận đơn</label>
+                        <input type="text" id="trackingInput" name="tracking" value="@tracking" placeholder="Nhập mã vận đơn..." style="width: 100%; padding: 10px 12px; border: 2px solid #f5e6ed; border-radius: 10px; font-family: 'Work Sans', sans-serif; font-size: 14px; outline: none; box-sizing: border-box;" />
+                    </div>
+
+                    <button type="submit" class="btn-pink" style="width: 100%; justify-content: center; font-size: 14px; padding: 10px;">Lưu cập nhật</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

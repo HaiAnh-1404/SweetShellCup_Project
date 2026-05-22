@@ -253,4 +253,5 @@ D:\ki 8 _FPT\PRN232\SweetShellCup\SweetShellCup\bin\Debug\net8.0\runtimes\win\li
 D:\ki 8 _FPT\PRN232\SweetShellCup\SweetShellCup\obj\Debug\net8.0\SweetShellCup.csproj.AssemblyReference.cache
 D:\ki 8 _FPT\PRN232\SweetShellCup\SweetShellCup\obj\Debug\net8.0\SweetShe.6C649FA0.Up2Date
 D:\ki 8 _FPT\PRN232\SweetShellCup\SweetShellCup\bin\Debug\net8.0\Microsoft.AspNetCore.Authentication.Google.dll
+D:\ki 8 _FPT\PRN232\SweetShellCup\SweetShellCup\obj\Debug\net8.0\SweetShellCup.sourcelink.json
 D:\ki 8 _FPT\PRN232\SweetShellCup\SweetShellCup\obj\Debug\net8.0\staticwebassets.upToDateCheck.txt

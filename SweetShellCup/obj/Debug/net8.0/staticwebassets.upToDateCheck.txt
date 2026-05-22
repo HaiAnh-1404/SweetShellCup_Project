@@ -1,5 +1,17 @@
 wwwroot\css\site.css
 wwwroot\favicon.ico
+wwwroot\images\products\ChatGPT Image Mar 14, 2026, 10_03_31 AM_1597.png
+wwwroot\images\products\ChatGPT Image Mar 14, 2026, 10_03_31 AM_d760.png
+wwwroot\images\products\Gemini_Generated_Image_guk98mguk98mguk9_3c44.png
+wwwroot\images\products\Gemini_Generated_Image_guk98mguk98mguk9_8c08.png
+wwwroot\images\products\Screenshot 2026-03-14 102528_8c25.png
+wwwroot\images\products\Screenshot 2026-03-14 102608_b913.png
+wwwroot\images\products\Screenshot 2026-03-14 134432_87a7.png
+wwwroot\images\products\Screenshot 2026-03-14 134440_d4e8.png
+wwwroot\images\products\Screenshot 2026-03-14 134446_260c.png
+wwwroot\images\products\Screenshot 2026-03-14 134446_868d.png
+wwwroot\images\products\Screenshot 2026-03-30 151939_01e1.png
+wwwroot\images\products\Screenshot 2026-04-20 202433_4ba6.png
 wwwroot\js\site.js
 wwwroot\lib\bootstrap\dist\css\bootstrap-grid.css
 wwwroot\lib\bootstrap\dist\css\bootstrap-grid.css.map

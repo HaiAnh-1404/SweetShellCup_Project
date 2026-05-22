@@ -2,6 +2,7 @@ using Microsoft.EntityFrameworkCore;
 using SweetShellCup.Models;
 using SweetShellCup.Interfaces;
 using SweetShellCup.Repositories;
+using SweetShellCup.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -34,6 +35,7 @@ builder.Services.AddScoped<ICartRepository, CartRepository>();
 builder.Services.AddScoped<IOrderRepository, OrderRepository>();
 builder.Services.AddScoped<IReviewRepository, ReviewRepository>();
 builder.Services.AddScoped<IUserRepository, UserRepository>();
+builder.Services.AddScoped<IEmailService, EmailService>();
 
 // Session (for cart - demo user)
 builder.Services.AddDistributedMemoryCache();
@@ -43,6 +45,8 @@ builder.Services.AddSession(options =>
     options.Cookie.HttpOnly = true;
     options.Cookie.IsEssential = true;
 });
+
+
 
 var app = builder.Build();
 

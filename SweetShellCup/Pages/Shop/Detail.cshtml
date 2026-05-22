@@ -182,10 +182,43 @@
                     </table>
                 </div>
 
-                @if (!string.IsNullOrEmpty(Model.Product.Description))
-                {
-                    <p style="color:#666; font-size:15px; line-height:1.7; margin-bottom:24px;">@Model.Product.Description</p>
-                }
+                <div style="margin-top: 30px; border-top: 1px solid #f5e6ed; padding-top: 24px; margin-bottom: 24px;">
+                    <h3 style="font-size: 16px; font-weight: 700; color: #533931; margin-bottom: 12px;">Mô tả sản phẩm</h3>
+                    <p style="color:#666; font-size:14px; line-height:1.7; margin-bottom:16px;">
+                        @if (!string.IsNullOrEmpty(Model.Product.Description))
+                        {
+                            @Model.Product.Description
+                        }
+                        else
+                        {
+                            <span>Sản phẩm cốc ăn được độc đáo và cao cấp từ Sweet Shell Cup. Được nướng chín vàng giòn rụm với hương vị thơm ngon đặc trưng, cốc vừa là vật chứa đồ uống lý tưởng vừa là món ăn kèm vô cùng thú vị. Thích hợp sử dụng với cà phê, sữa nóng hoặc các loại trà ngọt.</span>
+                        }
+                    </p>
+                    
+                    <div style="background: #fff0f7; border-radius: 12px; padding: 16px; border: 1px dashed #fd84b2; display: grid; grid-template-columns: 1fr; gap: 12px;">
+                        <div style="font-size: 13px; color: #533931; font-weight: 600;">
+                            ✨ Nguyên liệu & Thành phần:
+                            <span style="font-weight: normal; color: #666; margin-left: 4px;">
+                                @if (!string.IsNullOrEmpty(Model.Product.Flavor))
+                                {
+                                    <span>Bột @Model.Product.Flavor, bột mì cao cấp, đường mía tự nhiên, bơ thực vật và hương vani thơm nhẹ.</span>
+                                }
+                                else
+                                {
+                                    <span>Bột matcha nguyên chất, cacao thượng hạng, hương vani tự nhiên, bột mì hữu cơ và lớp vỏ giòn rụm thơm ngậy.</span>
+                                }
+                            </span>
+                        </div>
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; border-top: 1px dashed #fdd6ea; padding-top: 10px;">
+                            <div style="font-size: 13px; color: #533931; font-weight: 600;">
+                                🔥 Đặc tính: <span style="font-weight: normal; color: #666;">Vỏ bánh giòn rụm, giữ nước tốt (tới 2 giờ)</span>
+                            </div>
+                            <div style="font-size: 13px; color: #533931; font-weight: 600;">
+                                🍃 An toàn: <span style="font-weight: normal; color: #666;">100% tự nhiên, không chất bảo quản</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
                 <form method="post" asp-page-handler="AddToCart">
                     <input type="hidden" name="id" value="@Model.Product.ProductId" />

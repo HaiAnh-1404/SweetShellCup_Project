@@ -172,10 +172,32 @@
                     <span class="total-price">@Model.TotalAmount.ToString("N0") đ</span>
                 </div>
 
-                <form method="post" asp-page-handler="Checkout">
-                    <input class="address-input" type="text" name="ShippingAddress"
-                           placeholder="Địa chỉ giao hàng của bạn..." required />
-                    <button class="btn-pink" type="submit" style="width:100%;">
+                 <form method="post" asp-page-handler="Checkout">
+                    <div style="margin-bottom: 16px;">
+                        <label style="font-size: 14px; font-weight: 600; color: #533931; display: block; margin-bottom: 8px;">
+                            📍 Địa chỉ giao hàng:
+                        </label>
+                        <input class="address-input" type="text" asp-for="ShippingAddress"
+                               placeholder="Nhập địa chỉ giao hàng..." required style="margin: 0;" />
+                    </div>
+
+                    <div style="margin-bottom: 20px;">
+                        <label style="font-size: 14px; font-weight: 600; color: #533931; display: block; margin-bottom: 8px;">
+                            💳 Phương thức thanh toán:
+                        </label>
+                        <div style="display: flex; flex-direction: column; gap: 8px;">
+                            <label style="display: flex; align-items: center; gap: 8px; font-size: 14px; color: #533931; cursor: pointer; background: #fff0f7; padding: 8px 12px; border-radius: 8px; border: 1px solid #fdd6ea;">
+                                <input type="radio" asp-for="PaymentMethodId" value="1" checked />
+                                💵 Thanh toán khi nhận hàng (COD)
+                            </label>
+                            <label style="display: flex; align-items: center; gap: 8px; font-size: 14px; color: #533931; cursor: pointer; background: #fff0f7; padding: 8px 12px; border-radius: 8px; border: 1px solid #fdd6ea;">
+                                <input type="radio" asp-for="PaymentMethodId" value="2" />
+                                🏦 Chuyển khoản ngân hàng (VietQR)
+                            </label>
+                        </div>
+                    </div>
+
+                    <button class="btn-pink" type="submit" style="width:100%; justify-content: center;">
                         🎯 Đặt hàng ngay
                     </button>
                 </form>
