@@ -73,10 +73,14 @@ namespace SweetShellCup.Pages.Auth
 
                 await _emailService.SendEmailAsync(Email, subject, body);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                // We logged the issue and printed OTP to console. Keep going so the user can test locally.
-                TempData["Message"] = "Không thể gửi email tự động, tuy nhiên mã OTP của bạn đã được xuất ra trong Terminal của ứng dụng để kiểm thử.";
+                // Email gửi thất bại - thông báo rõ cho user
+                Console.WriteLine($"[ForgotPassword] Email gửi thất bại: {ex.Message}");
+                ModelState.AddModelError(string.Empty,
+                    "Không thể gửi email OTP. Vui lòng kiểm tra lại email hoặc thử lại sau. " +
+                    "(Nếu đang chạy ở môi trường dev, mã OTP đã được in ra Terminal.)");
+                return Page();
             }
 
             return RedirectToPage("./VerifyOtp");
