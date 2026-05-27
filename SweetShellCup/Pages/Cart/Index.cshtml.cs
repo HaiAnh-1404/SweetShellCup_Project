@@ -12,6 +12,7 @@ namespace SweetShellCup.Pages.Cart
     {
         private readonly ICartRepository _cart;
         private readonly IOrderRepository _orders;
+        private readonly IUserRepository _users;
 
         public Models.Cart? UserCart { get; set; }
         public List<CartItem> CartItems { get; set; } = new();
@@ -21,12 +22,16 @@ namespace SweetShellCup.Pages.Cart
         public string ShippingAddress { get; set; } = string.Empty;
 
         [BindProperty]
+        public string PhoneNumber { get; set; } = string.Empty;
+
+        [BindProperty]
         public int PaymentMethodId { get; set; } = 1;
 
-        public IndexModel(ICartRepository cart, IOrderRepository orders)
+        public IndexModel(ICartRepository cart, IOrderRepository orders, IUserRepository users)
         {
             _cart = cart;
             _orders = orders;
+            _users = users;
         }
 
         private int GetUserId()
@@ -42,13 +47,24 @@ namespace SweetShellCup.Pages.Cart
             ViewData["Title"] = "Giỏ hàng";
             ViewData["ActivePage"] = "Cart";
 
-            UserCart = await _cart.GetCartByUserIdAsync(GetUserId());
+            var userId = GetUserId();
+            UserCart = await _cart.GetCartByUserIdAsync(userId);
             if (UserCart != null)
             {
                 CartItems = (await _cart.GetCartItemsAsync(UserCart.CartId)).ToList();
                 TotalAmount = CartItems.Sum(ci => ci.Quantity * ci.Product!.Price);
             }
             ViewData["CartCount"] = CartItems.Sum(ci => ci.Quantity);
+
+            // Pre-populate address and phone from user profile
+            var user = await _users.GetUserByIdAsync(userId);
+            if (user != null)
+            {
+                if (string.IsNullOrEmpty(ShippingAddress))
+                    ShippingAddress = user.Address ?? string.Empty;
+                if (string.IsNullOrEmpty(PhoneNumber))
+                    PhoneNumber = user.Phone ?? string.Empty;
+            }
         }
 
         public async Task<IActionResult> OnPostRemoveAsync(int cartItemId)
@@ -69,14 +85,36 @@ namespace SweetShellCup.Pages.Cart
 
         public async Task<IActionResult> OnPostCheckoutAsync()
         {
-            UserCart = await _cart.GetCartByUserIdAsync(GetUserId());
+            var userId = GetUserId();
+            UserCart = await _cart.GetCartByUserIdAsync(userId);
             if (UserCart == null) return RedirectToPage();
 
             var items = (await _cart.GetCartItemsAsync(UserCart.CartId)).ToList();
             if (!items.Any()) return RedirectToPage();
 
+            // Update user details if provided
+            var user = await _users.GetUserByIdAsync(userId);
+            if (user != null)
+            {
+                bool needUpdate = false;
+                if (!string.IsNullOrWhiteSpace(PhoneNumber) && user.Phone != PhoneNumber)
+                {
+                    user.Phone = PhoneNumber;
+                    needUpdate = true;
+                }
+                if (!string.IsNullOrWhiteSpace(ShippingAddress) && user.Address != ShippingAddress)
+                {
+                    user.Address = ShippingAddress;
+                    needUpdate = true;
+                }
+                if (needUpdate)
+                {
+                    await _users.UpdateUserAsync(user);
+                }
+            }
+
             var address = string.IsNullOrWhiteSpace(ShippingAddress) ? "Hà Nội" : ShippingAddress;
-            var order = await _orders.CreateOrderAsync(GetUserId(), address, items, PaymentMethodId);
+            var order = await _orders.CreateOrderAsync(userId, address, items, PaymentMethodId);
             TempData["OrderSuccess"] = $"Đặt hàng thành công! Mã đơn hàng: #{order.OrderId}";
             return RedirectToPage("/Customer/Orders/Details", new { id = order.OrderId });
         }
