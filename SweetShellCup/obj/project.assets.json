@@ -7385,11 +7385,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\ki 8 _FPT\\PRN232\\SweetShellCup\\SweetShellCup\\SweetShellCup.csproj",
+      "projectUniqueName": "D:\\ki 8 _FPT\\EXE201\\SweetShellCup\\SweetShellCup_Project\\SweetShellCup\\SweetShellCup.csproj",
       "projectName": "SweetShellCup",
-      "projectPath": "D:\\ki 8 _FPT\\PRN232\\SweetShellCup\\SweetShellCup\\SweetShellCup.csproj",
+      "projectPath": "D:\\ki 8 _FPT\\EXE201\\SweetShellCup\\SweetShellCup_Project\\SweetShellCup\\SweetShellCup.csproj",
       "packagesPath": "C:\\Users\\ASUS\\.nuget\\packages\\",
-      "outputPath": "D:\\ki 8 _FPT\\PRN232\\SweetShellCup\\SweetShellCup\\obj\\",
+      "outputPath": "D:\\ki 8 _FPT\\EXE201\\SweetShellCup\\SweetShellCup_Project\\SweetShellCup\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

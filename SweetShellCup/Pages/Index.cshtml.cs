@@ -9,16 +9,19 @@ namespace SweetShellCup.Pages
     {
         private readonly IProductRepository _products;
         private readonly ICartRepository _cart;
+        private readonly IAIChatService _ai;        // ← thêm
 
-        // Demo: UserId = 2 (Customer)
         private const int DemoUserId = 2;
-
         public List<Product> FeaturedProducts { get; set; } = new();
 
-        public IndexModel(IProductRepository products, ICartRepository cart)
+        public IndexModel(
+            IProductRepository products,
+            ICartRepository cart,
+            IAIChatService ai)                      // ← thêm
         {
             _products = products;
             _cart = cart;
+            _ai = ai;
         }
 
         public async Task OnGetAsync()
@@ -26,9 +29,18 @@ namespace SweetShellCup.Pages
             ViewData["Title"] = "Trang chủ";
             ViewData["ActivePage"] = "Home";
             ViewData["CartCount"] = await _cart.GetCartItemCountAsync(DemoUserId);
-
             var all = await _products.GetAllAsync();
             FeaturedProducts = all.Take(4).ToList();
+        }
+
+        // ===== Handler cho chatbot AI =====
+        public async Task<JsonResult> OnPostChatAsync([FromBody] ChatRequest request)
+        {
+            if (string.IsNullOrWhiteSpace(request?.Message))
+                return new JsonResult(new { reply = "Bạn chưa nhập câu hỏi 😊" });
+
+            var result = await _ai.AskAsync(request.Message, request.History);
+            return new JsonResult(new { reply = result.Reply, success = result.Success });
         }
     }
 }
