@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using SweetShellCup.Interfaces;
 using SweetShellCup.Models;
+using System.Security.Claims;
 
 namespace SweetShellCup.Pages
 {
@@ -11,7 +12,6 @@ namespace SweetShellCup.Pages
         private readonly ICartRepository _cart;
         private readonly IAIChatService _ai;        // ← thêm
 
-        private const int DemoUserId = 2;
         public List<Product> FeaturedProducts { get; set; } = new();
 
         public IndexModel(
@@ -28,7 +28,15 @@ namespace SweetShellCup.Pages
         {
             ViewData["Title"] = "Trang chủ";
             ViewData["ActivePage"] = "Home";
-            ViewData["CartCount"] = await _cart.GetCartItemCountAsync(DemoUserId);
+
+            int cartCount = 0;
+            var userIdString = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            if (int.TryParse(userIdString, out var userId))
+            {
+                cartCount = await _cart.GetCartItemCountAsync(userId);
+            }
+            ViewData["CartCount"] = cartCount;
+
             var all = await _products.GetAllAsync();
             FeaturedProducts = all.Take(4).ToList();
         }

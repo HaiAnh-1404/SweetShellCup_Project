@@ -12,9 +12,6 @@ namespace SweetShellCup.Pages.Shop
         private readonly ICartRepository _cart;
         private readonly IReviewRepository _reviews;
 
-        // Dùng cùng user với Shop + Cart
-        private const int DemoUserId = 2;
-
         public Product? Product { get; set; }
         public List<Review> Reviews { get; set; } = new();
         public double AverageRating { get; set; }
@@ -42,7 +39,7 @@ namespace SweetShellCup.Pages.Shop
             if (int.TryParse(userIdString, out var userId))
                 return userId;
 
-            return DemoUserId;
+            return 0;
         }
 
         public async Task<IActionResult> OnGetAsync(int id)
@@ -55,9 +52,13 @@ namespace SweetShellCup.Pages.Shop
             ViewData["Title"] = Product.ProductName;
             ViewData["ActivePage"] = "Shop";
 
-            // Luôn dùng cùng user
-            ViewData["CartCount"] =
-                await _cart.GetCartItemCountAsync(DemoUserId);
+            int cartCount = 0;
+            var userId = GetUserId();
+            if (userId > 0)
+            {
+                cartCount = await _cart.GetCartItemCountAsync(userId);
+            }
+            ViewData["CartCount"] = cartCount;
 
             Reviews = (await _reviews.GetByProductIdAsync(id)).ToList();
 
@@ -72,34 +73,49 @@ namespace SweetShellCup.Pages.Shop
             int id,
             int quantity = 1)
         {
-            // Dùng cùng user với Shop
-            await _cart.AddItemAsync(
-                DemoUserId,
-                id,
-                quantity);
+            if (User.Identity == null || !User.Identity.IsAuthenticated)
+            {
+                return RedirectToPage("/Auth/Login");
+            }
 
-            TempData["Message"] = "Đã thêm vào giỏ hàng!";
+            var userId = GetUserId();
+            if (userId > 0)
+            {
+                await _cart.AddItemAsync(
+                    userId,
+                    id,
+                    quantity);
+
+                TempData["Message"] = "Đã thêm vào giỏ hàng!";
+            }
 
             return RedirectToPage(new { id });
         }
 
         public async Task<IActionResult> OnPostSubmitReviewAsync(int id)
         {
-            var userId = GetUserId();
-
-            var review = new Review
+            if (User.Identity == null || !User.Identity.IsAuthenticated)
             {
-                UserId = userId,
-                ProductId = id,
-                Rating = Rating,
-                Comment = Comment,
-                CreatedAt = DateTime.Now
-            };
+                return RedirectToPage("/Auth/Login");
+            }
 
-            await _reviews.AddAsync(review);
+            var userId = GetUserId();
+            if (userId > 0)
+            {
+                var review = new Review
+                {
+                    UserId = userId,
+                    ProductId = id,
+                    Rating = Rating,
+                    Comment = Comment,
+                    CreatedAt = DateTime.Now
+                };
 
-            TempData["ReviewMessage"] =
-                "Cảm ơn bạn đã đánh giá!";
+                await _reviews.AddAsync(review);
+
+                TempData["ReviewMessage"] =
+                    "Cảm ơn bạn đã đánh giá!";
+            }
 
             return RedirectToPage(new { id });
         }

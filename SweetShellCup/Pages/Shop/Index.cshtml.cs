@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using SweetShellCup.Interfaces;
 using SweetShellCup.Models;
+using System.Security.Claims;
 
 namespace SweetShellCup.Pages.Shop
 {
@@ -10,7 +11,6 @@ namespace SweetShellCup.Pages.Shop
         private readonly IProductRepository _products;
         private readonly ICategoryRepository _categories;
         private readonly ICartRepository _cart;
-        private const int DemoUserId = 2;
 
         public List<Product> Products { get; set; } = new();
         public List<Category> Categories { get; set; } = new();
@@ -32,7 +32,14 @@ namespace SweetShellCup.Pages.Shop
         {
             ViewData["Title"] = "Cửa hàng";
             ViewData["ActivePage"] = "Shop";
-            ViewData["CartCount"] = await _cart.GetCartItemCountAsync(DemoUserId);
+
+            int cartCount = 0;
+            var userIdString = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            if (int.TryParse(userIdString, out var userId))
+            {
+                cartCount = await _cart.GetCartItemCountAsync(userId);
+            }
+            ViewData["CartCount"] = cartCount;
 
             Categories = (await _categories.GetAllAsync()).ToList();
 
@@ -46,8 +53,17 @@ namespace SweetShellCup.Pages.Shop
 
         public async Task<IActionResult> OnPostAddToCartAsync(int productId)
         {
-            await _cart.AddItemAsync(DemoUserId, productId, 1);
-            TempData["Message"] = "Đã thêm vào giỏ hàng!";
+            if (User.Identity == null || !User.Identity.IsAuthenticated)
+            {
+                return RedirectToPage("/Auth/Login");
+            }
+
+            var userIdString = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            if (int.TryParse(userIdString, out var userId))
+            {
+                await _cart.AddItemAsync(userId, productId, 1);
+                TempData["Message"] = "Đã thêm vào giỏ hàng!";
+            }
             return RedirectToPage();
         }
     }

@@ -1,0 +1,352 @@
+@page
+@model SweetShellCup.Pages.Admin.IndexModel
+@{
+    ViewData["Title"] = "Dashboard";
+}
+
+<style>
+    /* ===== DASHBOARD CONTAINER ===== */
+    .dashboard-container {
+        max-width: 1300px;
+        margin: 0 auto;
+    }
+
+    /* ===== STATS GRID ===== */
+    .stats-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+        gap: 24px;
+        margin-bottom: 40px;
+    }
+
+    .stat-card {
+        background: #fff;
+        border-radius: 20px;
+        padding: 24px;
+        border: 1px solid #f2e4ec;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        box-shadow: 0 4px 20px rgba(83, 57, 49, 0.03);
+        transition: all 0.3s ease;
+    }
+
+    .stat-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 30px rgba(230, 3, 128, 0.08);
+        border-color: #ffd6ea;
+    }
+
+    .stat-info {
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+    }
+
+    .stat-label {
+        font-size: 13px;
+        font-weight: 700;
+        color: #a08c95;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+    }
+
+    .stat-value {
+        font-size: 28px;
+        font-weight: 800;
+        color: #533931;
+    }
+
+    .stat-icon-wrapper {
+        width: 60px;
+        height: 60px;
+        border-radius: 16px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 28px;
+    }
+
+    /* CURATED COLOR THEMES */
+    .theme-users { background: #fff0f7; color: #e60380; }
+    .theme-revenue { background: #ecfdf5; color: #059669; }
+    .theme-orders { background: #f0f9ff; color: #0284c7; }
+    .theme-products { background: #fffbeb; color: #d97706; }
+
+    /* ===== TWO COLUMN CONTENT ===== */
+    .dashboard-details-grid {
+        display: grid;
+        grid-template-columns: 2fr 1fr;
+        gap: 30px;
+    }
+
+    .dashboard-panel {
+        background: #fff;
+        border-radius: 20px;
+        border: 1px solid #f2e4ec;
+        padding: 30px;
+        box-shadow: 0 4px 20px rgba(83, 57, 49, 0.03);
+    }
+
+    .panel-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 24px;
+        border-bottom: 2px solid #fff0f7;
+        padding-bottom: 12px;
+    }
+
+    .panel-title {
+        font-size: 18px;
+        font-weight: 700;
+        color: #533931;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
+
+    /* ===== TABLES ===== */
+    .admin-table {
+        width: 100%;
+        border-collapse: collapse;
+        text-align: left;
+    }
+
+    .admin-table th {
+        font-size: 13px;
+        font-weight: 700;
+        color: #a08c95;
+        text-transform: uppercase;
+        padding: 12px 16px;
+        border-bottom: 2px solid #fff0f7;
+    }
+
+    .admin-table td {
+        padding: 16px;
+        border-bottom: 1px solid #fcf6fa;
+        font-size: 14px;
+    }
+
+    .admin-table tr:last-child td {
+        border-bottom: none;
+    }
+
+    /* ===== USER LIST ===== */
+    .user-list {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+    }
+
+    .user-item {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        padding: 12px 0;
+        border-bottom: 1px solid #fcf6fa;
+    }
+
+    .user-item:last-child {
+        border-bottom: none;
+        padding-bottom: 0;
+    }
+
+    .user-avatar {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        background: #fff0f7;
+        color: #e60380;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 700;
+        font-size: 15px;
+    }
+
+    .user-details {
+        flex: 1;
+        overflow: hidden;
+    }
+
+    .user-name {
+        font-weight: 600;
+        color: #533931;
+        font-size: 14px;
+    }
+
+    .user-email {
+        font-size: 12px;
+        color: #a08c95;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    .user-badge {
+        font-size: 11px;
+        font-weight: 700;
+        padding: 2px 8px;
+        border-radius: 10px;
+    }
+
+    .badge-admin { background: #fffbeb; color: #d97706; border: 1px solid #fde68a; }
+    .badge-customer { background: #f3f4f6; color: #4b5563; border: 1px solid #e5e7eb; }
+
+    @@media (max-width: 992px) {
+        .dashboard-details-grid {
+            grid-template-columns: 1fr;
+        }
+    }
+</style>
+
+<div class="dashboard-container">
+
+    <!-- STATS SUMMARY CARDS -->
+    <div class="stats-grid">
+        <!-- Card 1: Users -->
+        <div class="stat-card">
+            <div class="stat-info">
+                <span class="stat-label">Tổng khách hàng</span>
+                <span class="stat-value">@Model.TotalUsers</span>
+            </div>
+            <div class="stat-icon-wrapper theme-users">👤</div>
+        </div>
+
+        <!-- Card 2: Revenue -->
+        <div class="stat-card">
+            <div class="stat-info">
+                <span class="stat-label">Doanh thu thực tế</span>
+                <span class="stat-value" style="color: #059669;">@Model.CompletedRevenue.ToString("N0") đ</span>
+            </div>
+            <div class="stat-icon-wrapper theme-revenue">💰</div>
+        </div>
+
+        <!-- Card 3: Orders -->
+        <div class="stat-card">
+            <div class="stat-info">
+                <span class="stat-label">Tổng đơn hàng</span>
+                <span class="stat-value">@Model.TotalOrders</span>
+            </div>
+            <div class="stat-icon-wrapper theme-orders">📋</div>
+        </div>
+
+        <!-- Card 4: Products -->
+        <div class="stat-card">
+            <div class="stat-info">
+                <span class="stat-label">Sản phẩm bán</span>
+                <span class="stat-value">@Model.TotalProducts</span>
+            </div>
+            <div class="stat-icon-wrapper theme-products">📦</div>
+        </div>
+    </div>
+
+    <!-- DETAILS SECTIONS -->
+    <div class="dashboard-details-grid">
+        <!-- Panel Left: Recent Orders -->
+        <div class="dashboard-panel">
+            <div class="panel-header">
+                <h3 class="panel-title"><span>📋</span> Đơn đặt hàng mới nhất</h3>
+                <a asp-page="/Admin/Orders/Index" class="btn-outline-pink" style="padding: 6px 12px; font-size: 12px;">Xem tất cả</a>
+            </div>
+            <div style="overflow-x: auto;">
+                <table class="admin-table">
+                    <thead>
+                        <tr>
+                            <th>Mã ĐH</th>
+                            <th>Khách hàng</th>
+                            <th>Ngày đặt</th>
+                            <th>Tổng tiền</th>
+                            <th>Trạng thái</th>
+                            <th style="text-align: center;">Hành động</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @if (!Model.RecentOrders.Any())
+                        {
+                            <tr>
+                                <td colspan="6" style="text-align: center; color: #a08c95; padding: 24px; font-style: italic;">
+                                    Chưa có đơn hàng nào.
+                                </td>
+                            </tr>
+                        }
+                        else
+                        {
+                            @foreach (var order in Model.RecentOrders)
+                            {
+                                <tr>
+                                    <td style="font-weight: 700; color: #e60380;">#@order.OrderId</td>
+                                    <td>
+                                        <div style="font-weight: 600; color: #533931;">@order.User?.FullName</div>
+                                        <div style="font-size: 12px; color: #a08c95;">@order.User?.Email</div>
+                                    </td>
+                                    <td style="color: #666;">@(order.OrderDate?.ToString("dd/MM/yyyy HH:mm") ?? "-")</td>
+                                    <td style="font-weight: 700; color: #533931;">@order.TotalAmount.ToString("N0") đ</td>
+                                    <td>
+                                        @{
+                                            string statusBg = "#e5e7eb";
+                                            string statusColor = "#4b5563";
+                                            string statusText = order.Status ?? "N/A";
+                                            if (order.Status == "Pending") { statusBg = "#fffbeb"; statusColor = "#d97706"; statusText = "Chờ xác nhận"; }
+                                            else if (order.Status == "Confirmed") { statusBg = "#e0f2fe"; statusColor = "#0369a1"; statusText = "Đã xác nhận"; }
+                                            else if (order.Status == "Packing") { statusBg = "#e0e7ff"; statusColor = "#4338ca"; statusText = "Đang đóng gói"; }
+                                            else if (order.Status == "Shipping") { statusBg = "#faf5ff"; statusColor = "#7c3aed"; statusText = "Đang vận chuyển"; }
+                                            else if (order.Status == "Completed") { statusBg = "#ecfdf5"; statusColor = "#059669"; statusText = "Đã giao"; }
+                                            else if (order.Status == "Cancelled") { statusBg = "#fef2f2"; statusColor = "#dc2626"; statusText = "Đã hủy"; }
+                                        }
+                                        <span style="background: @statusBg; color: @statusColor; padding: 4px 10px; border-radius: 12px; font-size: 12px; font-weight: 600; display: inline-block;">
+                                            @statusText
+                                        </span>
+                                    </td>
+                                    <td style="text-align: center;">
+                                        <a asp-page="/Admin/Orders/Details" asp-route-id="@order.OrderId" class="btn-outline-pink" style="padding: 4px 10px; font-size: 12px;">Chi tiết</a>
+                                    </td>
+                                </tr>
+                            }
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Panel Right: Recent Registered Users -->
+        <div class="dashboard-panel">
+            <div class="panel-header">
+                <h3 class="panel-title"><span>👥</span> Thành viên mới</h3>
+                <a asp-page="/Admin/Users/Index" class="btn-outline-pink" style="padding: 6px 12px; font-size: 12px;">Xem tất cả</a>
+            </div>
+            <div class="user-list">
+                @if (!Model.RecentUsers.Any())
+                {
+                    <div style="text-align: center; color: #a08c95; padding: 20px; font-style: italic;">
+                        Không tìm thấy người dùng.
+                    </div>
+                }
+                else
+                {
+                    @foreach (var user in Model.RecentUsers)
+                    {
+                        <div class="user-item">
+                            <div class="user-avatar">
+                                @user.FullName.Substring(0, Math.Min(2, user.FullName.Length)).ToUpper()
+                            </div>
+                            <div class="user-details">
+                                <div class="user-name">@user.FullName</div>
+                                <div class="user-email">@user.Email</div>
+                                <div style="font-size: 11px; color: #b5a4ac; margin-top: 2px;">
+                                    Đăng ký: @(user.CreatedAt?.ToString("dd/MM/yyyy") ?? "-")
+                                </div>
+                            </div>
+                            <div>
+                                <span class="user-badge @(user.Role?.RoleName == "Admin" ? "badge-admin" : "badge-customer")">
+                                    @(user.Role?.RoleName ?? "Customer")
+                                </span>
+                            </div>
+                        </div>
+                    }
+                }
+            </div>
+        </div>
+    </div>
+</div>

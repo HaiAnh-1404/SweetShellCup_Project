@@ -173,13 +173,21 @@
                 </div>
 
                  <form method="post" asp-page-handler="Checkout">
-                    <div style="margin-bottom: 16px;">
-                        <label style="font-size: 14px; font-weight: 600; color: #533931; display: block; margin-bottom: 8px;">
-                            📍 Địa chỉ giao hàng:
-                        </label>
-                        <input class="address-input" type="text" asp-for="ShippingAddress"
-                               placeholder="Nhập địa chỉ giao hàng..." required style="margin: 0;" />
-                    </div>
+                     <div style="margin-bottom: 16px;">
+                         <label style="font-size: 14px; font-weight: 600; color: #533931; display: block; margin-bottom: 8px;">
+                             📍 Địa chỉ giao hàng:
+                         </label>
+                         <input class="address-input" type="text" asp-for="ShippingAddress"
+                                placeholder="Nhập địa chỉ giao hàng..." required style="margin: 0;" />
+                     </div>
+
+                     <div style="margin-bottom: 16px;">
+                         <label style="font-size: 14px; font-weight: 600; color: #533931; display: block; margin-bottom: 8px;">
+                             📞 Số điện thoại:
+                         </label>
+                         <input class="address-input" type="text" asp-for="PhoneNumber"
+                                placeholder="Nhập số điện thoại nhận hàng..." required style="margin: 0;" />
+                     </div>
 
                     <div style="margin-bottom: 20px;">
                         <label style="font-size: 14px; font-weight: 600; color: #533931; display: block; margin-bottom: 8px;">

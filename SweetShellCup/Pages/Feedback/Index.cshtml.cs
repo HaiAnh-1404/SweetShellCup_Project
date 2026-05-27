@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using SweetShellCup.Interfaces;
 using SweetShellCup.Models;
+using System.Security.Claims;
 
 namespace SweetShellCup.Pages.Feedback
 {
@@ -10,7 +11,6 @@ namespace SweetShellCup.Pages.Feedback
         private readonly IReviewRepository _reviews;
         private readonly IProductRepository _products;
         private readonly ICartRepository _cart;
-        private const int DemoUserId = 2;
 
         public List<Review> Reviews { get; set; } = new();
         public List<Product> Products { get; set; } = new();
@@ -31,7 +31,15 @@ namespace SweetShellCup.Pages.Feedback
         {
             ViewData["Title"] = "Đánh giá";
             ViewData["ActivePage"] = "Feedback";
-            ViewData["CartCount"] = await _cart.GetCartItemCountAsync(DemoUserId);
+
+            int cartCount = 0;
+            var userIdString = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            if (int.TryParse(userIdString, out var userId))
+            {
+                cartCount = await _cart.GetCartItemCountAsync(userId);
+            }
+            ViewData["CartCount"] = cartCount;
+
             Reviews = (await _reviews.GetAllAsync()).ToList();
             Products = (await _products.GetAllAsync()).Take(10).ToList();
             OverallRating = Reviews.Any() ? Reviews.Average(r => r.Rating) : 0;
@@ -39,16 +47,25 @@ namespace SweetShellCup.Pages.Feedback
 
         public async Task<IActionResult> OnPostAsync()
         {
-            var review = new Review
+            if (User.Identity == null || !User.Identity.IsAuthenticated)
             {
-                UserId = DemoUserId,
-                ProductId = ProductId,
-                Rating = Rating,
-                Comment = Comment,
-                CreatedAt = DateTime.Now
-            };
-            await _reviews.AddAsync(review);
-            TempData["Message"] = "Cảm ơn bạn đã chia sẻ đánh giá!";
+                return RedirectToPage("/Auth/Login");
+            }
+
+            var userIdString = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            if (int.TryParse(userIdString, out var userId))
+            {
+                var review = new Review
+                {
+                    UserId = userId,
+                    ProductId = ProductId,
+                    Rating = Rating,
+                    Comment = Comment,
+                    CreatedAt = DateTime.Now
+                };
+                await _reviews.AddAsync(review);
+                TempData["Message"] = "Cảm ơn bạn đã chia sẻ đánh giá!";
+            }
             return RedirectToPage();
         }
     }
