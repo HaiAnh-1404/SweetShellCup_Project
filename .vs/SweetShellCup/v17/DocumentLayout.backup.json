@@ -1,0 +1,379 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "D:\\ki 8 _FPT\\EXE201\\SweetShellCup\\SweetShellCup_Project\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{63D8D86F-AE7A-4984-A638-FA4970162B13}|SweetShellCup\\SweetShellCup.csproj|d:\\ki 8 _fpt\\exe201\\sweetshellcup\\sweetshellcup_project\\sweetshellcup\\pages\\index.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{63D8D86F-AE7A-4984-A638-FA4970162B13}|SweetShellCup\\SweetShellCup.csproj|solutionrelative:sweetshellcup\\pages\\index.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{63D8D86F-AE7A-4984-A638-FA4970162B13}|SweetShellCup\\SweetShellCup.csproj|d:\\ki 8 _fpt\\exe201\\sweetshellcup\\sweetshellcup_project\\sweetshellcup\\pages\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{63D8D86F-AE7A-4984-A638-FA4970162B13}|SweetShellCup\\SweetShellCup.csproj|solutionrelative:sweetshellcup\\pages\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{63D8D86F-AE7A-4984-A638-FA4970162B13}|SweetShellCup\\SweetShellCup.csproj|d:\\ki 8 _fpt\\exe201\\sweetshellcup\\sweetshellcup_project\\sweetshellcup\\services\\aichatservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{63D8D86F-AE7A-4984-A638-FA4970162B13}|SweetShellCup\\SweetShellCup.csproj|solutionrelative:sweetshellcup\\services\\aichatservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{63D8D86F-AE7A-4984-A638-FA4970162B13}|SweetShellCup\\SweetShellCup.csproj|d:\\ki 8 _fpt\\exe201\\sweetshellcup\\sweetshellcup_project\\sweetshellcup\\interfaces\\iaichatservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{63D8D86F-AE7A-4984-A638-FA4970162B13}|SweetShellCup\\SweetShellCup.csproj|solutionrelative:sweetshellcup\\interfaces\\iaichatservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{63D8D86F-AE7A-4984-A638-FA4970162B13}|SweetShellCup\\SweetShellCup.csproj|d:\\ki 8 _fpt\\exe201\\sweetshellcup\\sweetshellcup_project\\sweetshellcup\\models\\chatdtos.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{63D8D86F-AE7A-4984-A638-FA4970162B13}|SweetShellCup\\SweetShellCup.csproj|solutionrelative:sweetshellcup\\models\\chatdtos.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{63D8D86F-AE7A-4984-A638-FA4970162B13}|SweetShellCup\\SweetShellCup.csproj|d:\\ki 8 _fpt\\exe201\\sweetshellcup\\sweetshellcup_project\\sweetshellcup\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{63D8D86F-AE7A-4984-A638-FA4970162B13}|SweetShellCup\\SweetShellCup.csproj|solutionrelative:sweetshellcup\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{63D8D86F-AE7A-4984-A638-FA4970162B13}|SweetShellCup\\SweetShellCup.csproj|d:\\ki 8 _fpt\\exe201\\sweetshellcup\\sweetshellcup_project\\sweetshellcup\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{63D8D86F-AE7A-4984-A638-FA4970162B13}|SweetShellCup\\SweetShellCup.csproj|solutionrelative:sweetshellcup\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{63D8D86F-AE7A-4984-A638-FA4970162B13}|SweetShellCup\\SweetShellCup.csproj|d:\\ki 8 _fpt\\exe201\\sweetshellcup\\sweetshellcup_project\\sweetshellcup\\pages\\cart\\index.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{63D8D86F-AE7A-4984-A638-FA4970162B13}|SweetShellCup\\SweetShellCup.csproj|solutionrelative:sweetshellcup\\pages\\cart\\index.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{63D8D86F-AE7A-4984-A638-FA4970162B13}|SweetShellCup\\SweetShellCup.csproj|d:\\ki 8 _fpt\\exe201\\sweetshellcup\\sweetshellcup_project\\sweetshellcup\\repositories\\cartrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{63D8D86F-AE7A-4984-A638-FA4970162B13}|SweetShellCup\\SweetShellCup.csproj|solutionrelative:sweetshellcup\\repositories\\cartrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{63D8D86F-AE7A-4984-A638-FA4970162B13}|SweetShellCup\\SweetShellCup.csproj|d:\\ki 8 _fpt\\exe201\\sweetshellcup\\sweetshellcup_project\\sweetshellcup\\interfaces\\icartrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{63D8D86F-AE7A-4984-A638-FA4970162B13}|SweetShellCup\\SweetShellCup.csproj|solutionrelative:sweetshellcup\\interfaces\\icartrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{63D8D86F-AE7A-4984-A638-FA4970162B13}|SweetShellCup\\SweetShellCup.csproj|d:\\ki 8 _fpt\\exe201\\sweetshellcup\\sweetshellcup_project\\sweetshellcup\\repositories\\categoryrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{63D8D86F-AE7A-4984-A638-FA4970162B13}|SweetShellCup\\SweetShellCup.csproj|solutionrelative:sweetshellcup\\repositories\\categoryrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{63D8D86F-AE7A-4984-A638-FA4970162B13}|SweetShellCup\\SweetShellCup.csproj|d:\\ki 8 _fpt\\exe201\\sweetshellcup\\sweetshellcup_project\\sweetshellcup\\repositories\\orderrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{63D8D86F-AE7A-4984-A638-FA4970162B13}|SweetShellCup\\SweetShellCup.csproj|solutionrelative:sweetshellcup\\repositories\\orderrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{63D8D86F-AE7A-4984-A638-FA4970162B13}|SweetShellCup\\SweetShellCup.csproj|d:\\ki 8 _fpt\\exe201\\sweetshellcup\\sweetshellcup_project\\sweetshellcup\\pages\\customer\\orders\\index.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{63D8D86F-AE7A-4984-A638-FA4970162B13}|SweetShellCup\\SweetShellCup.csproj|solutionrelative:sweetshellcup\\pages\\customer\\orders\\index.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{63D8D86F-AE7A-4984-A638-FA4970162B13}|SweetShellCup\\SweetShellCup.csproj|d:\\ki 8 _fpt\\exe201\\sweetshellcup\\sweetshellcup_project\\sweetshellcup\\pages\\customer\\orders\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{63D8D86F-AE7A-4984-A638-FA4970162B13}|SweetShellCup\\SweetShellCup.csproj|solutionrelative:sweetshellcup\\pages\\customer\\orders\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{63D8D86F-AE7A-4984-A638-FA4970162B13}|SweetShellCup\\SweetShellCup.csproj|d:\\ki 8 _fpt\\exe201\\sweetshellcup\\sweetshellcup_project\\sweetshellcup\\pages\\customer\\orders\\details.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{63D8D86F-AE7A-4984-A638-FA4970162B13}|SweetShellCup\\SweetShellCup.csproj|solutionrelative:sweetshellcup\\pages\\customer\\orders\\details.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{63D8D86F-AE7A-4984-A638-FA4970162B13}|SweetShellCup\\SweetShellCup.csproj|d:\\ki 8 _fpt\\exe201\\sweetshellcup\\sweetshellcup_project\\sweetshellcup\\pages\\cart\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{63D8D86F-AE7A-4984-A638-FA4970162B13}|SweetShellCup\\SweetShellCup.csproj|solutionrelative:sweetshellcup\\pages\\cart\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{63D8D86F-AE7A-4984-A638-FA4970162B13}|SweetShellCup\\SweetShellCup.csproj|d:\\ki 8 _fpt\\exe201\\sweetshellcup\\sweetshellcup_project\\sweetshellcup\\pages\\customer\\orders\\details.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{63D8D86F-AE7A-4984-A638-FA4970162B13}|SweetShellCup\\SweetShellCup.csproj|solutionrelative:sweetshellcup\\pages\\customer\\orders\\details.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{63D8D86F-AE7A-4984-A638-FA4970162B13}|SweetShellCup\\SweetShellCup.csproj|d:\\ki 8 _fpt\\exe201\\sweetshellcup\\sweetshellcup_project\\sweetshellcup\\pages\\shop\\detail.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{63D8D86F-AE7A-4984-A638-FA4970162B13}|SweetShellCup\\SweetShellCup.csproj|solutionrelative:sweetshellcup\\pages\\shop\\detail.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{63D8D86F-AE7A-4984-A638-FA4970162B13}|SweetShellCup\\SweetShellCup.csproj|d:\\ki 8 _fpt\\exe201\\sweetshellcup\\sweetshellcup_project\\sweetshellcup\\pages\\shop\\detail.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{63D8D86F-AE7A-4984-A638-FA4970162B13}|SweetShellCup\\SweetShellCup.csproj|solutionrelative:sweetshellcup\\pages\\shop\\detail.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{63D8D86F-AE7A-4984-A638-FA4970162B13}|SweetShellCup\\SweetShellCup.csproj|d:\\ki 8 _fpt\\exe201\\sweetshellcup\\sweetshellcup_project\\sweetshellcup\\pages\\shop\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{63D8D86F-AE7A-4984-A638-FA4970162B13}|SweetShellCup\\SweetShellCup.csproj|solutionrelative:sweetshellcup\\pages\\shop\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{63D8D86F-AE7A-4984-A638-FA4970162B13}|SweetShellCup\\SweetShellCup.csproj|d:\\ki 8 _fpt\\exe201\\sweetshellcup\\sweetshellcup_project\\sweetshellcup\\pages\\shop\\index.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{63D8D86F-AE7A-4984-A638-FA4970162B13}|SweetShellCup\\SweetShellCup.csproj|solutionrelative:sweetshellcup\\pages\\shop\\index.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 4,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c64b9c2-e352-428e-a56d-0ace190b99a6}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{eefa5220-e298-11d0-8f78-00a0c9110057}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{aa2115a1-9712-457b-9047-dbb71ca2cdd2}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Index.cshtml.cs",
+              "DocumentMoniker": "D:\\ki 8 _FPT\\EXE201\\SweetShellCup\\SweetShellCup_Project\\SweetShellCup\\Pages\\Index.cshtml.cs",
+              "RelativeDocumentMoniker": "SweetShellCup\\Pages\\Index.cshtml.cs",
+              "ToolTip": "D:\\ki 8 _FPT\\EXE201\\SweetShellCup\\SweetShellCup_Project\\SweetShellCup\\Pages\\Index.cshtml.cs",
+              "RelativeToolTip": "SweetShellCup\\Pages\\Index.cshtml.cs",
+              "ViewState": "AgIAAAgAAAAAAAAAAAAAwC0AAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-27T04:13:20.674Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "D:\\ki 8 _FPT\\EXE201\\SweetShellCup\\SweetShellCup_Project\\SweetShellCup\\Pages\\Index.cshtml",
+              "RelativeDocumentMoniker": "SweetShellCup\\Pages\\Index.cshtml",
+              "ToolTip": "D:\\ki 8 _FPT\\EXE201\\SweetShellCup\\SweetShellCup_Project\\SweetShellCup\\Pages\\Index.cshtml",
+              "RelativeToolTip": "SweetShellCup\\Pages\\Index.cshtml",
+              "ViewState": "AgIAAM8CAAAAAAAAAAAAwPwCAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-05-27T04:13:06.003Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "AIChatService.cs",
+              "DocumentMoniker": "D:\\ki 8 _FPT\\EXE201\\SweetShellCup\\SweetShellCup_Project\\SweetShellCup\\Services\\AIChatService.cs",
+              "RelativeDocumentMoniker": "SweetShellCup\\Services\\AIChatService.cs",
+              "ToolTip": "D:\\ki 8 _FPT\\EXE201\\SweetShellCup\\SweetShellCup_Project\\SweetShellCup\\Services\\AIChatService.cs",
+              "RelativeToolTip": "SweetShellCup\\Services\\AIChatService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABkAAAAdAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-27T04:11:46.696Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "IAIChatService.cs",
+              "DocumentMoniker": "D:\\ki 8 _FPT\\EXE201\\SweetShellCup\\SweetShellCup_Project\\SweetShellCup\\Interfaces\\IAIChatService.cs",
+              "RelativeDocumentMoniker": "SweetShellCup\\Interfaces\\IAIChatService.cs",
+              "ToolTip": "D:\\ki 8 _FPT\\EXE201\\SweetShellCup\\SweetShellCup_Project\\SweetShellCup\\Interfaces\\IAIChatService.cs",
+              "RelativeToolTip": "SweetShellCup\\Interfaces\\IAIChatService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-27T04:10:47.947Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "ChatDtos.cs",
+              "DocumentMoniker": "D:\\ki 8 _FPT\\EXE201\\SweetShellCup\\SweetShellCup_Project\\SweetShellCup\\Models\\ChatDtos.cs",
+              "RelativeDocumentMoniker": "SweetShellCup\\Models\\ChatDtos.cs",
+              "ToolTip": "D:\\ki 8 _FPT\\EXE201\\SweetShellCup\\SweetShellCup_Project\\SweetShellCup\\Models\\ChatDtos.cs",
+              "RelativeToolTip": "SweetShellCup\\Models\\ChatDtos.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-27T04:10:21.735Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "D:\\ki 8 _FPT\\EXE201\\SweetShellCup\\SweetShellCup_Project\\SweetShellCup\\appsettings.json",
+              "RelativeDocumentMoniker": "SweetShellCup\\appsettings.json",
+              "ToolTip": "D:\\ki 8 _FPT\\EXE201\\SweetShellCup\\SweetShellCup_Project\\SweetShellCup\\appsettings.json",
+              "RelativeToolTip": "SweetShellCup\\appsettings.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABoAAAAXAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2026-05-24T08:59:13.973Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "ICartRepository.cs",
+              "DocumentMoniker": "D:\\ki 8 _FPT\\EXE201\\SweetShellCup\\SweetShellCup_Project\\SweetShellCup\\Interfaces\\ICartRepository.cs",
+              "RelativeDocumentMoniker": "SweetShellCup\\Interfaces\\ICartRepository.cs",
+              "ToolTip": "D:\\ki 8 _FPT\\EXE201\\SweetShellCup\\SweetShellCup_Project\\SweetShellCup\\Interfaces\\ICartRepository.cs",
+              "RelativeToolTip": "SweetShellCup\\Interfaces\\ICartRepository.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-22T14:30:05.154Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "Program.cs",
+              "DocumentMoniker": "D:\\ki 8 _FPT\\EXE201\\SweetShellCup\\SweetShellCup_Project\\SweetShellCup\\Program.cs",
+              "RelativeDocumentMoniker": "SweetShellCup\\Program.cs",
+              "ToolTip": "D:\\ki 8 _FPT\\EXE201\\SweetShellCup\\SweetShellCup_Project\\SweetShellCup\\Program.cs",
+              "RelativeToolTip": "SweetShellCup\\Program.cs",
+              "ViewState": "AgIAAAkAAAAAAAAAAAAgwEcAAAAKAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-22T14:24:10.275Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "OrderRepository.cs",
+              "DocumentMoniker": "D:\\ki 8 _FPT\\EXE201\\SweetShellCup\\SweetShellCup_Project\\SweetShellCup\\Repositories\\OrderRepository.cs",
+              "RelativeDocumentMoniker": "SweetShellCup\\Repositories\\OrderRepository.cs",
+              "ToolTip": "D:\\ki 8 _FPT\\EXE201\\SweetShellCup\\SweetShellCup_Project\\SweetShellCup\\Repositories\\OrderRepository.cs",
+              "RelativeToolTip": "SweetShellCup\\Repositories\\OrderRepository.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-22T14:21:11.71Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "Details.cshtml.cs",
+              "DocumentMoniker": "D:\\ki 8 _FPT\\EXE201\\SweetShellCup\\SweetShellCup_Project\\SweetShellCup\\Pages\\Customer\\Orders\\Details.cshtml.cs",
+              "RelativeDocumentMoniker": "SweetShellCup\\Pages\\Customer\\Orders\\Details.cshtml.cs",
+              "ToolTip": "D:\\ki 8 _FPT\\EXE201\\SweetShellCup\\SweetShellCup_Project\\SweetShellCup\\Pages\\Customer\\Orders\\Details.cshtml.cs",
+              "RelativeToolTip": "SweetShellCup\\Pages\\Customer\\Orders\\Details.cshtml.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAKUAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-22T13:50:50.024Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "D:\\ki 8 _FPT\\EXE201\\SweetShellCup\\SweetShellCup_Project\\SweetShellCup\\Pages\\Customer\\Orders\\Index.cshtml",
+              "RelativeDocumentMoniker": "SweetShellCup\\Pages\\Customer\\Orders\\Index.cshtml",
+              "ToolTip": "D:\\ki 8 _FPT\\EXE201\\SweetShellCup\\SweetShellCup_Project\\SweetShellCup\\Pages\\Customer\\Orders\\Index.cshtml",
+              "RelativeToolTip": "SweetShellCup\\Pages\\Customer\\Orders\\Index.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-05-22T13:48:37.066Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "Index.cshtml.cs",
+              "DocumentMoniker": "D:\\ki 8 _FPT\\EXE201\\SweetShellCup\\SweetShellCup_Project\\SweetShellCup\\Pages\\Customer\\Orders\\Index.cshtml.cs",
+              "RelativeDocumentMoniker": "SweetShellCup\\Pages\\Customer\\Orders\\Index.cshtml.cs",
+              "ToolTip": "D:\\ki 8 _FPT\\EXE201\\SweetShellCup\\SweetShellCup_Project\\SweetShellCup\\Pages\\Customer\\Orders\\Index.cshtml.cs",
+              "RelativeToolTip": "SweetShellCup\\Pages\\Customer\\Orders\\Index.cshtml.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAC0AAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-22T13:48:32.624Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
+              "Title": "Details.cshtml",
+              "DocumentMoniker": "D:\\ki 8 _FPT\\EXE201\\SweetShellCup\\SweetShellCup_Project\\SweetShellCup\\Pages\\Customer\\Orders\\Details.cshtml",
+              "RelativeDocumentMoniker": "SweetShellCup\\Pages\\Customer\\Orders\\Details.cshtml",
+              "ToolTip": "D:\\ki 8 _FPT\\EXE201\\SweetShellCup\\SweetShellCup_Project\\SweetShellCup\\Pages\\Customer\\Orders\\Details.cshtml",
+              "RelativeToolTip": "SweetShellCup\\Pages\\Customer\\Orders\\Details.cshtml",
+              "ViewState": "AgIAAFMAAAAAAAAAAAAAAMEBAAAGAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-05-22T13:48:15.409Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 17,
+              "Title": "Detail.cshtml.cs",
+              "DocumentMoniker": "D:\\ki 8 _FPT\\EXE201\\SweetShellCup\\SweetShellCup_Project\\SweetShellCup\\Pages\\Shop\\Detail.cshtml.cs",
+              "RelativeDocumentMoniker": "SweetShellCup\\Pages\\Shop\\Detail.cshtml.cs",
+              "ToolTip": "D:\\ki 8 _FPT\\EXE201\\SweetShellCup\\SweetShellCup_Project\\SweetShellCup\\Pages\\Shop\\Detail.cshtml.cs",
+              "RelativeToolTip": "SweetShellCup\\Pages\\Shop\\Detail.cshtml.cs",
+              "ViewState": "AgIAACsAAAAAAAAAAAAwwGoAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-22T13:43:25.553Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 18,
+              "Title": "Detail.cshtml",
+              "DocumentMoniker": "D:\\ki 8 _FPT\\EXE201\\SweetShellCup\\SweetShellCup_Project\\SweetShellCup\\Pages\\Shop\\Detail.cshtml",
+              "RelativeDocumentMoniker": "SweetShellCup\\Pages\\Shop\\Detail.cshtml",
+              "ToolTip": "D:\\ki 8 _FPT\\EXE201\\SweetShellCup\\SweetShellCup_Project\\SweetShellCup\\Pages\\Shop\\Detail.cshtml",
+              "RelativeToolTip": "SweetShellCup\\Pages\\Shop\\Detail.cshtml",
+              "ViewState": "AgIAAPsAAAAAAAAAAAAgwBABAABSAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-05-22T13:43:20.389Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "CartRepository.cs",
+              "DocumentMoniker": "D:\\ki 8 _FPT\\EXE201\\SweetShellCup\\SweetShellCup_Project\\SweetShellCup\\Repositories\\CartRepository.cs",
+              "RelativeDocumentMoniker": "SweetShellCup\\Repositories\\CartRepository.cs",
+              "ToolTip": "D:\\ki 8 _FPT\\EXE201\\SweetShellCup\\SweetShellCup_Project\\SweetShellCup\\Repositories\\CartRepository.cs",
+              "RelativeToolTip": "SweetShellCup\\Repositories\\CartRepository.cs",
+              "ViewState": "AgIAAG0AAAAAAAAAAAAiwH4AAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-22T13:40:39.133Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "CategoryRepository.cs",
+              "DocumentMoniker": "D:\\ki 8 _FPT\\EXE201\\SweetShellCup\\SweetShellCup_Project\\SweetShellCup\\Repositories\\CategoryRepository.cs",
+              "RelativeDocumentMoniker": "SweetShellCup\\Repositories\\CategoryRepository.cs",
+              "ToolTip": "D:\\ki 8 _FPT\\EXE201\\SweetShellCup\\SweetShellCup_Project\\SweetShellCup\\Repositories\\CategoryRepository.cs",
+              "RelativeToolTip": "SweetShellCup\\Repositories\\CategoryRepository.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-22T13:40:34.967Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "D:\\ki 8 _FPT\\EXE201\\SweetShellCup\\SweetShellCup_Project\\SweetShellCup\\Pages\\Cart\\Index.cshtml",
+              "RelativeDocumentMoniker": "SweetShellCup\\Pages\\Cart\\Index.cshtml",
+              "ToolTip": "D:\\ki 8 _FPT\\EXE201\\SweetShellCup\\SweetShellCup_Project\\SweetShellCup\\Pages\\Cart\\Index.cshtml",
+              "RelativeToolTip": "SweetShellCup\\Pages\\Cart\\Index.cshtml",
+              "ViewState": "AgIAAJwAAAAAAAAAAAAAALwAAABuAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-05-22T13:39:35.296Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "Index.cshtml.cs",
+              "DocumentMoniker": "D:\\ki 8 _FPT\\EXE201\\SweetShellCup\\SweetShellCup_Project\\SweetShellCup\\Pages\\Cart\\Index.cshtml.cs",
+              "RelativeDocumentMoniker": "SweetShellCup\\Pages\\Cart\\Index.cshtml.cs",
+              "ToolTip": "D:\\ki 8 _FPT\\EXE201\\SweetShellCup\\SweetShellCup_Project\\SweetShellCup\\Pages\\Cart\\Index.cshtml.cs",
+              "RelativeToolTip": "SweetShellCup\\Pages\\Cart\\Index.cshtml.cs",
+              "ViewState": "AgIAABIAAAAAAAAAAAAYwCcAAAAmAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-22T13:39:30.616Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 20,
+              "Title": "Index.cshtml.cs",
+              "DocumentMoniker": "D:\\ki 8 _FPT\\EXE201\\SweetShellCup\\SweetShellCup_Project\\SweetShellCup\\Pages\\Shop\\Index.cshtml.cs",
+              "RelativeDocumentMoniker": "SweetShellCup\\Pages\\Shop\\Index.cshtml.cs",
+              "ToolTip": "D:\\ki 8 _FPT\\EXE201\\SweetShellCup\\SweetShellCup_Project\\SweetShellCup\\Pages\\Shop\\Index.cshtml.cs",
+              "RelativeToolTip": "SweetShellCup\\Pages\\Shop\\Index.cshtml.cs",
+              "ViewState": "AgIAABAAAAAAAAAAAAAQwCYAAAAzAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-22T13:36:31.775Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 19,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "D:\\ki 8 _FPT\\EXE201\\SweetShellCup\\SweetShellCup_Project\\SweetShellCup\\Pages\\Shop\\Index.cshtml",
+              "RelativeDocumentMoniker": "SweetShellCup\\Pages\\Shop\\Index.cshtml",
+              "ToolTip": "D:\\ki 8 _FPT\\EXE201\\SweetShellCup\\SweetShellCup_Project\\SweetShellCup\\Pages\\Shop\\Index.cshtml",
+              "RelativeToolTip": "SweetShellCup\\Pages\\Shop\\Index.cshtml",
+              "ViewState": "AgIAAMEAAAAAAAAAAAAswNUAAAAhAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-05-22T13:36:07.448Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -36,6 +36,11 @@ builder.Services.AddScoped<IOrderRepository, OrderRepository>();
 builder.Services.AddScoped<IReviewRepository, ReviewRepository>();
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<IEmailService, EmailService>();
+builder.Services.AddHttpClient<IAIChatService, AIChatService>(client =>
+{
+    var timeout = builder.Configuration.GetValue<int>("AI:TimeoutSeconds", 30);
+    client.Timeout = TimeSpan.FromSeconds(timeout);
+});
 
 // Session (for cart - demo user)
 builder.Services.AddDistributedMemoryCache();
