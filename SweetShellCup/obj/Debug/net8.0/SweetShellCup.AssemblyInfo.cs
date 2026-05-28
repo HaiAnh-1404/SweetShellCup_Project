@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("SweetShellCup")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+1135402d19096a63a5be2f6ac754c044fb1b59e8")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+9777d71045e7174ccea3f29457b8c869eff7ab7b")]
 [assembly: System.Reflection.AssemblyProductAttribute("SweetShellCup")]
 [assembly: System.Reflection.AssemblyTitleAttribute("SweetShellCup")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

@@ -505,10 +505,10 @@ D:\ki 8 _FPT\EXE201\SweetShellCup\SweetShellCup_Project\SweetShellCup\obj\Debug\
 D:\ki 8 _FPT\EXE201\SweetShellCup\SweetShellCup_Project\SweetShellCup\obj\Debug\net8.0\staticwebassets.build.json.cache
 D:\ki 8 _FPT\EXE201\SweetShellCup\SweetShellCup_Project\SweetShellCup\obj\Debug\net8.0\staticwebassets.development.json
 D:\ki 8 _FPT\EXE201\SweetShellCup\SweetShellCup_Project\SweetShellCup\obj\Debug\net8.0\staticwebassets.build.endpoints.json
+D:\ki 8 _FPT\EXE201\SweetShellCup\SweetShellCup_Project\SweetShellCup\obj\Debug\net8.0\staticwebassets.upToDateCheck.txt
 D:\ki 8 _FPT\EXE201\SweetShellCup\SweetShellCup_Project\SweetShellCup\obj\Debug\net8.0\SweetShe.6C649FA0.Up2Date
 D:\ki 8 _FPT\EXE201\SweetShellCup\SweetShellCup_Project\SweetShellCup\obj\Debug\net8.0\SweetShellCup.dll
 D:\ki 8 _FPT\EXE201\SweetShellCup\SweetShellCup_Project\SweetShellCup\obj\Debug\net8.0\refint\SweetShellCup.dll
 D:\ki 8 _FPT\EXE201\SweetShellCup\SweetShellCup_Project\SweetShellCup\obj\Debug\net8.0\SweetShellCup.pdb
 D:\ki 8 _FPT\EXE201\SweetShellCup\SweetShellCup_Project\SweetShellCup\obj\Debug\net8.0\SweetShellCup.genruntimeconfig.cache
 D:\ki 8 _FPT\EXE201\SweetShellCup\SweetShellCup_Project\SweetShellCup\obj\Debug\net8.0\ref\SweetShellCup.dll
-D:\ki 8 _FPT\EXE201\SweetShellCup\SweetShellCup_Project\SweetShellCup\obj\Debug\net8.0\staticwebassets.upToDateCheck.txt
