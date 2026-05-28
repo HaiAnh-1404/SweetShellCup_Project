@@ -7,6 +7,7 @@ wwwroot\images\products\Gemini_Generated_Image_guk98mguk98mguk9_8c08.png
 wwwroot\images\products\Gemini_Generated_Image_guk98mguk98mguk9_d7f7.png
 wwwroot\images\products\Gemini_Generated_Image_okp0xiokp0xiokp0_32a0.png
 wwwroot\images\products\Gemini_Generated_Image_okp0xiokp0xiokp0_d32a.png
+wwwroot\images\products\logo.jpg
 wwwroot\images\products\Screenshot 2026-03-14 102528_8c25.png
 wwwroot\images\products\Screenshot 2026-03-14 102608_b913.png
 wwwroot\images\products\Screenshot 2026-03-14 134059_3cc9.png
@@ -18,6 +19,10 @@ wwwroot\images\products\Screenshot 2026-03-14 134446_868d.png
 wwwroot\images\products\Screenshot 2026-03-14 134446_af41.png
 wwwroot\images\products\Screenshot 2026-03-30 151939_01e1.png
 wwwroot\images\products\Screenshot 2026-04-20 202433_4ba6.png
+wwwroot\images\products\Screenshot 2026-05-27 192707_d0b3.png
+wwwroot\images\products\z7871928565180_b6740888cff57ccf4cd5254c7a3e261b_1337.jpg
+wwwroot\images\products\z7871928608664_af70e7dd09a26eba6f8eb94eebdcaf08_fe94.jpg
+wwwroot\images\products\z7871928608669_600ada82d38c82093f17b44e2c92e0ad_a2d6.jpg
 wwwroot\js\site.js
 wwwroot\lib\bootstrap\dist\css\bootstrap-grid.css
 wwwroot\lib\bootstrap\dist\css\bootstrap-grid.css.map
@@ -76,3 +81,4 @@ wwwroot\lib\jquery\dist\jquery.js
 wwwroot\lib\jquery\dist\jquery.min.js
 wwwroot\lib\jquery\dist\jquery.min.map
 wwwroot\lib\jquery\LICENSE.txt
+wwwroot\uploads\receipts\receipt_8.png
