@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 
@@ -51,8 +51,8 @@ public partial class SweetShellCupDbContext : DbContext
             entity.ToTable("Cart");
 
             entity.Property(e => e.CreatedAt)
-                .HasDefaultValueSql("(getdate())")
-                .HasColumnType("datetime");
+                .HasDefaultValueSql("CURRENT_TIMESTAMP")
+                .HasColumnType("timestamp");
 
             entity.HasOne(d => d.User).WithMany(p => p.Carts)
                 .HasForeignKey(d => d.UserId)
@@ -94,8 +94,8 @@ public partial class SweetShellCupDbContext : DbContext
             entity.HasIndex(e => e.UserId, "IX_Orders_UserId");
 
             entity.Property(e => e.OrderDate)
-                .HasDefaultValueSql("(getdate())")
-                .HasColumnType("datetime");
+                .HasDefaultValueSql("CURRENT_TIMESTAMP")
+                .HasColumnType("timestamp");
             entity.Property(e => e.ShippingAddress).HasMaxLength(255);
             entity.Property(e => e.Status)
                 .HasMaxLength(50)
@@ -133,7 +133,7 @@ public partial class SweetShellCupDbContext : DbContext
 
             entity.HasIndex(e => e.OrderId, "IX_Payments_OrderId");
 
-            entity.Property(e => e.PaidAt).HasColumnType("datetime");
+            entity.Property(e => e.PaidAt).HasColumnType("timestamp");
             entity.Property(e => e.PaymentStatus).HasMaxLength(50);
             entity.Property(e => e.TransactionCode).HasMaxLength(100);
 
@@ -164,8 +164,8 @@ public partial class SweetShellCupDbContext : DbContext
             entity.HasIndex(e => e.CategoryId, "IX_Products_CategoryId");
 
             entity.Property(e => e.CreatedAt)
-                .HasDefaultValueSql("(getdate())")
-                .HasColumnType("datetime");
+                .HasDefaultValueSql("CURRENT_TIMESTAMP")
+                .HasColumnType("timestamp");
             entity.Property(e => e.Flavor).HasMaxLength(50);
             entity.Property(e => e.ImageUrl).HasMaxLength(255);
             entity.Property(e => e.Price).HasColumnType("decimal(10, 2)");
@@ -187,8 +187,8 @@ public partial class SweetShellCupDbContext : DbContext
 
             entity.Property(e => e.Comment).HasMaxLength(500);
             entity.Property(e => e.CreatedAt)
-                .HasDefaultValueSql("(getdate())")
-                .HasColumnType("datetime");
+                .HasDefaultValueSql("CURRENT_TIMESTAMP")
+                .HasColumnType("timestamp");
 
             entity.HasOne(d => d.Product).WithMany(p => p.Reviews)
                 .HasForeignKey(d => d.ProductId)
@@ -218,8 +218,8 @@ public partial class SweetShellCupDbContext : DbContext
 
             entity.Property(e => e.Address).HasMaxLength(255);
             entity.Property(e => e.CreatedAt)
-                .HasDefaultValueSql("(getdate())")
-                .HasColumnType("datetime");
+                .HasDefaultValueSql("CURRENT_TIMESTAMP")
+                .HasColumnType("timestamp");
             entity.Property(e => e.Email).HasMaxLength(100);
             entity.Property(e => e.FullName).HasMaxLength(100);
             entity.Property(e => e.PasswordHash).HasMaxLength(255);

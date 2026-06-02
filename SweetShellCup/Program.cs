@@ -1,4 +1,4 @@
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using SweetShellCup.Models;
 using SweetShellCup.Interfaces;
 using SweetShellCup.Repositories;
@@ -25,8 +25,16 @@ builder.Services.AddAuthentication(Microsoft.AspNetCore.Authentication.Cookies.C
     });
 
 // Database
-builder.Services.AddDbContext<SweetShellCupDbContext>(opt =>
-    opt.UseSqlServer(builder.Configuration.GetConnectionString("MyCnn")));
+//builder.Services.AddDbContext<SweetShellCupDbContext>(opt =>
+//    opt.UseSqlServer(builder.Configuration.GetConnectionString("MyCnn")));
+
+// Đảm bảo có dòng dùng chuỗi kết nối từ appsettings
+var connectionString = builder.Configuration.GetConnectionString("MyCnn");
+
+// Cấu hình DbContext chuyển sang sử dụng Npgsql (PostgreSQL)
+builder.Services.AddDbContext<SweetShellCupDbContext>(options =>
+    options.UseNpgsql(connectionString));
+
 
 // Clean Architecture - Repositories (Dependency Injection)
 builder.Services.AddScoped<IProductRepository, ProductRepository>();
