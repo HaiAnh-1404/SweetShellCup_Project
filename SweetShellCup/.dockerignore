@@ -1,0 +1,22 @@
+﻿# Các thư mục chứa code đã biên dịch cục bộ trên Windows (BẮT BUỘC PHẢI BỎ QUA)
+**/bin/
+**/obj/
+**/out/
+
+# Các thư mục cấu hình của IDE (Visual Studio, VS Code)
+.vs/
+.vscode/
+**/*.user
+**/*.suo
+**/*.userosscache
+**/*.sln.docstates
+
+# Thư mục mã nguồn Git
+.git/
+.gitignore
+
+# Các file log và file tạm
+*.log
+.dockerignore
+Dockerfile
+docker-compose*

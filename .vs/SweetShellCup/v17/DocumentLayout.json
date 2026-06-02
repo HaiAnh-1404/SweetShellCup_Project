@@ -3,6 +3,14 @@
   "WorkspaceRootPath": "D:\\ki 8 _FPT\\EXE201\\SweetShellCup\\SweetShellCup_Project\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{63D8D86F-AE7A-4984-A638-FA4970162B13}|SweetShellCup\\SweetShellCup.csproj|d:\\ki 8 _fpt\\exe201\\sweetshellcup\\sweetshellcup_project\\sweetshellcup\\.dockerignore||{3B902123-F8A7-4915-9F01-361F908088D0}",
+      "RelativeMoniker": "D:0:0:{63D8D86F-AE7A-4984-A638-FA4970162B13}|SweetShellCup\\SweetShellCup.csproj|solutionrelative:sweetshellcup\\.dockerignore||{3B902123-F8A7-4915-9F01-361F908088D0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{63D8D86F-AE7A-4984-A638-FA4970162B13}|SweetShellCup\\SweetShellCup.csproj|d:\\ki 8 _fpt\\exe201\\sweetshellcup\\sweetshellcup_project\\sweetshellcup\\pages\\shop\\detail.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{63D8D86F-AE7A-4984-A638-FA4970162B13}|SweetShellCup\\SweetShellCup.csproj|solutionrelative:sweetshellcup\\pages\\shop\\detail.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{63D8D86F-AE7A-4984-A638-FA4970162B13}|SweetShellCup\\SweetShellCup.csproj|d:\\ki 8 _fpt\\exe201\\sweetshellcup\\sweetshellcup_project\\sweetshellcup\\pages\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{63D8D86F-AE7A-4984-A638-FA4970162B13}|SweetShellCup\\SweetShellCup.csproj|solutionrelative:sweetshellcup\\pages\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
@@ -22,7 +30,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 5,
+          "SelectedChildIndex": 4,
           "Children": [
             {
               "$type": "Bookmark",
@@ -42,7 +50,33 @@
             },
             {
               "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": ".dockerignore",
+              "DocumentMoniker": "D:\\ki 8 _FPT\\EXE201\\SweetShellCup\\SweetShellCup_Project\\SweetShellCup\\.dockerignore",
+              "RelativeDocumentMoniker": "SweetShellCup\\.dockerignore",
+              "ToolTip": "D:\\ki 8 _FPT\\EXE201\\SweetShellCup\\SweetShellCup_Project\\SweetShellCup\\.dockerignore",
+              "RelativeToolTip": "SweetShellCup\\.dockerignore",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABUAAAAPAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
+              "WhenOpened": "2026-06-02T02:59:18.182Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 1,
+              "Title": "Detail.cshtml.cs",
+              "DocumentMoniker": "D:\\ki 8 _FPT\\EXE201\\SweetShellCup\\SweetShellCup_Project\\SweetShellCup\\Pages\\Shop\\Detail.cshtml.cs",
+              "RelativeDocumentMoniker": "SweetShellCup\\Pages\\Shop\\Detail.cshtml.cs",
+              "ToolTip": "D:\\ki 8 _FPT\\EXE201\\SweetShellCup\\SweetShellCup_Project\\SweetShellCup\\Pages\\Shop\\Detail.cshtml.cs",
+              "RelativeToolTip": "SweetShellCup\\Pages\\Shop\\Detail.cshtml.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-02T02:38:20.034Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
               "Title": "Detail.cshtml",
               "DocumentMoniker": "D:\\ki 8 _FPT\\EXE201\\SweetShellCup\\SweetShellCup_Project\\SweetShellCup\\Pages\\Shop\\Detail.cshtml",
               "RelativeDocumentMoniker": "SweetShellCup\\Pages\\Shop\\Detail.cshtml",
@@ -50,25 +84,24 @@
               "RelativeToolTip": "SweetShellCup\\Pages\\Shop\\Detail.cshtml",
               "ViewState": "AgIAAAYAAAAAAAAAAAAAABQAAAAzAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-05-28T06:13:12.623Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-05-28T06:13:12.623Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 2,
               "Title": "Index.cshtml",
               "DocumentMoniker": "D:\\ki 8 _FPT\\EXE201\\SweetShellCup\\SweetShellCup_Project\\SweetShellCup\\Pages\\Index.cshtml",
               "RelativeDocumentMoniker": "SweetShellCup\\Pages\\Index.cshtml",
               "ToolTip": "D:\\ki 8 _FPT\\EXE201\\SweetShellCup\\SweetShellCup_Project\\SweetShellCup\\Pages\\Index.cshtml",
               "RelativeToolTip": "SweetShellCup\\Pages\\Index.cshtml",
-              "ViewState": "AgIAAOICAAAAAAAAAAAAAKACAAA0AAAAAAAAAA==",
+              "ViewState": "AgIAAKMCAAAAAAAAAAAAAL0CAAAbAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
               "WhenOpened": "2026-05-28T05:03:50.964Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 4,
               "Title": "_Layout.cshtml",
               "DocumentMoniker": "D:\\ki 8 _FPT\\EXE201\\SweetShellCup\\SweetShellCup_Project\\SweetShellCup\\Pages\\Shared\\_Layout.cshtml",
               "RelativeDocumentMoniker": "SweetShellCup\\Pages\\Shared\\_Layout.cshtml",
@@ -76,8 +109,7 @@
               "RelativeToolTip": "SweetShellCup\\Pages\\Shared\\_Layout.cshtml",
               "ViewState": "AgIAADgBAAAAAAAAAAAAAEoBAAAMAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-05-28T05:03:45.467Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-05-28T05:03:45.467Z"
             }
           ]
         }
