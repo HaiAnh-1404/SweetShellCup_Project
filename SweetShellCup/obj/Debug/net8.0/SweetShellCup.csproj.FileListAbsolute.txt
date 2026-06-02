@@ -316,6 +316,8 @@ D:\ki 8 _FPT\EXE201\SweetShellCup\SweetShellCup_Project\SweetShellCup\bin\Debug\
 D:\ki 8 _FPT\EXE201\SweetShellCup\SweetShellCup_Project\SweetShellCup\bin\Debug\net8.0\Microsoft.VisualStudio.Web.CodeGenerators.Mvc.dll
 D:\ki 8 _FPT\EXE201\SweetShellCup\SweetShellCup_Project\SweetShellCup\bin\Debug\net8.0\Mono.TextTemplating.dll
 D:\ki 8 _FPT\EXE201\SweetShellCup\SweetShellCup_Project\SweetShellCup\bin\Debug\net8.0\Newtonsoft.Json.dll
+D:\ki 8 _FPT\EXE201\SweetShellCup\SweetShellCup_Project\SweetShellCup\bin\Debug\net8.0\Npgsql.dll
+D:\ki 8 _FPT\EXE201\SweetShellCup\SweetShellCup_Project\SweetShellCup\bin\Debug\net8.0\Npgsql.EntityFrameworkCore.PostgreSQL.dll
 D:\ki 8 _FPT\EXE201\SweetShellCup\SweetShellCup_Project\SweetShellCup\bin\Debug\net8.0\NuGet.Common.dll
 D:\ki 8 _FPT\EXE201\SweetShellCup\SweetShellCup_Project\SweetShellCup\bin\Debug\net8.0\NuGet.Configuration.dll
 D:\ki 8 _FPT\EXE201\SweetShellCup\SweetShellCup_Project\SweetShellCup\bin\Debug\net8.0\NuGet.DependencyResolver.Core.dll
@@ -505,7 +507,6 @@ D:\ki 8 _FPT\EXE201\SweetShellCup\SweetShellCup_Project\SweetShellCup\obj\Debug\
 D:\ki 8 _FPT\EXE201\SweetShellCup\SweetShellCup_Project\SweetShellCup\obj\Debug\net8.0\staticwebassets.build.json.cache
 D:\ki 8 _FPT\EXE201\SweetShellCup\SweetShellCup_Project\SweetShellCup\obj\Debug\net8.0\staticwebassets.development.json
 D:\ki 8 _FPT\EXE201\SweetShellCup\SweetShellCup_Project\SweetShellCup\obj\Debug\net8.0\staticwebassets.build.endpoints.json
-D:\ki 8 _FPT\EXE201\SweetShellCup\SweetShellCup_Project\SweetShellCup\obj\Debug\net8.0\staticwebassets.upToDateCheck.txt
 D:\ki 8 _FPT\EXE201\SweetShellCup\SweetShellCup_Project\SweetShellCup\obj\Debug\net8.0\SweetShe.6C649FA0.Up2Date
 D:\ki 8 _FPT\EXE201\SweetShellCup\SweetShellCup_Project\SweetShellCup\obj\Debug\net8.0\SweetShellCup.dll
 D:\ki 8 _FPT\EXE201\SweetShellCup\SweetShellCup_Project\SweetShellCup\obj\Debug\net8.0\refint\SweetShellCup.dll

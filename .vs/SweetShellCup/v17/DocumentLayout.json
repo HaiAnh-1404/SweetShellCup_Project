@@ -3,6 +3,14 @@
   "WorkspaceRootPath": "D:\\ki 8 _FPT\\EXE201\\SweetShellCup\\SweetShellCup_Project\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{63D8D86F-AE7A-4984-A638-FA4970162B13}|SweetShellCup\\SweetShellCup.csproj|d:\\ki 8 _fpt\\exe201\\sweetshellcup\\sweetshellcup_project\\sweetshellcup\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{63D8D86F-AE7A-4984-A638-FA4970162B13}|SweetShellCup\\SweetShellCup.csproj|solutionrelative:sweetshellcup\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{63D8D86F-AE7A-4984-A638-FA4970162B13}|SweetShellCup\\SweetShellCup.csproj|d:\\ki 8 _fpt\\exe201\\sweetshellcup\\sweetshellcup_project\\sweetshellcup\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{63D8D86F-AE7A-4984-A638-FA4970162B13}|SweetShellCup\\SweetShellCup.csproj|solutionrelative:sweetshellcup\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{63D8D86F-AE7A-4984-A638-FA4970162B13}|SweetShellCup\\SweetShellCup.csproj|d:\\ki 8 _fpt\\exe201\\sweetshellcup\\sweetshellcup_project\\sweetshellcup\\.dockerignore||{3B902123-F8A7-4915-9F01-361F908088D0}",
       "RelativeMoniker": "D:0:0:{63D8D86F-AE7A-4984-A638-FA4970162B13}|SweetShellCup\\SweetShellCup.csproj|solutionrelative:sweetshellcup\\.dockerignore||{3B902123-F8A7-4915-9F01-361F908088D0}"
     },
@@ -30,7 +38,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 4,
+          "SelectedChildIndex": 5,
           "Children": [
             {
               "$type": "Bookmark",
@@ -50,7 +58,32 @@
             },
             {
               "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Program.cs",
+              "DocumentMoniker": "D:\\ki 8 _FPT\\EXE201\\SweetShellCup\\SweetShellCup_Project\\SweetShellCup\\Program.cs",
+              "RelativeDocumentMoniker": "SweetShellCup\\Program.cs",
+              "ToolTip": "D:\\ki 8 _FPT\\EXE201\\SweetShellCup\\SweetShellCup_Project\\SweetShellCup\\Program.cs",
+              "RelativeToolTip": "SweetShellCup\\Program.cs",
+              "ViewState": "AgIAACgAAAAAAAAAAAAswEAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-02T03:58:58.743Z"
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 0,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "D:\\ki 8 _FPT\\EXE201\\SweetShellCup\\SweetShellCup_Project\\SweetShellCup\\appsettings.json",
+              "RelativeDocumentMoniker": "SweetShellCup\\appsettings.json",
+              "ToolTip": "D:\\ki 8 _FPT\\EXE201\\SweetShellCup\\SweetShellCup_Project\\SweetShellCup\\appsettings.json",
+              "RelativeToolTip": "SweetShellCup\\appsettings.json",
+              "ViewState": "AgIAAAwAAAAAAAAAAAAUwBIAAAA2AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2026-06-02T03:13:08.195Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
               "Title": ".dockerignore",
               "DocumentMoniker": "D:\\ki 8 _FPT\\EXE201\\SweetShellCup\\SweetShellCup_Project\\SweetShellCup\\.dockerignore",
               "RelativeDocumentMoniker": "SweetShellCup\\.dockerignore",
@@ -58,12 +91,11 @@
               "RelativeToolTip": "SweetShellCup\\.dockerignore",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABUAAAAPAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
-              "WhenOpened": "2026-06-02T02:59:18.182Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-06-02T02:59:18.182Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 3,
               "Title": "Detail.cshtml.cs",
               "DocumentMoniker": "D:\\ki 8 _FPT\\EXE201\\SweetShellCup\\SweetShellCup_Project\\SweetShellCup\\Pages\\Shop\\Detail.cshtml.cs",
               "RelativeDocumentMoniker": "SweetShellCup\\Pages\\Shop\\Detail.cshtml.cs",
@@ -71,12 +103,11 @@
               "RelativeToolTip": "SweetShellCup\\Pages\\Shop\\Detail.cshtml.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-06-02T02:38:20.034Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-06-02T02:38:20.034Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 5,
               "Title": "Detail.cshtml",
               "DocumentMoniker": "D:\\ki 8 _FPT\\EXE201\\SweetShellCup\\SweetShellCup_Project\\SweetShellCup\\Pages\\Shop\\Detail.cshtml",
               "RelativeDocumentMoniker": "SweetShellCup\\Pages\\Shop\\Detail.cshtml",
@@ -88,7 +119,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 4,
               "Title": "Index.cshtml",
               "DocumentMoniker": "D:\\ki 8 _FPT\\EXE201\\SweetShellCup\\SweetShellCup_Project\\SweetShellCup\\Pages\\Index.cshtml",
               "RelativeDocumentMoniker": "SweetShellCup\\Pages\\Index.cshtml",
@@ -96,12 +127,11 @@
               "RelativeToolTip": "SweetShellCup\\Pages\\Index.cshtml",
               "ViewState": "AgIAAKMCAAAAAAAAAAAAAL0CAAAbAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-05-28T05:03:50.964Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-05-28T05:03:50.964Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 6,
               "Title": "_Layout.cshtml",
               "DocumentMoniker": "D:\\ki 8 _FPT\\EXE201\\SweetShellCup\\SweetShellCup_Project\\SweetShellCup\\Pages\\Shared\\_Layout.cshtml",
               "RelativeDocumentMoniker": "SweetShellCup\\Pages\\Shared\\_Layout.cshtml",
