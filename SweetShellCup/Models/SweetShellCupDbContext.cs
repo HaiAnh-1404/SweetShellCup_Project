@@ -171,6 +171,7 @@ public partial class SweetShellCupDbContext : DbContext
             entity.Property(e => e.Price).HasColumnType("decimal(10, 2)");
             entity.Property(e => e.ProductName).HasMaxLength(150);
             entity.Property(e => e.Size).HasMaxLength(20);
+            entity.Property(e => e.Ingredients).HasColumnType("text");
             entity.Property(e => e.Stock).HasDefaultValue(0);
 
             entity.HasOne(d => d.Category).WithMany(p => p.Products)

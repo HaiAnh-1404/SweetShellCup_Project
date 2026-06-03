@@ -76,6 +76,7 @@ namespace SweetShellCup.Pages.Admin.Products
             existing.Flavor = EditProduct.Flavor;
             existing.Size = EditProduct.Size;
             existing.Description = EditProduct.Description;
+            existing.Ingredients = EditProduct.Ingredients;
             
             await _productRepo.UpdateAsync(existing);
 
