@@ -1,8 +1,9 @@
-﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using SweetShellCup.Models;
 using SweetShellCup.Interfaces;
 using SweetShellCup.Repositories;
 using SweetShellCup.Services;
+using Npgsql;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -31,9 +32,17 @@ builder.Services.AddAuthentication(Microsoft.AspNetCore.Authentication.Cookies.C
 // Đảm bảo có dòng dùng chuỗi kết nối từ appsettings
 var connectionString = builder.Configuration.GetConnectionString("MyCnn");
 
+// Tự động sử dụng biến môi trường DATABASE_URL nếu có trên Render
+var databaseUrl = Environment.GetEnvironmentVariable("DATABASE_URL");
+if (!string.IsNullOrEmpty(databaseUrl))
+{
+    connectionString = ConvertDatabaseUrlToConnectionString(databaseUrl);
+}
+
 // Cấu hình DbContext chuyển sang sử dụng Npgsql (PostgreSQL)
 builder.Services.AddDbContext<SweetShellCupDbContext>(options =>
     options.UseNpgsql(connectionString));
+
 
 
 // Clean Architecture - Repositories (Dependency Injection)
@@ -78,3 +87,24 @@ app.UseAuthentication();
 app.UseAuthorization();
 app.MapRazorPages();
 app.Run();
+
+// Helper method to convert postgres:// URL to Npgsql connection string
+string ConvertDatabaseUrlToConnectionString(string dbUrl)
+{
+    var uri = new Uri(dbUrl);
+    var userInfo = uri.UserInfo.Split(':');
+    var username = userInfo[0];
+    var password = userInfo.Length > 1 ? userInfo[1] : "";
+
+    var dbBuilder = new NpgsqlConnectionStringBuilder
+    {
+        Host = uri.Host,
+        Port = uri.Port > 0 ? uri.Port : 5432,
+        Username = username,
+        Password = password,
+        Database = uri.AbsolutePath.TrimStart('/'),
+        SslMode = SslMode.Require
+    };
+
+    return dbBuilder.ConnectionString;
+}
