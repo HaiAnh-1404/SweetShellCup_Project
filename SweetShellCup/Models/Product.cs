@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 
 namespace SweetShellCup.Models;
@@ -18,6 +18,8 @@ public partial class Product
     public string? Flavor { get; set; }
 
     public string? Size { get; set; }
+
+    public string? Ingredients { get; set; }
 
     public int CategoryId { get; set; }
 

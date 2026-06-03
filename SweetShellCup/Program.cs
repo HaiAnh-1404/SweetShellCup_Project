@@ -72,6 +72,20 @@ builder.Services.AddSession(options =>
 
 var app = builder.Build();
 
+// Auto-create Ingredients column if it doesn't exist in PostgreSQL
+using (var scope = app.Services.CreateScope())
+{
+    var db = scope.ServiceProvider.GetRequiredService<SweetShellCupDbContext>();
+    try
+    {
+        db.Database.ExecuteSqlRaw("ALTER TABLE \"Products\" ADD COLUMN IF NOT EXISTS \"Ingredients\" text;");
+    }
+    catch (Exception ex)
+    {
+        Console.WriteLine($"Error running migration raw SQL: {ex.Message}");
+    }
+}
+
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
 {
