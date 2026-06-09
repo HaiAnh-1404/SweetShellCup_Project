@@ -3,6 +3,14 @@
   "WorkspaceRootPath": "D:\\ki 8 _FPT\\EXE201\\SweetShellCup\\SweetShellCup_Project\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{63D8D86F-AE7A-4984-A638-FA4970162B13}|SweetShellCup\\SweetShellCup.csproj|d:\\ki 8 _fpt\\exe201\\sweetshellcup\\sweetshellcup_project\\sweetshellcup\\wwwroot\\images\\ourstory\\y tuong den san pham.jpg||{177559E0-D141-11D0-92DF-00A0C9138C45}",
+      "RelativeMoniker": "D:0:0:{63D8D86F-AE7A-4984-A638-FA4970162B13}|SweetShellCup\\SweetShellCup.csproj|solutionrelative:sweetshellcup\\wwwroot\\images\\ourstory\\y tuong den san pham.jpg||{177559E0-D141-11D0-92DF-00A0C9138C45}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{63D8D86F-AE7A-4984-A638-FA4970162B13}|SweetShellCup\\SweetShellCup.csproj|d:\\ki 8 _fpt\\exe201\\sweetshellcup\\sweetshellcup_project\\sweetshellcup\\wwwroot\\images\\ourstory\\vi sao chon chung minh.jpg||{177559E0-D141-11D0-92DF-00A0C9138C45}",
+      "RelativeMoniker": "D:0:0:{63D8D86F-AE7A-4984-A638-FA4970162B13}|SweetShellCup\\SweetShellCup.csproj|solutionrelative:sweetshellcup\\wwwroot\\images\\ourstory\\vi sao chon chung minh.jpg||{177559E0-D141-11D0-92DF-00A0C9138C45}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{63D8D86F-AE7A-4984-A638-FA4970162B13}|SweetShellCup\\SweetShellCup.csproj|d:\\ki 8 _fpt\\exe201\\sweetshellcup\\sweetshellcup_project\\sweetshellcup\\pages\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{63D8D86F-AE7A-4984-A638-FA4970162B13}|SweetShellCup\\SweetShellCup.csproj|solutionrelative:sweetshellcup\\pages\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
@@ -43,6 +51,30 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
+              "Title": "y tuong den san pham.jpg - Bitmap [1254x1254, 24 bit, JPG]",
+              "DocumentMoniker": "D:\\ki 8 _FPT\\EXE201\\SweetShellCup\\SweetShellCup_Project\\SweetShellCup\\wwwroot\\images\\ourstory\\y tuong den san pham.jpg",
+              "RelativeDocumentMoniker": "SweetShellCup\\wwwroot\\images\\ourstory\\y tuong den san pham.jpg",
+              "ToolTip": "D:\\ki 8 _FPT\\EXE201\\SweetShellCup\\SweetShellCup_Project\\SweetShellCup\\wwwroot\\images\\ourstory\\y tuong den san pham.jpg - Bitmap [1254x1254, 24 bit, JPG]",
+              "RelativeToolTip": "SweetShellCup\\wwwroot\\images\\ourstory\\y tuong den san pham.jpg - Bitmap [1254x1254, 24 bit, JPG]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001533|",
+              "WhenOpened": "2026-06-09T14:21:44.399Z",
+              "EditorCaption": " - Bitmap [1254x1254, 24 bit, JPG]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "vi sao chon chung minh.jpg - Bitmap [1254x1254, 24 bit, JPG]",
+              "DocumentMoniker": "D:\\ki 8 _FPT\\EXE201\\SweetShellCup\\SweetShellCup_Project\\SweetShellCup\\wwwroot\\images\\ourstory\\vi sao chon chung minh.jpg",
+              "RelativeDocumentMoniker": "SweetShellCup\\wwwroot\\images\\ourstory\\vi sao chon chung minh.jpg",
+              "ToolTip": "D:\\ki 8 _FPT\\EXE201\\SweetShellCup\\SweetShellCup_Project\\SweetShellCup\\wwwroot\\images\\ourstory\\vi sao chon chung minh.jpg - Bitmap [1254x1254, 24 bit, JPG]",
+              "RelativeToolTip": "SweetShellCup\\wwwroot\\images\\ourstory\\vi sao chon chung minh.jpg - Bitmap [1254x1254, 24 bit, JPG]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001533|",
+              "WhenOpened": "2026-06-09T14:21:42.646Z",
+              "EditorCaption": " - Bitmap [1254x1254, 24 bit, JPG]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
               "Title": "Index.cshtml",
               "DocumentMoniker": "D:\\ki 8 _FPT\\EXE201\\SweetShellCup\\SweetShellCup_Project\\SweetShellCup\\Pages\\Index.cshtml",
               "RelativeDocumentMoniker": "SweetShellCup\\Pages\\Index.cshtml",
@@ -50,12 +82,11 @@
               "RelativeToolTip": "SweetShellCup\\Pages\\Index.cshtml",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-06-03T15:53:59.667Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-06-03T15:53:59.667Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 3,
               "Title": "Detail.cshtml",
               "DocumentMoniker": "D:\\ki 8 _FPT\\EXE201\\SweetShellCup\\SweetShellCup_Project\\SweetShellCup\\Pages\\Shop\\Detail.cshtml",
               "RelativeDocumentMoniker": "SweetShellCup\\Pages\\Shop\\Detail.cshtml",
@@ -63,12 +94,11 @@
               "RelativeToolTip": "SweetShellCup\\Pages\\Shop\\Detail.cshtml",
               "ViewState": "AgIAAMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-06-03T15:53:37.457Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-06-03T15:53:37.457Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 4,
               "Title": "Index.cshtml",
               "DocumentMoniker": "D:\\ki 8 _FPT\\EXE201\\SweetShellCup\\SweetShellCup_Project\\SweetShellCup\\Pages\\Shop\\Index.cshtml",
               "RelativeDocumentMoniker": "SweetShellCup\\Pages\\Shop\\Index.cshtml",
@@ -76,8 +106,7 @@
               "RelativeToolTip": "SweetShellCup\\Pages\\Shop\\Index.cshtml",
               "ViewState": "AgIAAMkAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-06-03T15:52:40.781Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-06-03T15:52:40.781Z"
             }
           ]
         }
