@@ -1,4 +1,4 @@
-﻿@page
+@page
 @model SweetShellCup.Pages.IndexModel
 @{
     ViewData["Title"] = "Trang chủ";
@@ -271,42 +271,7 @@
             transform: scale(1.1);
         }
 
-    /* NEWSLETTER */
-    .newsletter {
-        background: linear-gradient(135deg, #533931, #7a564c);
-        padding: 80px 60px;
-        text-align: center;
-        color: #fff;
-    }
 
-        .newsletter h2 {
-            font-size: 40px;
-            font-weight: 700;
-            margin-bottom: 12px;
-        }
-
-        .newsletter p {
-            font-size: 16px;
-            color: #e0b8b0;
-            margin-bottom: 36px;
-        }
-
-    .newsletter-form {
-        display: flex;
-        gap: 12px;
-        max-width: 500px;
-        margin: 0 auto;
-    }
-
-    .newsletter-input {
-        flex: 1;
-        padding: 14px 20px;
-        border-radius: 10px;
-        border: none;
-        font-family: 'Work Sans', sans-serif;
-        font-size: 15px;
-        outline: none;
-    }
 
     /* ========== CHATBOT WIDGET ========== */
     .chatbot-toggle {
@@ -645,15 +610,7 @@
     </div>
 </section>
 
-<!-- NEWSLETTER -->
-<section class="newsletter">
-    <h2>Đăng ký nhận ưu đãi</h2>
-    <p>Nhận 10% giảm giá cho đơn hàng đầu tiên và cập nhật sản phẩm mới nhất!</p>
-    <div class="newsletter-form">
-        <input class="newsletter-input" type="email" placeholder="Nhập email của bạn..." />
-        <button class="btn-pink" type="button">Đăng ký →</button>
-    </div>
-</section>
+
 
 <!-- ===== ANTI-FORGERY TOKEN cho chatbot ===== -->
 @Html.AntiForgeryToken()
