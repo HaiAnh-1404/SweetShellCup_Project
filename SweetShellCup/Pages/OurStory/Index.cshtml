@@ -25,9 +25,22 @@
     .story-block.reverse > * { direction: ltr; }
     .story-img {
         border-radius: 24px; overflow: hidden;
-        background: linear-gradient(135deg, #fff0f7, #ffd6ea);
-        height: 360px; display: flex; align-items: center; justify-content: center; font-size: 120px;
+        height: 480px;
         box-shadow: 0 20px 60px rgba(253,132,178,0.2);
+        transition: transform 0.5s cubic-bezier(0.165, 0.84, 0.44, 1), box-shadow 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
+    }
+    .story-img img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
+    }
+    .story-img:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 30px 70px rgba(253,132,178,0.35);
+    }
+    .story-img:hover img {
+        transform: scale(1.05);
     }
     .story-text {}
     .story-text .section-label { margin-bottom: 10px; }
@@ -49,17 +62,7 @@
     .value-card h3 { font-size: 18px; font-weight: 700; color: #533931; margin-bottom: 10px; }
     .value-card p { font-size: 14px; color: #888; line-height: 1.6; }
 
-    .team-section { max-width: 1100px; margin: 0 auto; padding: 80px 60px; }
-    .team-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; margin-top: 40px; }
-    .team-card { text-align: center; }
-    .team-avatar {
-        width: 120px; height: 120px; border-radius: 50%;
-        background: linear-gradient(135deg, #e60380, #fd84b2);
-        margin: 0 auto 16px; display: flex; align-items: center; justify-content: center;
-        font-size: 48px; box-shadow: 0 8px 30px rgba(230,3,128,0.25);
-    }
-    .team-name { font-size: 18px; font-weight: 700; color: #533931; margin-bottom: 4px; }
-    .team-title { font-size: 13px; color: #e60380; font-weight: 600; }
+
 
     @@media (max-width: 900px) {
         .story-hero { padding: 60px 20px; }
@@ -68,7 +71,6 @@
         .story-block { grid-template-columns: 1fr; gap: 30px; }
         .story-block.reverse { direction: ltr; }
         .values-grid { grid-template-columns: 1fr 1fr; }
-        .team-grid { grid-template-columns: 1fr 1fr; }
         .values-section { padding: 60px 20px; }
     }
 </style>
@@ -82,7 +84,7 @@
 <!-- STORY BLOCKS -->
 <div class="story-content">
     <div class="story-block">
-        <div class="story-img">🍦</div>
+        <div class="story-img"><img src="/images/ourstory/y tuong den san pham.jpg" alt="Ý tưởng đến sản phẩm" /></div>
         <div class="story-text">
             <div class="section-label">Nguồn gốc</div>
             <h2>Sweet Shell Cup — Không chỉ là một chiếc cốc</h2>
@@ -92,7 +94,7 @@
     </div>
 
     <div class="story-block reverse">
-        <div class="story-img">🌿</div>
+        <div class="story-img"><img src="/images/ourstory/vi sao chon chung minh.jpg" alt="Vì sao chọn chúng mình" /></div>
         <div class="story-text">
             <div class="section-label">Sứ mệnh</div>
             <h2>Góp phần tạo ra một Việt Nam xanh hơn</h2>
@@ -131,42 +133,4 @@
     </div>
 </div>
 
-<!-- TEAM -->
-<div class="team-section">
-    <div style="text-align:center; margin-bottom:0;">
-        <div class="section-label">Đội ngũ</div>
-        <h2 class="section-title">Những người tạo nên Sweet Shell Cup</h2>
-    </div>
-    <div class="team-grid">
-        <div class="team-card">
-            <div class="team-avatar">👩</div>
-            <div class="team-name">Tạ Thúy</div>
-            <div class="team-title">CEO & Co-Founder</div>
-        </div>
-        <div class="team-card">
-            <div class="team-avatar">👨</div>
-            <div class="team-name">Nguyễn Đăng Long</div>
-            <div class="team-title">Head of Product</div>
-        </div>
-        <div class="team-card">
-            <div class="team-avatar">👩</div>
-            <div class="team-name">Lê Phương</div>
-            <div class="team-title">Head of Design</div>
-        </div>
-        <div class="team-card">
-            <div class="team-avatar">👨</div>
-            <div class="team-name">Nguyễn Hải Anh</div>
-            <div class="team-title">Technical Lead</div>
-        </div>
-        <div class="team-card">
-            <div class="team-avatar">👩</div>
-            <div class="team-name">Hải Hà</div>
-            <div class="team-title">Marketing Director</div>
-        </div>
-        <div class="team-card">
-            <div class="team-avatar">👨</div>
-            <div class="team-name">Nguyễn Thế Tài</div>
-            <div class="team-title">Operations Manager</div>
-        </div>
-    </div>
-</div>
+
