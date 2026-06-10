@@ -1,0 +1,36 @@
+## Build results
+[Dd]ebug/
+[Dd]ebugPublic/
+[Rr]elease/
+[Re]leases/
+x64/
+x86/
+build/
+bld/
+[Bin]/
+[Obj]/
+bin/
+obj/
+Generated_Code/
+
+## Visual Studio cache and settings
+.vs/
+*.user
+*.userosscache
+*.sln.docstates
+*.suo
+*.userprefs
+
+## User Secrets
+secrets.json
+.microsoft/usersecrets/
+
+## Rider and VS Code
+.idea/
+.vscode/
+
+## OS-generated files
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+.DS_Store
