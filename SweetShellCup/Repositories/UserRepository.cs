@@ -17,9 +17,10 @@ namespace SweetShellCup.Repositories
 
         public async Task<User?> GetUserByEmailAsync(string email)
         {
+            if (string.IsNullOrEmpty(email)) return null;
             return await _context.Users
                 .Include(u => u.Role)
-                .FirstOrDefaultAsync(u => u.Email == email);
+                .FirstOrDefaultAsync(u => u.Email.ToLower() == email.ToLower());
         }
 
         public async Task<User?> GetUserByIdAsync(int id)

@@ -68,15 +68,18 @@ namespace SweetShellCup.Pages.Auth
         {
             var result = await HttpContext.AuthenticateAsync("External");
             if (!result.Succeeded)
+            {
+                TempData["ErrorMessage"] = "Đăng nhập bằng Google thất bại hoặc đã bị hủy.";
                 return RedirectToPage("./Login");
+            }
 
             var email = result.Principal.FindFirstValue(ClaimTypes.Email);
             var name = result.Principal.FindFirstValue(ClaimTypes.Name);
 
             if (string.IsNullOrEmpty(email))
             {
-                ModelState.AddModelError(string.Empty, "Không thể lấy Email từ Google.");
-                return Page();
+                TempData["ErrorMessage"] = "Không thể lấy Email từ tài khoản Google.";
+                return RedirectToPage("./Login");
             }
 
             var user = await _userRepository.GetUserByEmailAsync(email);
@@ -94,6 +97,11 @@ namespace SweetShellCup.Pages.Auth
                     CreatedAt = DateTime.Now
                 };
                 await _userRepository.AddUserAsync(user);
+
+                if (role != null)
+                {
+                    user.Role = role;
+                }
             }
 
             var claims = new List<Claim>
