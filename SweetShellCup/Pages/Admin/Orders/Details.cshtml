@@ -23,9 +23,19 @@
         }
     }
 
-    var receiptPath = $"uploads/receipts/receipt_{Model.Order.OrderId}.png";
-    var physicalPath = System.IO.Path.Combine(System.IO.Directory.GetCurrentDirectory(), "wwwroot", "uploads", "receipts", $"receipt_{Model.Order.OrderId}.png");
-    var hasReceipt = System.IO.File.Exists(physicalPath);
+    string receiptPath = "";
+    bool hasReceipt = false;
+    var extensions = new[] { ".png", ".jpg", ".jpeg" };
+    foreach (var ext in extensions)
+    {
+        var testPath = System.IO.Path.Combine(System.IO.Directory.GetCurrentDirectory(), "wwwroot", "uploads", "receipts", $"receipt_{Model.Order.OrderId}{ext}");
+        if (System.IO.File.Exists(testPath))
+        {
+            receiptPath = $"uploads/receipts/receipt_{Model.Order.OrderId}{ext}";
+            hasReceipt = true;
+            break;
+        }
+    }
 
     var payment = Model.Order.Payments.FirstOrDefault();
     var isUnpaid = payment?.PaymentStatus != "Paid";

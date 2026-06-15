@@ -3,7 +3,6 @@ using SweetShellCup.Models;
 using SweetShellCup.Interfaces;
 using SweetShellCup.Repositories;
 using SweetShellCup.Services;
-using Npgsql;
 using Microsoft.AspNetCore.HttpOverrides;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -40,16 +39,30 @@ builder.Services.AddAuthentication(Microsoft.AspNetCore.Authentication.Cookies.C
 // Đảm bảo có dòng dùng chuỗi kết nối từ appsettings
 var connectionString = builder.Configuration.GetConnectionString("MyCnn");
 
-// Tự động sử dụng biến môi trường DATABASE_URL nếu có trên Render
-var databaseUrl = Environment.GetEnvironmentVariable("DATABASE_URL");
-if (!string.IsNullOrEmpty(databaseUrl))
+// Tự động sử dụng các biến môi trường MySQL của Railway nếu có
+var mysqlHost = Environment.GetEnvironmentVariable("MYSQLHOST");
+if (!string.IsNullOrEmpty(mysqlHost))
 {
-    connectionString = ConvertDatabaseUrlToConnectionString(databaseUrl);
+    var mysqlPort = Environment.GetEnvironmentVariable("MYSQLPORT") ?? "3306";
+    var mysqlUser = Environment.GetEnvironmentVariable("MYSQLUSER") ?? "root";
+    var mysqlPass = Environment.GetEnvironmentVariable("MYSQLPASSWORD") ?? "";
+    var mysqlDb = Environment.GetEnvironmentVariable("MYSQLDATABASE") ?? "SweetShellCupDB";
+    connectionString = $"Server={mysqlHost};Port={mysqlPort};Database={mysqlDb};Uid={mysqlUser};Pwd={mysqlPass};";
+}
+else
+{
+    // Hỗ trợ biến MYSQL_URL hoặc DATABASE_URL định dạng mysql://
+    var mysqlUrl = Environment.GetEnvironmentVariable("MYSQL_URL") ?? Environment.GetEnvironmentVariable("DATABASE_URL");
+    if (!string.IsNullOrEmpty(mysqlUrl) && mysqlUrl.StartsWith("mysql://", StringComparison.OrdinalIgnoreCase))
+    {
+        connectionString = ConvertMysqlUrlToConnectionString(mysqlUrl);
+    }
 }
 
-// Cấu hình DbContext chuyển sang sử dụng Npgsql (PostgreSQL)
+// Cấu hình DbContext chuyển sang sử dụng Pomelo (MySQL)
+var serverVersion = new MySqlServerVersion(new Version(8, 0, 30));
 builder.Services.AddDbContext<SweetShellCupDbContext>(options =>
-    options.UseNpgsql(connectionString));
+    options.UseMySql(connectionString, serverVersion));
 
 
 
@@ -80,17 +93,17 @@ builder.Services.AddSession(options =>
 
 var app = builder.Build();
 
-// Auto-create Ingredients column if it doesn't exist in PostgreSQL
+// Tự động chạy migrations để tạo/cập nhật cấu trúc database MySQL
 using (var scope = app.Services.CreateScope())
 {
     var db = scope.ServiceProvider.GetRequiredService<SweetShellCupDbContext>();
     try
     {
-        db.Database.ExecuteSqlRaw("ALTER TABLE \"Products\" ADD COLUMN IF NOT EXISTS \"Ingredients\" text;");
+        db.Database.Migrate();
     }
     catch (Exception ex)
     {
-        Console.WriteLine($"Error running migration raw SQL: {ex.Message}");
+        Console.WriteLine($"Error running migration: {ex.Message}");
     }
 }
 
@@ -111,23 +124,13 @@ app.UseAuthorization();
 app.MapRazorPages();
 app.Run();
 
-// Helper method to convert postgres:// URL to Npgsql connection string
-string ConvertDatabaseUrlToConnectionString(string dbUrl)
+// Helper method to convert mysql:// URL to MySQL connection string
+string ConvertMysqlUrlToConnectionString(string dbUrl)
 {
     var uri = new Uri(dbUrl);
     var userInfo = uri.UserInfo.Split(':');
     var username = userInfo[0];
     var password = userInfo.Length > 1 ? userInfo[1] : "";
 
-    var dbBuilder = new NpgsqlConnectionStringBuilder
-    {
-        Host = uri.Host,
-        Port = uri.Port > 0 ? uri.Port : 5432,
-        Username = username,
-        Password = password,
-        Database = uri.AbsolutePath.TrimStart('/'),
-        SslMode = SslMode.Require
-    };
-
-    return dbBuilder.ConnectionString;
+    return $"Server={uri.Host};Port={(uri.Port > 0 ? uri.Port : 3306)};Database={uri.AbsolutePath.TrimStart('/')};Uid={username};Pwd={password};";
 }
