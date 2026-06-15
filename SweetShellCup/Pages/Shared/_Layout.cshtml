@@ -316,7 +316,30 @@
 
         @@media (max-width: 768px) {
             .ssc-navbar {
-                padding: 0 20px;
+                padding: 15px 20px;
+                flex-direction: column;
+                height: auto;
+                gap: 15px;
+                align-items: center;
+            }
+
+            .ssc-nav-links {
+                width: 100%;
+                justify-content: center;
+                flex-wrap: wrap;
+                gap: 4px;
+            }
+
+            .ssc-nav-links li a {
+                padding: 6px 10px;
+                font-size: 14px;
+            }
+
+            .ssc-nav-right {
+                width: 100%;
+                justify-content: center;
+                flex-wrap: wrap;
+                gap: 10px;
             }
 
             .footer-grid {

@@ -17,7 +17,7 @@ Dự án được phân chia thành hai phần chính: Hệ thống web chạy t
 ### A. Hệ Thống Web Thực Tế (SweetShellCup Project)
 *   **Framework chính:** `.NET 8.0` (ASP.NET Core Razor Pages).
 *   **Cơ sở dữ liệu (Database):**
-    *   **PostgreSQL** (chạy trên Production) thông qua nhà cung cấp `Npgsql.EntityFrameworkCore.PostgreSQL`.
+    *   **MySQL** (chạy trên Production & Local) thông qua nhà cung cấp `Pomelo.EntityFrameworkCore.MySql`.
     *   **SQL Server** (cấu hình dự phòng local) thông qua `Microsoft.EntityFrameworkCore.SqlServer`.
 *   **Công cụ ORM:** Entity Framework Core (EF Core) sử dụng phương pháp **Code-First** để quản lý cơ sở dữ liệu qua Migrations.
 *   **Giao diện & Styling:**
@@ -41,17 +41,18 @@ Dự án được phân chia thành hai phần chính: Hệ thống web chạy t
 
 ## 3. Hạ Tầng & Triển Khai (Deployment)
 
-Dự án hiện tại được thiết kế để triển khai tự động hóa bằng Docker trên nền tảng đám mây:
+Dự án hiện tại đã gỡ bỏ hoàn toàn Docker để tối ưu dung lượng và được cấu hình để triển khai trực tiếp lên **Railway**:
 
-*   **Containerization (Docker):** 
-    *   Có sẵn [Dockerfile](file:///d:/ki%208%20_FPT/EXE201/SweetShellCup/SweetShellCup_Project/SweetShellCup/Dockerfile) hai giai đoạn (multi-stage build): Giai đoạn 1 biên dịch mã nguồn với .NET SDK 8.0; Giai đoạn 2 đóng gói sản phẩm chạy trên ASP.NET Runtime 8.0 để giảm dung lượng file ảnh.
-    *   Ứng dụng lắng nghe và phục vụ trên cổng `8080`.
-*   **Nền tảng Cloud (Hosting):** Triển khai trực tiếp lên **Render** (dưới dạng một Web Service).
-*   **Cơ sở dữ liệu (Cloud DB):** Sử dụng **Render PostgreSQL** (một dịch vụ quản lý database Postgres được Render hỗ trợ).
+*   **Hệ thống Build & Deploy (Nixpacks):**
+    *   Railway sử dụng **Nixpacks** để tự động nhận diện dự án C# / .NET 8.0, tự động tải các SDK cần thiết, chạy lệnh biên dịch `dotnet publish` và khởi chạy web.
+    *   Ứng dụng lắng nghe và phục vụ trên cổng mạng động do Railway cấp phát (qua biến môi trường `ASPNETCORE_URLS=http://0.0.0.0:${PORT}`).
+*   **Nền tảng Cloud (Hosting):** Triển khai trực tiếp lên **Railway** (dưới dạng một Web Service).
+*   **Cơ sở dữ liệu (Cloud DB):** Sử dụng **Railway MySQL** (chạy trực tiếp trên cụm máy chủ của Railway).
 *   **Cơ chế liên kết và cấu hình động:**
-    *   Trong [Program.cs](file:///d:/ki%208%20_FPT/EXE201/SweetShellCup/SweetShellCup_Project/SweetShellCup/Program.cs#L41-L52), hệ thống kiểm tra sự tồn tại của biến môi trường `DATABASE_URL` do Render tự động cung cấp.
-    *   Nếu có `DATABASE_URL`, ứng dụng sẽ tự động phân tích cú pháp để sinh ra chuỗi kết nối chuẩn kết nối tới Render PostgreSQL. Nếu không, nó sẽ dùng chuỗi kết nối mặc định `MyCnn` trong cấu hình `appsettings.json`.
-    *   Các thông tin nhạy cảm khác như `Authentication:Google:ClientId`, `Authentication:Google:ClientSecret`, `EmailSettings:Password` và `AI:ApiKey` được truyền vào dưới dạng **Environment Variables** (biến môi trường) trên Render để đảm bảo bảo mật thông tin.
+    *   Trong [Program.cs](file:///d:/ki%208%20_FPT/EXE201/SweetShellCup/SweetShellCup_Project/SweetShellCup/Program.cs), ứng dụng tự động kiểm tra các biến môi trường MySQL của Railway như `MYSQLHOST`, `MYSQLPORT`, `MYSQLUSER`, `MYSQLPASSWORD`, `MYSQLDATABASE` để tự dựng chuỗi kết nối.
+    *   Nếu không có các biến này, hệ thống sẽ kiểm tra biến `MYSQL_URL` hoặc `DATABASE_URL` dạng `mysql://` và phân tích tự động.
+    *   Nếu chạy local mà không có biến môi trường, ứng dụng sẽ dùng chuỗi kết nối mặc định `MyCnn` trong cấu hình `appsettings.json`.
+    *   Các thông tin nhạy cảm khác như cấu hình đăng nhập Google OAuth, email SMTP và AI Chatbot được truyền qua **Variables** (Biến môi trường) trên trang quản trị Railway.
 
 ---
 
