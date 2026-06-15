@@ -117,6 +117,10 @@
         .shop-sidebar { width: 100%; margin-right: 0; margin-bottom: 24px; }
         .products-grid { grid-template-columns: repeat(2, 1fr); }
     }
+
+    @@media (max-width: 500px) {
+        .products-grid { grid-template-columns: 1fr; }
+    }
 </style>
 
 @if (TempData["Message"] != null)

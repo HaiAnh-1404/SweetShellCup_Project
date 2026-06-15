@@ -208,6 +208,19 @@
             margin-top: 0;
             text-align: left;
         }
+    .details-grid {
+        display: grid;
+        grid-template-columns: 7fr 5fr;
+        gap: 30px;
+        margin-top: 30px;
+        align-items: start;
+    }
+
+    @@media (max-width: 768px) {
+        .details-grid {
+            grid-template-columns: 1fr;
+            gap: 20px;
+        }
     }
 </style>
 
@@ -294,7 +307,7 @@
     }
 
     <!-- TWO COLUMN LAYOUT -->
-    <div style="display: grid; grid-template-columns: 7fr 5fr; gap: 30px; margin-top: 30px; align-items: start;">
+    <div class="details-grid">
         <!-- LEFT COLUMN: ITEMS & DELIVARY -->
         <div>
             <!-- Order Items -->
@@ -409,7 +422,7 @@
                             }
 
                             <div style="background: #fff; display: inline-block; padding: 10px; border-radius: 12px; border: 1px solid #ffd6ea; margin-bottom: 15px; box-shadow: 0 4px 10px rgba(0,0,0,0.05);">
-                                <img src="@qrUrl" alt="Mã QR Chuyển khoản" style="width: 220px; height: 220px; object-fit: contain; display: block;" />
+                                <img src="/images/ourstory/QR.jpg" alt="Mã QR Chuyển khoản" style="width: 220px; height: 220px; object-fit: contain; display: block;" />
                             </div>
 
                             <div style="text-align: left; font-size: 13px; color: #533931; background: #fff0f7; padding: 15px; border-radius: 10px; border: 1px solid #ffd6ea; line-height: 1.6; margin-bottom: 20px;">

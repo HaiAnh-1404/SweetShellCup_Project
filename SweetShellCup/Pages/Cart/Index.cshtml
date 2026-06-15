@@ -97,6 +97,21 @@
         .cart-page { padding: 20px; }
         .cart-grid { grid-template-columns: 1fr; }
     }
+
+    @@media (max-width: 600px) {
+        .cart-item {
+            flex-direction: column;
+            align-items: stretch;
+            text-align: center;
+            gap: 16px;
+        }
+        .item-img {
+            margin: 0 auto;
+        }
+        .cart-item > div:last-child {
+            align-items: center !important;
+        }
+    }
 </style>
 
 @if (TempData["Message"] != null) { <div class="toast-msg">@TempData["Message"]</div> }
