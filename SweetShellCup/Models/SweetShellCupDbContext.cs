@@ -187,6 +187,7 @@ public partial class SweetShellCupDbContext : DbContext
             entity.HasIndex(e => e.ProductId, "IX_Reviews_ProductId");
 
             entity.Property(e => e.Comment).HasMaxLength(500);
+            entity.Property(e => e.ImageUrl).HasMaxLength(255);
             entity.Property(e => e.CreatedAt)
                 .HasDefaultValueSql("CURRENT_TIMESTAMP")
                 .HasColumnType("timestamp");

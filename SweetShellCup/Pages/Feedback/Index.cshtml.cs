@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using SweetShellCup.Interfaces;
 using SweetShellCup.Models;
 using System.Security.Claims;
+using Microsoft.AspNetCore.Hosting;
 
 namespace SweetShellCup.Pages.Feedback
 {
@@ -11,6 +12,7 @@ namespace SweetShellCup.Pages.Feedback
         private readonly IReviewRepository _reviews;
         private readonly IProductRepository _products;
         private readonly ICartRepository _cart;
+        private readonly IWebHostEnvironment _env;
 
         public List<Review> Reviews { get; set; } = new();
         public List<Product> Products { get; set; } = new();
@@ -20,11 +22,12 @@ namespace SweetShellCup.Pages.Feedback
         [BindProperty] public int Rating { get; set; } = 5;
         [BindProperty] public string? Comment { get; set; }
 
-        public IndexModel(IReviewRepository reviews, IProductRepository products, ICartRepository cart)
+        public IndexModel(IReviewRepository reviews, IProductRepository products, ICartRepository cart, IWebHostEnvironment env)
         {
             _reviews = reviews;
             _products = products;
             _cart = cart;
+            _env = env;
         }
 
         public async Task OnGetAsync()
@@ -45,7 +48,7 @@ namespace SweetShellCup.Pages.Feedback
             OverallRating = Reviews.Any() ? Reviews.Average(r => r.Rating) : 0;
         }
 
-        public async Task<IActionResult> OnPostAsync()
+        public async Task<IActionResult> OnPostAsync(IFormFile? ImageFile)
         {
             if (User.Identity == null || !User.Identity.IsAuthenticated)
             {
@@ -63,6 +66,22 @@ namespace SweetShellCup.Pages.Feedback
                     Comment = Comment,
                     CreatedAt = DateTime.Now
                 };
+
+                if (ImageFile != null && ImageFile.Length > 0)
+                {
+                    var fileName = Path.GetFileNameWithoutExtension(ImageFile.FileName) + "_" + Guid.NewGuid().ToString().Substring(0, 4) + Path.GetExtension(ImageFile.FileName);
+                    var filePath = Path.Combine(_env.WebRootPath, "images", "reviews", fileName);
+                    
+                    Directory.CreateDirectory(Path.Combine(_env.WebRootPath, "images", "reviews"));
+
+                    using (var stream = new FileStream(filePath, FileMode.Create))
+                    {
+                        await ImageFile.CopyToAsync(stream);
+                    }
+
+                    review.ImageUrl = fileName;
+                }
+
                 await _reviews.AddAsync(review);
                 TempData["Message"] = "Cảm ơn bạn đã chia sẻ đánh giá!";
             }

@@ -55,11 +55,32 @@
     }
     .form-select:focus, .form-textarea:focus, .form-input:focus { border-color: #fd84b2; }
     .form-textarea { resize: vertical; min-height: 100px; }
-    .star-picker { display: flex; gap: 6px; }
-    .star-picker label { font-size: 28px; cursor: pointer; opacity: 0.4; transition: opacity 0.15s, transform 0.15s; }
-    .star-picker input[type="radio"] { display: none; }
-    .star-picker input[type="radio"]:checked ~ label { opacity: 0.3; }
-    .star-picker label:hover { opacity: 1; transform: scale(1.2); }
+    .star-picker-container {
+        display: flex;
+        flex-direction: row-reverse;
+        justify-content: flex-end;
+        gap: 6px;
+    }
+    .star-picker-container input[type="radio"] {
+        display: none;
+    }
+    .star-picker-container label {
+        font-size: 32px;
+        color: #e5e7eb;
+        cursor: pointer;
+        transition: color 0.15s, transform 0.15s;
+    }
+    .star-picker-container input[type="radio"]:checked ~ label {
+        color: #f5b301;
+    }
+    .star-picker-container:hover label {
+        color: #e5e7eb;
+    }
+    .star-picker-container label:hover,
+    .star-picker-container label:hover ~ label {
+        color: #f5b301 !important;
+        transform: scale(1.15);
+    }
 
     .toast-msg {
         position: fixed; top: 88px; right: 24px;
@@ -85,10 +106,10 @@
     <p>Những gì khách hàng nói về Sweet Shell Cup</p>
     <div class="overall-rating">
         <div class="big-star">@Model.OverallRating.ToString("F1")</div>
-        <div class="star-row">
+        <div class="star-row" style="color: #f5b301;">
             @for (int i = 1; i <= 5; i++)
             {
-                <span>@(i <= (int)Model.OverallRating ? "⭐" : "☆")</span>
+                <span>@(i <= (int)Model.OverallRating ? "★" : "☆")</span>
             }
         </div>
         <div class="total-reviews">Dựa trên @Model.Reviews.Count đánh giá</div>
@@ -117,10 +138,18 @@
                                 </div>
                                 <div class="review-date">@review.CreatedAt?.ToString("dd/MM/yyyy")</div>
                             </div>
-                            <div class="review-stars">
-                                @for (int i = 1; i <= 5; i++) { <span>@(i <= review.Rating ? "⭐" : "☆")</span> }
+                            <div class="review-stars" style="color: #f5b301; font-size: 16px;">
+                                @for (int i = 1; i <= 5; i++) { <span>@(i <= review.Rating ? "★" : "☆")</span> }
                             </div>
                             <div class="review-comment">@review.Comment</div>
+                            @if (!string.IsNullOrEmpty(review.ImageUrl))
+                            {
+                                <div class="review-image" style="margin-top: 12px;">
+                                    <a href="~/images/reviews/@review.ImageUrl" target="_blank">
+                                        <img src="~/images/reviews/@review.ImageUrl" alt="Ảnh đánh giá" style="max-width: 150px; max-height: 150px; border-radius: 12px; border: 1px solid #fdd6ea; object-fit: cover; transition: transform 0.2s;" onmouseover="this.style.transform='scale(1.03)'" onmouseout="this.style.transform='scale(1)'" />
+                                    </a>
+                                </div>
+                            }
                         </div>
                     }
                 </div>
@@ -130,7 +159,7 @@
         <!-- Write Review -->
         <div class="write-review-card">
             <h3>✍️ Gửi đánh giá</h3>
-            <form method="post">
+            <form method="post" enctype="multipart/form-data">
                 <div class="form-group">
                     <label class="form-label">Chọn sản phẩm:</label>
                     <select class="form-select" name="ProductId" required>
@@ -143,16 +172,22 @@
                 </div>
                 <div class="form-group">
                     <label class="form-label">Đánh giá:</label>
-                    <div class="star-picker">
-                        @for (int i = 5; i >= 1; i--)
-                        {
-                            <input type="radio" name="Rating" id="star@i" value="@i" @(i == 5 ? "checked" : "") />
-                        }
-                        @for (int i = 5; i >= 1; i--)
-                        {
-                            <label for="star@i" title="@i sao">⭐</label>
-                        }
+                    <div class="star-picker-container">
+                        <input type="radio" name="Rating" id="star5" value="5" checked />
+                        <label for="star5" title="5 sao">★</label>
+                        <input type="radio" name="Rating" id="star4" value="4" />
+                        <label for="star4" title="4 sao">★</label>
+                        <input type="radio" name="Rating" id="star3" value="3" />
+                        <label for="star3" title="3 sao">★</label>
+                        <input type="radio" name="Rating" id="star2" value="2" />
+                        <label for="star2" title="2 sao">★</label>
+                        <input type="radio" name="Rating" id="star1" value="1" />
+                        <label for="star1" title="1 sao">★</label>
                     </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Hình ảnh thực tế (nếu có):</label>
+                    <input type="file" name="ImageFile" accept="image/*" class="form-input" style="padding: 6px 12px;" />
                 </div>
                 <div class="form-group">
                     <label class="form-label" for="comment">Nhận xét:</label>
