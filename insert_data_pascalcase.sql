@@ -45,11 +45,11 @@ INSERT INTO `Users` (`UserId`, `FullName`, `Email`, `PasswordHash`, `Phone`, `Ad
 
 -- 4. Chèn dữ liệu vào bảng Products
 INSERT INTO `Products` (`ProductId`, `ProductName`, `Description`, `Price`, `Stock`, `Flavor`, `Size`, `CategoryId`, `ImageUrl`, `CreatedAt`) VALUES 
-(1,'Vanilla Sweet Cup','Vanilla edible waffle cup',21000.00,100,'Vanilla','Medium',1,'vanilla.jpg','2026-06-14 22:41:47'),
-(2,'Bamboo Sweet Cup','Chocolate edible waffle cup',23000.00,120,'Chocolate','Large',1,'chocolate.jpg','2026-06-14 22:41:47'),
-(3,'Matcha Sweet Cup','Matcha edible waffle cup',55000.00,80,'Matcha','Medium',1,'matcha.jpg','2026-06-14 22:41:47'),
-(4,'Strawberry Sweet Cup','Strawberry edible waffle cup',52000.00,90,'Strawberry','Small',1,'strawberry.jpg','2026-06-14 22:41:47'),
-(5,'Combo Family Pack','Combo 5 edible cups',109000.00,50,'Mixed','Large',2,'combo.jpg','2026-06-14 22:41:47');
+(1,'Cốc Nguyên Bản ','Cốc làm từ ngũ cốc',21000.00,100,'Vanilla','Medium',1,'vanilla.jpg','2026-06-14 22:41:47'),
+(2,'Cốc Than Tre','Cốc làm từ ngũ cốc và bột than tre',23000.00,120,'Chocolate','Large',1,'chocolate.jpg','2026-06-14 22:41:47'),
+(3,'Combo Nguyên bản','Cốc làm từ ngũ cốc',60000.00,80,'Matcha','Medium',1,'combo nguyen ban.jpg','2026-06-14 22:41:47'),
+(4,'Combo Than Tre','Cốc làm từ ngũ cốc và bột than tre',52000.00,90,'Strawberry','Small',1,'combo than tre.jpg','2026-06-14 22:41:47'),
+(5,'Combo Family Pack','Combo 5 edible cups',110000.00,50,'Mixed','Large',2,'combo.jpg','2026-06-14 22:41:47');
 
 -- 5. Chèn dữ liệu vào bảng Cart
 INSERT INTO `Cart` (`CartId`, `UserId`, `CreatedAt`) VALUES 
