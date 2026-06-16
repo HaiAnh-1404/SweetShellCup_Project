@@ -104,10 +104,10 @@ using (var scope = app.Services.CreateScope())
         try { db.Database.ExecuteSqlRaw("ALTER TABLE reviews ADD COLUMN ImageUrl varchar(255) NULL;"); } catch {}
 
         // Đồng bộ dữ liệu bảng Products với đúng thông tin tên và đường dẫn ảnh
-        try { db.Database.ExecuteSqlRaw("UPDATE products SET ProductName = 'Cốc Nguyên Bản ', Description = 'Cốc làm từ ngũ cốc', Price = 21000.00, Stock = 100, Flavor = 'Vanilla', Size = 'Medium', CategoryId = 1, ImageUrl = 'vanilla.jpg' WHERE ProductId = 1;"); } catch {}
-        try { db.Database.ExecuteSqlRaw("UPDATE products SET ProductName = 'Cốc Than Tre', Description = 'Cốc làm từ ngũ cốc và bột than tre', Price = 23000.00, Stock = 120, Flavor = 'Chocolate', Size = 'Large', CategoryId = 1, ImageUrl = 'chocolate.jpg' WHERE ProductId = 2;"); } catch {}
-        try { db.Database.ExecuteSqlRaw("UPDATE products SET ProductName = 'Combo Nguyên bản', Description = 'Cốc làm từ ngũ cốc', Price = 60000.00, Stock = 80, Flavor = 'Matcha', Size = 'Medium', CategoryId = 1, ImageUrl = 'combo nguyen ban.jpg' WHERE ProductId = 3;"); } catch {}
-        try { db.Database.ExecuteSqlRaw("UPDATE products SET ProductName = 'Combo Than Tre', Description = 'Cốc làm từ ngũ cốc và bột than tre', Price = 52000.00, Stock = 90, Flavor = 'Strawberry', Size = 'Small', CategoryId = 1, ImageUrl = 'combo than tre.jpg' WHERE ProductId = 4;"); } catch {}
+        try { db.Database.ExecuteSqlRaw("UPDATE products SET ProductName = 'Cốc Nguyên Bản', Description = 'Cốc làm từ ngũ cốc', Price = 21000.00, Stock = 100, Flavor = 'Nguyên bản', Size = 'Medium', CategoryId = 1, ImageUrl = 'vanilla.jpg' WHERE ProductId = 1;"); } catch {}
+        try { db.Database.ExecuteSqlRaw("UPDATE products SET ProductName = 'Cốc Than Tre', Description = 'Cốc làm từ ngũ cốc và bột than tre', Price = 23000.00, Stock = 120, Flavor = 'Than tre', Size = 'Large', CategoryId = 1, ImageUrl = 'chocolate.jpg' WHERE ProductId = 2;"); } catch {}
+        try { db.Database.ExecuteSqlRaw("UPDATE products SET ProductName = 'Combo Nguyên Bản', Description = 'Cốc làm từ ngũ cốc', Price = 60000.00, Stock = 80, Flavor = 'Nguyên bản', Size = 'Medium', CategoryId = 2, ImageUrl = 'combo-nguyen-ban.jpg' WHERE ProductId = 3;"); } catch {}
+        try { db.Database.ExecuteSqlRaw("UPDATE products SET ProductName = 'Combo Than Tre', Description = 'Cốc làm từ ngũ cốc và bột than tre', Price = 52000.00, Stock = 90, Flavor = 'Than tre', Size = 'Medium', CategoryId = 2, ImageUrl = 'combo-than-tre.jpg' WHERE ProductId = 4;"); } catch {}
         try { db.Database.ExecuteSqlRaw("UPDATE products SET ProductName = 'Combo Family Pack', Description = 'Combo 5 edible cups', Price = 110000.00, Stock = 50, Flavor = 'Mixed', Size = 'Large', CategoryId = 2, ImageUrl = 'combo.jpg' WHERE ProductId = 5;"); } catch {}
 
         try
