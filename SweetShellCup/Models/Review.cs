@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 
 namespace SweetShellCup.Models;
@@ -14,6 +14,8 @@ public partial class Review
     public int Rating { get; set; }
 
     public string? Comment { get; set; }
+
+    public string? ImageUrl { get; set; }
 
     public DateTime? CreatedAt { get; set; }
 
