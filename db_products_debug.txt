@@ -1,0 +1,31 @@
+--- DATABASES ---
+information_schema
+mysql
+performance_schema
+sakila
+sweetshellcupdb
+sys
+world
+--- TABLES ---
+__efmigrationshistory
+cart
+cartitems
+categories
+orderdetails
+orders
+paymentmethods
+payments
+products
+reviews
+roles
+shipments
+shippingmethods
+useraddresses
+users
+wishlists
+--- PRODUCTS ---
+ID: 1 | Name: Vanilla Sweet Cup | ImageUrl: vanilla.jpg | Price: 21000.00 | CategoryId: 1
+ID: 2 | Name: Bamboo Sweet Cup | ImageUrl: chocolate.jpg | Price: 23000.00 | CategoryId: 1
+ID: 3 | Name: Matcha Sweet Cup | ImageUrl: matcha.jpg | Price: 55000.00 | CategoryId: 1
+ID: 4 | Name: Strawberry Sweet Cup | ImageUrl: strawberry.jpg | Price: 52000.00 | CategoryId: 1
+ID: 5 | Name: Combo Family Pack | ImageUrl: combo.jpg | Price: 109000.00 | CategoryId: 2

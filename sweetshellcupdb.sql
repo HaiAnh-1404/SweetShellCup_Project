@@ -234,6 +234,7 @@ CREATE TABLE `products` (
   `Stock` int DEFAULT '0',
   `Flavor` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `Size` varchar(20) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `Ingredients` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `CategoryId` int NOT NULL,
   `ImageUrl` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `CreatedAt` datetime DEFAULT CURRENT_TIMESTAMP,

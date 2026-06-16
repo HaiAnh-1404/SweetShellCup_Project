@@ -99,11 +99,64 @@ using (var scope = app.Services.CreateScope())
     var db = scope.ServiceProvider.GetRequiredService<SweetShellCupDbContext>();
     try
     {
-        db.Database.Migrate();
+        // Đảm bảo các cột cần thiết tồn tại (phòng trường hợp migration bị kẹt)
+        try { db.Database.ExecuteSqlRaw("ALTER TABLE products ADD COLUMN Ingredients text NULL;"); } catch {}
+        try { db.Database.ExecuteSqlRaw("ALTER TABLE reviews ADD COLUMN ImageUrl varchar(255) NULL;"); } catch {}
+
+        try
+        {
+            db.Database.Migrate();
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Migration skipped/failed: {ex.Message}");
+        }
+
+        var debugInfo = new List<string>();
+
+        // Get Databases
+        debugInfo.Add("--- DATABASES ---");
+        using (var command = db.Database.GetDbConnection().CreateCommand())
+        {
+            command.CommandText = "SHOW DATABASES;";
+            db.Database.OpenConnection();
+            using (var reader = command.ExecuteReader())
+            {
+                while (reader.Read())
+                {
+                    debugInfo.Add(reader.GetString(0));
+                }
+            }
+        }
+
+        // Get Tables in current database
+        debugInfo.Add("--- TABLES ---");
+        using (var command = db.Database.GetDbConnection().CreateCommand())
+        {
+            command.CommandText = "SHOW TABLES;";
+            using (var reader = command.ExecuteReader())
+            {
+                while (reader.Read())
+                {
+                    debugInfo.Add(reader.GetString(0));
+                }
+            }
+        }
+
+        // Debug query to dump products
+        debugInfo.Add("--- PRODUCTS ---");
+        var products = db.Products.ToList();
+        foreach (var p in products)
+        {
+            debugInfo.Add($"ID: {p.ProductId} | Name: {p.ProductName} | ImageUrl: {p.ImageUrl} | Price: {p.Price} | CategoryId: {p.CategoryId}");
+        }
+
+        System.IO.File.WriteAllLines("../db_products_debug.txt", debugInfo);
     }
     catch (Exception ex)
     {
-        Console.WriteLine($"Error running migration: {ex.Message}");
+        Console.WriteLine($"Error running debug dump: {ex.Message}");
+        System.IO.File.WriteAllText("../db_products_debug.txt", $"Error: {ex.Message}\n{ex.StackTrace}");
     }
 }
 
