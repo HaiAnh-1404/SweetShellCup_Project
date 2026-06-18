@@ -1,0 +1,64 @@
+@page
+@model SweetShellCup.Pages.Admin.Users.CreateModel
+@{
+    ViewData["Title"] = "Thêm Tài khoản Mới";
+}
+
+<div style="max-width: 600px; margin: 40px auto; padding: 30px; background: #fff; border-radius: 16px; box-shadow: 0 4px 12px rgba(0,0,0,0.05); border: 1px solid #fdd6ea;">
+    <h1 style="font-size: 24px; font-weight: 700; color: #533931; margin-bottom: 24px;">Thêm Tài khoản Mới</h1>
+
+    <form method="post">
+        <div asp-validation-summary="ModelOnly" style="color: #ef4444; font-weight: 600; margin-bottom: 16px; font-size: 14px;"></div>
+
+        <div style="margin-bottom: 16px;">
+            <label style="display: block; font-weight: 600; margin-bottom: 8px; color: #533931;">Họ và Tên</label>
+            <input asp-for="NewUser.FullName" class="form-control" style="width: 100%; padding: 10px; border: 2px solid #f5e6ed; border-radius: 8px; box-sizing: border-box;" placeholder="Nhập họ và tên..." required />
+            <span asp-validation-for="NewUser.FullName" style="color: #ef4444; font-size: 12px; margin-top: 4px; display: block;"></span>
+        </div>
+
+        <div style="margin-bottom: 16px;">
+            <label style="display: block; font-weight: 600; margin-bottom: 8px; color: #533931;">Email</label>
+            <input asp-for="NewUser.Email" type="email" class="form-control" style="width: 100%; padding: 10px; border: 2px solid #f5e6ed; border-radius: 8px; box-sizing: border-box;" placeholder="Nhập địa chỉ email..." required />
+            <span asp-validation-for="NewUser.Email" style="color: #ef4444; font-size: 12px; margin-top: 4px; display: block;"></span>
+        </div>
+
+        <div style="margin-bottom: 16px;">
+            <label style="display: block; font-weight: 600; margin-bottom: 8px; color: #533931;">Số điện thoại</label>
+            <input asp-for="NewUser.Phone" class="form-control" style="width: 100%; padding: 10px; border: 2px solid #f5e6ed; border-radius: 8px; box-sizing: border-box;" placeholder="Nhập số điện thoại..." />
+            <span asp-validation-for="NewUser.Phone" style="color: #ef4444; font-size: 12px; margin-top: 4px; display: block;"></span>
+        </div>
+
+        <div style="margin-bottom: 16px;">
+            <label style="display: block; font-weight: 600; margin-bottom: 8px; color: #533931;">Địa chỉ</label>
+            <input asp-for="NewUser.Address" class="form-control" style="width: 100%; padding: 10px; border: 2px solid #f5e6ed; border-radius: 8px; box-sizing: border-box;" placeholder="Nhập địa chỉ..." />
+            <span asp-validation-for="NewUser.Address" style="color: #ef4444; font-size: 12px; margin-top: 4px; display: block;"></span>
+        </div>
+
+        <div style="margin-bottom: 16px;">
+            <label style="display: block; font-weight: 600; margin-bottom: 8px; color: #533931;">Vai trò</label>
+            <select asp-for="NewUser.RoleId" asp-items="Model.RoleOptions" class="form-control" style="width: 100%; padding: 10px; border: 2px solid #f5e6ed; border-radius: 8px; outline: none; background: #fff; box-sizing: border-box;"></select>
+            <span asp-validation-for="NewUser.RoleId" style="color: #ef4444; font-size: 12px; margin-top: 4px; display: block;"></span>
+        </div>
+
+        <div style="margin-bottom: 16px;">
+            <label style="display: block; font-weight: 600; margin-bottom: 8px; color: #533931;">Mật khẩu</label>
+            <input asp-for="Password" type="password" class="form-control" style="width: 100%; padding: 10px; border: 2px solid #f5e6ed; border-radius: 8px; box-sizing: border-box;" placeholder="Nhập mật khẩu (tối thiểu 6 ký tự)..." required />
+            <span asp-validation-for="Password" style="color: #ef4444; font-size: 12px; margin-top: 4px; display: block;"></span>
+        </div>
+
+        <div style="margin-bottom: 24px;">
+            <label style="display: block; font-weight: 600; margin-bottom: 8px; color: #533931;">Xác nhận Mật khẩu</label>
+            <input asp-for="ConfirmPassword" type="password" class="form-control" style="width: 100%; padding: 10px; border: 2px solid #f5e6ed; border-radius: 8px; box-sizing: border-box;" placeholder="Nhập lại mật khẩu..." required />
+            <span asp-validation-for="ConfirmPassword" style="color: #ef4444; font-size: 12px; margin-top: 4px; display: block;"></span>
+        </div>
+
+        <div style="display: flex; gap: 12px;">
+            <button type="submit" class="btn-pink" style="padding: 10px 24px; font-weight: 600;">Thêm tài khoản</button>
+            <a asp-page="./Index" class="btn-outline-pink" style="padding: 10px 24px; font-weight: 600; text-decoration: none; display: inline-flex; align-items: center; justify-content: center;">Hủy</a>
+        </div>
+    </form>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

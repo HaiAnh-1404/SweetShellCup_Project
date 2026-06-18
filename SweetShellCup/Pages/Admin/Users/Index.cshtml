@@ -5,7 +5,10 @@
 }
 
 <div style="max-width: 1200px; margin: 40px auto; padding: 20px;">
-    <h1 style="font-size: 28px; font-weight: 700; color: #533931; margin-bottom: 24px;">Quản lý Tài khoản</h1>
+    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px;">
+        <h1 style="font-size: 28px; font-weight: 700; color: #533931; margin: 0;">Quản lý Tài khoản</h1>
+        <a asp-page="./Create" class="btn-pink">Thêm Tài khoản +</a>
+    </div>
 
     @if (TempData["Message"] != null)
     {

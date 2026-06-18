@@ -321,12 +321,10 @@
                                 @{
                                     // Fix image URL handling
                                     var imageUrl = item.Product?.ImageUrl;
-                                    var hasValidImage = !string.IsNullOrEmpty(imageUrl) && (imageUrl.StartsWith("http") || imageUrl.StartsWith("/"));
-                                    if (!hasValidImage && !string.IsNullOrEmpty(imageUrl))
+                                    var hasValidImage = !string.IsNullOrEmpty(imageUrl);
+                                    if (hasValidImage && !imageUrl!.StartsWith("http") && !imageUrl.StartsWith("/"))
                                     {
-                                        // If it's a relative path without leading slash, add it
-                                        imageUrl = "/" + imageUrl.TrimStart('/');
-                                        hasValidImage = true;
+                                        imageUrl = "/images/products/" + imageUrl;
                                     }
                                 }
                                 @if (hasValidImage)
