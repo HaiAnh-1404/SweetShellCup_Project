@@ -86,13 +86,25 @@
                     {
                         <tr style="border-bottom: 1px solid #f9f0f4;">
                             <td style="padding: 12px 8px; width: 80px;">
-                                <img src="@(string.IsNullOrEmpty(detail.Product.ImageUrl) ? "/images/cup-placeholder.png" : detail.Product.ImageUrl)" 
-                                     alt="@detail.Product.ProductName" 
-                                     style="width: 60px; height: 60px; object-fit: cover; border-radius: 8px; border: 1px solid #f5e6ed;" />
+                                @{
+                                    var imgUrl = detail.Product?.ImageUrl;
+                                    if (!string.IsNullOrEmpty(imgUrl) && !imgUrl!.StartsWith("http") && !imgUrl.StartsWith("/"))
+                                    {
+                                        imgUrl = "/images/products/" + imgUrl;
+                                    }
+                                    if (string.IsNullOrEmpty(imgUrl))
+                                    {
+                                        imgUrl = "/images/default-cupcake.png";
+                                    }
+                                }
+                                <img src="@imgUrl" 
+                                     alt="@(detail.Product?.ProductName ?? "Product")" 
+                                     style="width: 60px; height: 60px; object-fit: cover; border-radius: 8px; border: 1px solid #f5e6ed;" 
+                                     onerror="this.onerror=null; this.src='/images/default-cupcake.png';" />
                             </td>
                             <td style="padding: 12px 8px; font-weight: 600; color: #533931;">
-                                @detail.Product.ProductName
-                                @if (!string.IsNullOrEmpty(detail.Product.Flavor))
+                                @(detail.Product?.ProductName ?? "Sản phẩm")
+                                @if (detail.Product != null && !string.IsNullOrEmpty(detail.Product.Flavor))
                                 {
                                     <div style="font-size: 12px; color: #888; font-weight: normal;">Hương vị: @detail.Product.Flavor</div>
                                 }

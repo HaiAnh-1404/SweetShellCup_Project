@@ -93,6 +93,222 @@
     }
     @@keyframes slideIn { from { transform: translateX(100px); opacity:0; } to { transform: translateX(0); opacity:1; } }
 
+    /* === ADDRESS PICKER === */
+    .address-picker-wrapper {
+        position: relative;
+    }
+
+    .address-search-bar {
+        display: flex;
+        align-items: center;
+        border: 2px solid #f5e6ed;
+        border-radius: 25px;
+        padding: 10px 16px;
+        background: #fff;
+        cursor: pointer;
+        transition: border-color 0.25s ease, box-shadow 0.25s ease;
+    }
+    .address-search-bar:focus-within,
+    .address-search-bar.active {
+        border-color: #e60380;
+        box-shadow: 0 0 0 3px rgba(230, 3, 128, 0.1);
+    }
+
+    .address-search-bar input {
+        flex: 1;
+        border: none;
+        outline: none;
+        font-family: 'Work Sans', sans-serif;
+        font-size: 14px;
+        color: #533931;
+        background: transparent;
+        min-width: 0;
+    }
+    .address-search-bar input::placeholder {
+        color: #bbb;
+    }
+
+    .addr-search-icon {
+        font-size: 16px;
+        color: #e60380;
+        flex-shrink: 0;
+        margin-right: 10px;
+        opacity: 0.7;
+    }
+    .addr-search-icon-right {
+        font-size: 14px;
+        color: #bbb;
+        flex-shrink: 0;
+        margin-left: 8px;
+        transition: color 0.2s;
+    }
+    .address-search-bar:focus-within .addr-search-icon-right,
+    .address-search-bar.active .addr-search-icon-right {
+        color: #e60380;
+    }
+
+    .address-panel {
+        position: absolute;
+        top: calc(100% + 6px);
+        left: 0; right: 0;
+        background: #fff;
+        border: 2px solid #f5e6ed;
+        border-radius: 16px;
+        box-shadow: 0 12px 40px rgba(83, 57, 49, 0.12);
+        z-index: 100;
+        overflow: hidden;
+        animation: panelSlideDown 0.25s ease;
+    }
+
+    @@keyframes panelSlideDown {
+        from { opacity: 0; transform: translateY(-10px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+
+    .address-tabs {
+        display: flex;
+        border-bottom: 2px solid #f5e6ed;
+        background: #fdf8fb;
+    }
+
+    .addr-tab {
+        flex: 1;
+        text-align: center;
+        padding: 12px 8px;
+        font-size: 13px;
+        font-weight: 500;
+        color: #999;
+        cursor: pointer;
+        transition: all 0.2s;
+        position: relative;
+        user-select: none;
+    }
+    .addr-tab:hover:not(.disabled) {
+        color: #e60380;
+    }
+    .addr-tab.active {
+        color: #e60380;
+        font-weight: 700;
+        background: #fff;
+    }
+    .addr-tab.active::after {
+        content: '';
+        position: absolute;
+        bottom: -2px;
+        left: 0; right: 0;
+        height: 2px;
+        background: #e60380;
+    }
+    .addr-tab.disabled {
+        opacity: 0.35;
+        pointer-events: none;
+    }
+    .addr-tab .tab-check {
+        color: #10b981;
+        font-size: 11px;
+        margin-left: 4px;
+    }
+
+    .address-list {
+        max-height: 260px;
+        overflow-y: auto;
+    }
+    .address-list::-webkit-scrollbar {
+        width: 4px;
+    }
+    .address-list::-webkit-scrollbar-track {
+        background: transparent;
+    }
+    .address-list::-webkit-scrollbar-thumb {
+        background: #f5e6ed;
+        border-radius: 4px;
+    }
+
+    .addr-item {
+        padding: 11px 16px;
+        font-size: 14px;
+        color: #533931;
+        cursor: pointer;
+        border-bottom: 1px solid #faf3f7;
+        transition: all 0.15s;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+    .addr-item:last-child {
+        border-bottom: none;
+    }
+    .addr-item:hover {
+        background: #fff0f7;
+        color: #e60380;
+    }
+    .addr-item.selected {
+        background: #fef0f6;
+        font-weight: 700;
+        color: #e60380;
+    }
+    .addr-item .check-icon {
+        color: #e60380;
+        font-weight: 700;
+        font-size: 15px;
+    }
+
+    .addr-loading {
+        text-align: center;
+        padding: 30px 16px;
+        color: #bbb;
+        font-size: 14px;
+    }
+    .addr-loading .spinner {
+        display: inline-block;
+        width: 20px; height: 20px;
+        border: 2px solid #f5e6ed;
+        border-top-color: #e60380;
+        border-radius: 50%;
+        animation: addrSpin 0.6s linear infinite;
+        margin-right: 8px;
+        vertical-align: middle;
+    }
+    @@keyframes addrSpin {
+        to { transform: rotate(360deg); }
+    }
+
+    .addr-empty {
+        text-align: center;
+        padding: 24px 16px;
+        color: #ccc;
+        font-size: 13px;
+    }
+
+    .address-selected-summary {
+        margin-top: 8px;
+        padding: 8px 12px;
+        background: #fef0f6;
+        border-radius: 8px;
+        font-size: 13px;
+        color: #e60380;
+        font-weight: 600;
+        display: none;
+        align-items: center;
+        gap: 6px;
+    }
+    .address-selected-summary.show {
+        display: flex;
+    }
+    .address-selected-summary .addr-reset {
+        margin-left: auto;
+        background: none;
+        border: none;
+        color: #999;
+        cursor: pointer;
+        font-size: 16px;
+        padding: 0 4px;
+        transition: color 0.2s;
+    }
+    .address-selected-summary .addr-reset:hover {
+        color: #e60380;
+    }
+
     @@media (max-width: 900px) {
         .cart-page { padding: 20px; }
         .cart-grid { grid-template-columns: 1fr; }
@@ -110,6 +326,17 @@
         }
         .cart-item > div:last-child {
             align-items: center !important;
+        }
+        .address-panel {
+            position: fixed;
+            top: auto;
+            bottom: 0;
+            left: 0; right: 0;
+            border-radius: 16px 16px 0 0;
+            max-height: 70vh;
+        }
+        .address-list {
+            max-height: 50vh;
         }
     }
 </style>
@@ -187,13 +414,46 @@
                     <span class="total-price">@Model.TotalAmount.ToString("N0") đ</span>
                 </div>
 
-                 <form method="post" asp-page-handler="Checkout">
+                 <form method="post" asp-page-handler="Checkout" id="checkoutForm">
                      <div style="margin-bottom: 16px;">
                          <label style="font-size: 14px; font-weight: 600; color: #533931; display: block; margin-bottom: 8px;">
                              📍 Địa chỉ giao hàng:
                          </label>
-                         <input class="address-input" type="text" asp-for="ShippingAddress"
-                                placeholder="Nhập địa chỉ giao hàng..." required style="margin: 0;" />
+                         <input class="address-input" type="text" id="detailAddress"
+                                placeholder="Số nhà, tên đường..." style="margin: 0 0 8px 0;" />
+
+                         <!-- Cascading Address Picker -->
+                         <div class="address-picker-wrapper" id="addressPickerWrapper">
+                             <div class="address-search-bar" id="addressSearchBar">
+                                 <span class="addr-search-icon">📍</span>
+                                 <input type="text" id="addressSearchInput"
+                                        placeholder="Phường/Xã, Quận/Huyện, Tỉnh/Thành phố"
+                                        autocomplete="off" readonly />
+                                 <span class="addr-search-icon-right">🔍</span>
+                             </div>
+
+                             <!-- Panel chọn địa chỉ -->
+                             <div class="address-panel" id="addressPanel" style="display:none;">
+                                 <div class="address-tabs">
+                                     <div class="addr-tab active" data-tab="province" id="tabProvince">Tỉnh/Thành phố</div>
+                                     <div class="addr-tab disabled" data-tab="district" id="tabDistrict">Quận/Huyện</div>
+                                     <div class="addr-tab disabled" data-tab="ward" id="tabWard">Phường/Xã</div>
+                                 </div>
+                                 <div class="address-list" id="addressList">
+                                     <div class="addr-loading"><span class="spinner"></span>Đang tải...</div>
+                                 </div>
+                             </div>
+
+                             <!-- Selected summary -->
+                             <div class="address-selected-summary" id="addressSummary">
+                                 <span>📍</span>
+                                 <span id="addressSummaryText"></span>
+                                 <button type="button" class="addr-reset" id="addressReset" title="Chọn lại">✕</button>
+                             </div>
+                         </div>
+
+                         <!-- Hidden input gửi về server -->
+                         <input type="hidden" asp-for="ShippingAddress" id="shippingAddressHidden" />
                      </div>
 
                      <div style="margin-bottom: 16px;">
@@ -231,3 +491,356 @@
         </div>
     }
 </div>
+
+@section Scripts {
+<script>
+(function() {
+    // === ADDRESS PICKER LOGIC ===
+    const API_BASE = 'https://provinces.open-api.vn/api';
+    let provinces = [];
+    let districts = [];
+    let wards = [];
+    let selectedProvince = null;
+    let selectedDistrict = null;
+    let selectedWard = null;
+    let currentTab = 'province';
+
+    // Cache API responses
+    const cache = {};
+
+    // DOM Elements
+    const wrapper = document.getElementById('addressPickerWrapper');
+    if (!wrapper) return; // Exit if not on checkout page
+
+    const searchBar = document.getElementById('addressSearchBar');
+    const searchInput = document.getElementById('addressSearchInput');
+    const panel = document.getElementById('addressPanel');
+    const list = document.getElementById('addressList');
+    const hiddenInput = document.getElementById('shippingAddressHidden');
+    const detailInput = document.getElementById('detailAddress');
+    const summaryEl = document.getElementById('addressSummary');
+    const summaryText = document.getElementById('addressSummaryText');
+    const resetBtn = document.getElementById('addressReset');
+    const tabProvince = document.getElementById('tabProvince');
+    const tabDistrict = document.getElementById('tabDistrict');
+    const tabWard = document.getElementById('tabWard');
+    const tabs = [tabProvince, tabDistrict, tabWard];
+    const form = document.getElementById('checkoutForm');
+
+    let panelOpen = false;
+
+    // === TOGGLE PANEL ===
+    function openPanel() {
+        panel.style.display = 'block';
+        searchBar.classList.add('active');
+        searchInput.removeAttribute('readonly');
+        searchInput.focus();
+        panelOpen = true;
+        if (provinces.length === 0) {
+            loadProvinces();
+        } else {
+            showCurrentTab();
+        }
+    }
+
+    function closePanel() {
+        panel.style.display = 'none';
+        searchBar.classList.remove('active');
+        searchInput.setAttribute('readonly', '');
+        searchInput.value = '';
+        panelOpen = false;
+    }
+
+    searchBar.addEventListener('click', function(e) {
+        e.stopPropagation();
+        if (panelOpen) {
+            closePanel();
+        } else {
+            openPanel();
+        }
+    });
+
+    // Prevent panel click from closing
+    panel.addEventListener('click', function(e) {
+        e.stopPropagation();
+    });
+
+    // Click outside to close
+    document.addEventListener('click', function(e) {
+        if (!wrapper.contains(e.target) && panelOpen) {
+            closePanel();
+        }
+    });
+
+    // === SEARCH / FILTER ===
+    searchInput.addEventListener('click', function(e) {
+        e.stopPropagation();
+        if (!panelOpen) openPanel();
+    });
+
+    searchInput.addEventListener('input', function() {
+        const keyword = removeAccents(this.value.toLowerCase().trim());
+        let data;
+        if (currentTab === 'province') data = provinces;
+        else if (currentTab === 'district') data = districts;
+        else data = wards;
+
+        if (!keyword) {
+            renderList(data, currentTab);
+            return;
+        }
+
+        const filtered = data.filter(function(item) {
+            return removeAccents(item.name.toLowerCase()).indexOf(keyword) !== -1;
+        });
+        renderList(filtered, currentTab);
+    });
+
+    // === TAB CLICKS ===
+    tabs.forEach(function(tab) {
+        tab.addEventListener('click', function(e) {
+            e.stopPropagation();
+            if (tab.classList.contains('disabled')) return;
+            var tabName = tab.getAttribute('data-tab');
+            setActiveTab(tabName);
+            showCurrentTab();
+        });
+    });
+
+    function setActiveTab(tabName) {
+        currentTab = tabName;
+        tabs.forEach(function(t) { t.classList.remove('active'); });
+        if (tabName === 'province') tabProvince.classList.add('active');
+        else if (tabName === 'district') tabDistrict.classList.add('active');
+        else tabWard.classList.add('active');
+        searchInput.value = '';
+    }
+
+    function showCurrentTab() {
+        if (currentTab === 'province') renderList(provinces, 'province');
+        else if (currentTab === 'district') renderList(districts, 'district');
+        else renderList(wards, 'ward');
+    }
+
+    // === LOAD DATA ===
+    async function loadProvinces() {
+        showLoading();
+        try {
+            if (cache['provinces']) {
+                provinces = cache['provinces'];
+            } else {
+                const res = await fetch(API_BASE + '/p/');
+                provinces = await res.json();
+                cache['provinces'] = provinces;
+            }
+            setActiveTab('province');
+            renderList(provinces, 'province');
+        } catch (err) {
+            list.innerHTML = '<div class="addr-empty">Không thể tải dữ liệu. Vui lòng thử lại.</div>';
+        }
+    }
+
+    async function loadDistricts(provinceCode) {
+        showLoading();
+        var key = 'districts_' + provinceCode;
+        try {
+            if (cache[key]) {
+                districts = cache[key];
+            } else {
+                const res = await fetch(API_BASE + '/p/' + provinceCode + '?depth=2');
+                const data = await res.json();
+                districts = data.districts || [];
+                cache[key] = districts;
+            }
+            renderList(districts, 'district');
+        } catch (err) {
+            list.innerHTML = '<div class="addr-empty">Không thể tải dữ liệu. Vui lòng thử lại.</div>';
+        }
+    }
+
+    async function loadWards(districtCode) {
+        showLoading();
+        var key = 'wards_' + districtCode;
+        try {
+            if (cache[key]) {
+                wards = cache[key];
+            } else {
+                const res = await fetch(API_BASE + '/d/' + districtCode + '?depth=2');
+                const data = await res.json();
+                wards = data.wards || [];
+                cache[key] = wards;
+            }
+            renderList(wards, 'ward');
+        } catch (err) {
+            list.innerHTML = '<div class="addr-empty">Không thể tải dữ liệu. Vui lòng thử lại.</div>';
+        }
+    }
+
+    function showLoading() {
+        list.innerHTML = '<div class="addr-loading"><span class="spinner"></span>Đang tải...</div>';
+    }
+
+    // === RENDER LIST ===
+    function renderList(data, type) {
+        if (!data || data.length === 0) {
+            list.innerHTML = '<div class="addr-empty">Không tìm thấy kết quả</div>';
+            return;
+        }
+
+        var html = '';
+        data.forEach(function(item) {
+            var isSelected = false;
+            if (type === 'province' && selectedProvince && selectedProvince.code === item.code) isSelected = true;
+            if (type === 'district' && selectedDistrict && selectedDistrict.code === item.code) isSelected = true;
+            if (type === 'ward' && selectedWard && selectedWard.code === item.code) isSelected = true;
+
+            html += '<div class="addr-item' + (isSelected ? ' selected' : '') + '" '
+                  + 'data-code="' + item.code + '" '
+                  + 'data-name="' + escapeHtml(item.name) + '" '
+                  + 'data-type="' + type + '">'
+                  + '<span>' + escapeHtml(item.name) + '</span>'
+                  + (isSelected ? '<span class="check-icon">✓</span>' : '')
+                  + '</div>';
+        });
+        list.innerHTML = html;
+
+        // Attach click handlers
+        list.querySelectorAll('.addr-item').forEach(function(el) {
+            el.addEventListener('click', function(e) {
+                e.stopPropagation();
+                handleSelect(el);
+            });
+        });
+
+        // Scroll selected item into view
+        var selectedEl = list.querySelector('.addr-item.selected');
+        if (selectedEl) {
+            selectedEl.scrollIntoView({ block: 'center', behavior: 'smooth' });
+        }
+    }
+
+    // === HANDLE SELECTION ===
+    function handleSelect(el) {
+        var type = el.getAttribute('data-type');
+        var code = parseInt(el.getAttribute('data-code'));
+        var name = el.getAttribute('data-name');
+
+        if (type === 'province') {
+            selectedProvince = { code: code, name: name };
+            selectedDistrict = null;
+            selectedWard = null;
+            // Update tabs
+            tabDistrict.classList.remove('disabled');
+            tabWard.classList.add('disabled');
+            updateTabLabels();
+            setActiveTab('district');
+            loadDistricts(code);
+
+        } else if (type === 'district') {
+            selectedDistrict = { code: code, name: name };
+            selectedWard = null;
+            // Update tabs
+            tabWard.classList.remove('disabled');
+            updateTabLabels();
+            setActiveTab('ward');
+            loadWards(code);
+
+        } else if (type === 'ward') {
+            selectedWard = { code: code, name: name };
+            updateTabLabels();
+            // Close panel
+            closePanel();
+        }
+
+        updateAddressDisplay();
+    }
+
+    // === UPDATE TAB LABELS (add check marks) ===
+    function updateTabLabels() {
+        tabProvince.innerHTML = 'Tỉnh/Thành phố' + (selectedProvince ? '<span class="tab-check"> ✓</span>' : '');
+        tabDistrict.innerHTML = 'Quận/Huyện' + (selectedDistrict ? '<span class="tab-check"> ✓</span>' : '');
+        tabWard.innerHTML = 'Phường/Xã' + (selectedWard ? '<span class="tab-check"> ✓</span>' : '');
+    }
+
+    // === UPDATE DISPLAY & HIDDEN INPUT ===
+    function updateAddressDisplay() {
+        var parts = [];
+        if (selectedWard) parts.push(selectedWard.name);
+        if (selectedDistrict) parts.push(selectedDistrict.name);
+        if (selectedProvince) parts.push(selectedProvince.name);
+
+        var locationStr = parts.join(', ');
+
+        // Update search bar display text (when panel is closed)
+        if (!panelOpen && locationStr) {
+            searchInput.value = '';
+            searchInput.placeholder = locationStr;
+        } else if (!panelOpen) {
+            searchInput.placeholder = 'Phường/Xã, Quận/Huyện, Tỉnh/Thành phố';
+        }
+
+        // Update summary badge
+        if (locationStr) {
+            summaryText.textContent = locationStr;
+            summaryEl.classList.add('show');
+        } else {
+            summaryEl.classList.remove('show');
+        }
+
+        // Build full address for hidden input
+        var detail = detailInput.value.trim();
+        var fullParts = [];
+        if (detail) fullParts.push(detail);
+        if (locationStr) fullParts.push(locationStr);
+        hiddenInput.value = fullParts.join(', ');
+    }
+
+    // Update hidden input when detail address changes
+    detailInput.addEventListener('input', updateAddressDisplay);
+
+    // === RESET BUTTON ===
+    resetBtn.addEventListener('click', function(e) {
+        e.stopPropagation();
+        selectedProvince = null;
+        selectedDistrict = null;
+        selectedWard = null;
+        tabDistrict.classList.add('disabled');
+        tabWard.classList.add('disabled');
+        updateTabLabels();
+        searchInput.placeholder = 'Phường/Xã, Quận/Huyện, Tỉnh/Thành phố';
+        summaryEl.classList.remove('show');
+        hiddenInput.value = '';
+        updateAddressDisplay();
+    });
+
+    // === FORM VALIDATION ===
+    if (form) {
+        form.addEventListener('submit', function(e) {
+            // Ensure full address is set before submit
+            updateAddressDisplay();
+            if (!hiddenInput.value || !hiddenInput.value.trim()) {
+                e.preventDefault();
+                alert('Vui lòng chọn địa chỉ giao hàng!');
+                openPanel();
+                return false;
+            }
+        });
+    }
+
+    // === HELPERS ===
+    function removeAccents(str) {
+        return str.normalize('NFD')
+                  .replace(/[\u0300-\u036f]/g, '')
+                  .replace(/đ/g, 'd')
+                  .replace(/Đ/g, 'D');
+    }
+
+    function escapeHtml(str) {
+        var div = document.createElement('div');
+        div.appendChild(document.createTextNode(str));
+        return div.innerHTML;
+    }
+
+})();
+</script>
+}
