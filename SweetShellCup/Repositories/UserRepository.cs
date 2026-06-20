@@ -51,12 +51,17 @@ namespace SweetShellCup.Repositories
 
         public async Task DeleteUserAsync(int id)
         {
-            var user = await _context.Users.FindAsync(id);
-            if (user != null)
-            {
-                _context.Users.Remove(user);
-                await _context.SaveChangesAsync();
-            }
+            // Sử dụng SQL thuần để xóa sạch dữ liệu liên quan ở các bảng có ràng buộc khóa ngoại (kể cả bảng không khai báo trong DbContext)
+            await _context.Database.ExecuteSqlRawAsync("DELETE FROM cartitems WHERE CartId IN (SELECT CartId FROM cart WHERE UserId = {0})", id);
+            await _context.Database.ExecuteSqlRawAsync("DELETE FROM cart WHERE UserId = {0}", id);
+            await _context.Database.ExecuteSqlRawAsync("DELETE FROM reviews WHERE UserId = {0}", id);
+            await _context.Database.ExecuteSqlRawAsync("DELETE FROM useraddresses WHERE UserId = {0}", id);
+            await _context.Database.ExecuteSqlRawAsync("DELETE FROM wishlists WHERE UserId = {0}", id);
+            await _context.Database.ExecuteSqlRawAsync("DELETE FROM shipments WHERE OrderId IN (SELECT OrderId FROM orders WHERE UserId = {0})", id);
+            await _context.Database.ExecuteSqlRawAsync("DELETE FROM payments WHERE OrderId IN (SELECT OrderId FROM orders WHERE UserId = {0})", id);
+            await _context.Database.ExecuteSqlRawAsync("DELETE FROM orderdetails WHERE OrderId IN (SELECT OrderId FROM orders WHERE UserId = {0})", id);
+            await _context.Database.ExecuteSqlRawAsync("DELETE FROM orders WHERE UserId = {0}", id);
+            await _context.Database.ExecuteSqlRawAsync("DELETE FROM users WHERE UserId = {0}", id);
         }
 
         public async Task<Role?> GetRoleByNameAsync(string roleName)

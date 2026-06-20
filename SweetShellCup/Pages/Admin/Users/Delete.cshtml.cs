@@ -23,8 +23,15 @@ namespace SweetShellCup.Pages.Admin.Users
             var user = await _userRepository.GetUserByIdAsync(id.Value);
             if (user == null) return NotFound();
 
-            await _userRepository.DeleteUserAsync(id.Value);
-            TempData["Message"] = "Đã xóa tài khoản thành công!";
+            try
+            {
+                await _userRepository.DeleteUserAsync(id.Value);
+                TempData["Message"] = "Đã xóa tài khoản thành công!";
+            }
+            catch (System.Exception ex)
+            {
+                TempData["ErrorMessage"] = $"Lỗi khi xóa tài khoản: {ex.Message}";
+            }
             return RedirectToPage("./Index");
         }
     }

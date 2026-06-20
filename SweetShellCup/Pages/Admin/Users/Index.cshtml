@@ -17,6 +17,13 @@
         </div>
     }
 
+    @if (TempData["ErrorMessage"] != null)
+    {
+        <div style="background-color: #fee2e2; color: #ef4444; padding: 12px; border-radius: 8px; margin-bottom: 20px; font-weight: 600;">
+            @TempData["ErrorMessage"]
+        </div>
+    }
+
     <div style="overflow-x: auto;">
         <table style="width: 100%; border-collapse: collapse; text-align: left; background: #fff; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.05); overflow: hidden;">
             <thead style="background: #fff0f7; color: #533931;">
