@@ -40,6 +40,8 @@ namespace SweetShellCup.Pages.Admin.Users
 
         public async Task<IActionResult> OnPostAsync()
         {
+            ModelState.Remove("EditUser.Role");
+
             if (!ModelState.IsValid)
             {
                 var roles = await _userRepository.GetAllRolesAsync();
